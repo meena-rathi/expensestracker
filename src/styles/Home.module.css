@@ -1,0 +1,23 @@
+/* Home.module.css */
+.homeContainer {
+  padding: 20px;
+}
+
+.userInfo {
+  margin-bottom: 20px;
+}
+
+.budgetFormContainer {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.error {
+  color: red;
+}
+.budgetFormContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid red; /* Temporary border to check visibility */
+  padding: 20px; /* Ensure there's some padding */
+}
