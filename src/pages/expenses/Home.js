@@ -9,18 +9,22 @@ const Home = () => {
   const user = useCurrentUser();  // Get current user from context
   const [budget, setBudget] = useState('');
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);  // New state for success message
+  const [isBudgetLoaded, setIsBudgetLoaded] = useState(false); // To track if budget data is loaded
 
   useEffect(() => {
     const fetchBudget = async () => {
       try {
         const response = await axios.get('/api/budget/');
-        console.log('Budget Response:', response.data);  // Debugging line
-        if (response.data.length > 0) {
-          setBudget(response.data[0].amount);  // Assuming there's one budget per user
+        console.log('Budget Response:', response.data);
+        if (response.data && response.data.length > 0) {
+          setBudget(response.data[0].amount); // Assuming one budget per user
         }
+        setIsBudgetLoaded(true); // Set to true after fetching budget data
       } catch (err) {
-        console.error('Failed to load budget data:', err);  // Debugging line
+        console.error('Failed to load budget data:', err.response ? err.response.data : err.message);
         setError('Failed to load budget data');
+        setIsBudgetLoaded(true); // Set to true even on error to stop loading spinner if any
       }
     };
     fetchBudget();
@@ -33,15 +37,17 @@ const Home = () => {
   const handleBudgetSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/budgets/', { amount: budget });
-      alert('Budget updated successfully');
+      await axios.post('/budgets/', { amount: budget });
+      setSuccess('Budget updated successfully');
+      setError(null); // Clear any previous errors
     } catch (err) {
-      console.error('Failed to update budget:', err);  // Debugging line
       setError('Failed to update budget');
+      setSuccess(null); // Clear any previous success messages
     }
   };
 
   console.log('User:', user);  // Debugging line
+
   return (
     <div className={styles.homeContainer}>
       {user && (
@@ -60,10 +66,16 @@ const Home = () => {
               placeholder="Enter your budget"
             />
           </Form.Group>
-          <Button variant="primary" type="submit">Update Budget</Button>
+          <Button variant="primary" type="submit">Add Budget</Button>
         </Form>
+        {success && <p className={styles.success}>{success}</p>}
         {error && <p className={styles.error}>{error}</p>}
       </div>
+      {isBudgetLoaded && !error && !success && (
+        <div className={styles.budgetInfo}>
+          <p>Current Budget: {budget}</p>
+        </div>
+      )}
     </div>
   );
 }
