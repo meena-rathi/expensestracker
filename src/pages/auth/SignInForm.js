@@ -15,7 +15,7 @@ import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
-  const history = useHistory(); // Correctly use the hook
+  const history = useHistory();
 
   const [signInData, setSignInData] = useState({
     username: "",
@@ -29,14 +29,11 @@ function SignInForm() {
     event.preventDefault();
 
     try {
-      console.log("SignIn Data: ", signInData);
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
-      console.log("Response Data: ", data);
       setCurrentUser(data.user);
       history.push("/welcome");
     } catch (err) {
-      console.log("Error: ", err.response?.data);
-      setErrors(err.response?.data || {}); // Default to empty object if no data
+      setErrors(err.response?.data || {});
     }
   };
 
