@@ -3,7 +3,7 @@ import React from 'react';
 const BudgetDisplay = ({ budget }) => {
   return (
     <div>
-      <p>Current Budget: {budget}</p>
+      <p>Current Budget: {budget !== null ? `$${parseFloat(budget).toFixed(2)}` : 'Loading...'}</p>
     </div>
   );
 };

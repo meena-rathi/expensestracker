@@ -82,18 +82,16 @@
 
 // export default Home;
 
-
-
 import React from 'react';
-import styles from '../../styles/Home.module.css';  // Import your CSS file
-import { useCurrentUser } from '../../contexts/CurrentUserContext'; // Custom hook for user context
-import useBudget from '../../Hooks/useBudget';  // Import custom hook
-import BudgetForm from '../../components/BudgetForm';  // Import BudgetForm component
-import BudgetDisplay from '../../components/BudgetDisplay';  // Import BudgetDisplay component
+import styles from '../../styles/Home.module.css';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import useBudget from '../../Hooks/useBudget';
+import BudgetForm from '../../components/BudgetForm';
+import BudgetDisplay from '../../components/BudgetDisplay';
 
 const Home = () => {
-  const user = useCurrentUser();  // Get current user from context
-  const { budget, error, success, isBudgetLoaded, handleBudgetSubmit } = useBudget();
+  const user = useCurrentUser();
+  const { budget, error, isBudgetLoaded, handleBudgetSubmit } = useBudget();
 
   return (
     <div className={styles.homeContainer}>
@@ -104,14 +102,15 @@ const Home = () => {
       )}
       <div className={styles.budgetFormContainer}>
         <BudgetForm onSubmit={handleBudgetSubmit} />
-        {success && <p className={styles.success}>{success}</p>}
         {error && <p className={styles.error}>{error}</p>}
       </div>
-      {isBudgetLoaded && !error && (
-        <div className={styles.budgetInfo}>
+      <div className={styles.budgetInfo}>
+        {isBudgetLoaded ? (
           <BudgetDisplay budget={budget} />
-        </div>
-      )}
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
     </div>
   );
 };
