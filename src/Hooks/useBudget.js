@@ -50,7 +50,6 @@
 
 // export default useBudget;
 
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -63,19 +62,22 @@ const useBudget = () => {
     const fetchBudget = async () => {
       try {
         const response = await axios.get("/budgets/");
-        console.log('API Response:', response.data); // Debugging line
-        if (response.data && response.data.length > 0) {
-          setBudget(response.data[0].amount); // Ensure `amount` is displayed
+        console.log('API Response:', response.data);
+
+        // Access the results array and get the first budget
+        if (response.data.results && response.data.results.length > 0) {
+          setBudget(response.data.results[0].amount); // Set budget amount from the first entry
         } else {
-          setBudget(0); // Default to 0 if no data found
+          setBudget('0.00'); // Default to 0 if no data found
         }
         setIsBudgetLoaded(true);
       } catch (err) {
-        console.error('Failed to load budget data:');
+        console.error('Failed to load budget data:', err.response ? err.response.data : err.message);
         setError('Failed to load budget data');
         setIsBudgetLoaded(true);
       }
     };
+
     fetchBudget();
   }, []);
 
