@@ -88,10 +88,14 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import useBudget from '../../Hooks/useBudget';
 import BudgetForm from '../../components/BudgetForm';
 import BudgetDisplay from '../../components/BudgetDisplay';
+import useCategories from '../../Hooks/useCategories';
+import CategoryForm from '../../components/CategoryForm';
+import CategoryList from '../../components/CategoryList';
 
 const Home = () => {
   const user = useCurrentUser();
   const { budget, error, isBudgetLoaded, handleBudgetSubmit } = useBudget();
+  const { categories, addCategory, error: categoriesError } = useCategories();
 
   return (
     <div className={styles.homeContainer}>
@@ -110,6 +114,12 @@ const Home = () => {
         ) : (
           <p>Loading...</p>
         )}
+      </div>
+ 
+      <div className={styles.categoriesContainer}>
+        <CategoryForm onSubmit={addCategory} />
+        {categoriesError && <p className={styles.error}>{categoriesError}</p>}
+        <CategoryList categories={categories} />
       </div>
     </div>
   );
