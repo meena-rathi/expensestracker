@@ -8,7 +8,7 @@ const useExpenses = () => {
   useEffect(() => {
     const fetchExpenses = async () => {
       try {
-        const response = await axios.get('/api/expenses/');
+        const response = await axios.get('/expenses/');
         setExpenses(response.data);
       } catch (err) {
         setError('Error fetching expenses');
@@ -19,7 +19,7 @@ const useExpenses = () => {
 
   const addExpense = async (expense) => {
     try {
-      const response = await axios.post('/api/expenses/', expense);
+      const response = await axios.post('/expenses/', expense);
       setExpenses([...expenses, response.data]);
     } catch (err) {
       setError('Error adding expense');

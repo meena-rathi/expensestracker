@@ -94,6 +94,7 @@ import CategoryList from '../../components/CategoryList';
 import ExpensesForm from '../../components/ExpensesForm';
 import useExpenses from '../../Hooks/useExpenses';
 
+
 const Home = () => {
   const user = useCurrentUser();
   const { budget, error, isBudgetLoaded, handleBudgetSubmit } = useBudget();
@@ -122,17 +123,13 @@ const Home = () => {
       <div className={styles.categoriesContainer}>
         <CategoryForm onSubmit={addCategory} />
         {categoriesError && <p className={styles.error}>{categoriesError}</p>}
-        <CategoryList categories={categories} />
-      </div>
+        <CategoryList categories={categories} /> 
+        </div>
       <div className={styles.expensesContainer}>
-        <ExpensesForm onSubmit={addExpense} />
-        {categoriesError && <p className={styles.error}>{categoriesError}</p>}
-   
+        <ExpensesForm categories={categories} onSubmit={addExpense} /> {/* Pass categories */}
+        {expensesError && <p className={styles.error}>{expensesError}</p>}
       </div>
     </div>
-      
-
-   
   );
 };
 

@@ -1,11 +1,13 @@
 import React from 'react';
 import styles from '../../src/styles/CategoryList.module.css';
 
+
 const CategoryList = ({ categories }) => {
-  // Ensure categories is an array
   if (!Array.isArray(categories) || categories.length === 0) {
     return <p>No categories available</p>;
   }
+
+  
 
   return (
     <div className={styles.categoryList}>
@@ -22,3 +24,5 @@ const CategoryList = ({ categories }) => {
 };
 
 export default CategoryList;
+
+
