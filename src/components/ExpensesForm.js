@@ -1,61 +1,47 @@
-import React, { useState } from "react";
-import styles from '../../src/styles/ExpensesForm.module.css'
+import React, { useState } from 'react';
 
+const ExpensesForm = ({ categories, onSubmit }) => {
+  const [amount, setAmount] = useState('');
+  const [category, setCategory] = useState('');
+  const [error, setError] = useState('');
 
-const ExpensesForm = ({ categories = [], onSubmit }) => { // Set default value to an empty array
-  const [expenses, setExpenses] = useState({
-    category: '', name: '', amount: '',
-  });
+  const handleAmountChange = (e) => {
+    setAmount(e.target.value);
+  };
 
-  const handleChange = (event) => {
-    setExpenses({
-      ...expenses,
-      [event.target.name]: event.target.value,
-    });
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(expenses);
+    if (amount && category) {
+      onSubmit({ amount, category });
+      setAmount('');
+      setCategory('');
+    } else {
+      setError('Please enter an amount and select a category');
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.expensesForm}>
-      <label htmlFor="category">Category</label>
-      <select
-        name="category"
-        value={expenses.category}
-        onChange={handleChange}
-      >
-        <option value="">Select a Category</option>
-        {Array.isArray(categories) && categories.length > 0 ? (
-          categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.name}
-            </option>
-          ))
-        ) : (
-          <option value="">No categories available</option>
-        )}
-      </select>
-
-      <label htmlFor="name">Name</label>
-      <input
-        type="text"
-        name="name"
-        value={expenses.name}
-        onChange={handleChange}
-      />
-
-      <label htmlFor="amount">Amount</label>
+    <form onSubmit={handleSubmit}>
       <input
         type="number"
-        name="amount"
-        value={expenses.amount}
-        onChange={handleChange}
+        placeholder="Amount"
+        value={amount}
+        onChange={handleAmountChange}
       />
-
+      <select value={category} onChange={handleCategoryChange}>
+        <option value="">Select Category</option>
+        {categories.map((cat) => (
+          <option key={cat.id} value={cat.name}>
+            {cat.name}
+          </option>
+        ))}
+      </select>
       <button type="submit">Add Expense</button>
+      {error && <p>{error}</p>}
     </form>
   );
 };

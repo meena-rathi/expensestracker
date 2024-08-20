@@ -88,29 +88,21 @@ import axios from 'axios';
 
 
 
-
-
-
-
-
-
-
 const useCategories = () => {
-  const [categories, setCategories] = useState([]); // Initialize as an empty array
+  const [categories, setCategories] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('/categories/');
+        const response = await axios.get('/categories/'); // Make sure this endpoint is correct
         console.log('API Response:', response.data);
 
-        // Ensure response.data is an array
-        if (Array.isArray(response.data)) {
-          setCategories(response.data);
+        if (Array.isArray(response.data.results)) {
+          setCategories(response.data.results); // Set categories from the results array
         } else {
-          setCategories([]);
+          setCategories([]); // Fallback if data isn't in expected format
         }
         setIsLoaded(true);
       } catch (err) {
@@ -121,20 +113,12 @@ const useCategories = () => {
     };
 
     fetchCategories();
-  }, []); // Empty dependency array to run only once on mount
+  }, []); // Run once on component mount
 
   const addCategory = async (newCategory) => {
     try {
       const response = await axios.post('/categories/', newCategory);
-      setCategories((prevCategories) => {
-        // Ensure prevCategories is an array before using the spread operator
-        if (Array.isArray(prevCategories)) {
-          return [...prevCategories, response.data];
-        } else {
-          // Initialize with an array containing the new category if prevCategories is not an array
-          return [response.data];
-        }
-      });
+      setCategories((prevCategories) => [...prevCategories, response.data]);
       setError(null);
     } catch (err) {
       setError('Failed to add category');

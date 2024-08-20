@@ -95,11 +95,58 @@ import ExpensesForm from '../../components/ExpensesForm';
 import useExpenses from '../../Hooks/useExpenses';
 
 
+// const Home = () => {
+//   const user = useCurrentUser();
+//   const { budget, error, isBudgetLoaded, handleBudgetSubmit } = useBudget();
+//   const { categories, addCategory, error: categoriesError } = useCategories();
+//   const { expenses, addExpense, error: expensesError } = useExpenses();
+
+//   return (
+//     <div className={styles.homeContainer}>
+//       {user && (
+//         <div className={styles.userInfo}>
+//           <h1>Welcome, {user.username}!</h1>
+//         </div>
+//       )}
+//       <div className={styles.budgetFormContainer}>
+//         <BudgetForm onSubmit={handleBudgetSubmit} />
+//         {error && <p className={styles.error}>{error}</p>}
+//       </div>
+//       <div className={styles.budgetInfo}>
+//         {isBudgetLoaded ? (
+//           <BudgetDisplay budget={budget} />
+//         ) : (
+//           <p>Loading...</p>
+//         )}
+//       </div>
+ 
+//       <div className={styles.categoriesContainer}>
+//         <CategoryForm onSubmit={addCategory} />
+//         {categoriesError && <p className={styles.error}>{categoriesError}</p>}
+//         <CategoryList categories={categories} /> 
+//         </div>
+//       <div className={styles.expensesContainer}>
+//         <ExpensesForm categories={categories} onSubmit={addExpense} /> {/* Pass categories */}
+//         {expensesError && <p className={styles.error}>{expensesError}</p>}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Home;
+
+
 const Home = () => {
   const user = useCurrentUser();
-  const { budget, error, isBudgetLoaded, handleBudgetSubmit } = useBudget();
-  const { categories, addCategory, error: categoriesError } = useCategories();
-  const { expenses, addExpense, error: expensesError } = useExpenses();
+   
+  // Budget hook
+  const { budget, error: budgetError, isBudgetLoaded, handleBudgetSubmit } = useBudget();
+  
+  // Categories hook
+  const { categories, addCategory, error, isLoaded } = useCategories();
+  
+  // Expenses hook
+  const { expenses, addExpense, error: expensesError, isLoaded: isExpensesLoaded } = useExpenses();
 
   return (
     <div className={styles.homeContainer}>
@@ -108,25 +155,40 @@ const Home = () => {
           <h1>Welcome, {user.username}!</h1>
         </div>
       )}
+      
+      {/* Budget Section */}
       <div className={styles.budgetFormContainer}>
         <BudgetForm onSubmit={handleBudgetSubmit} />
-        {error && <p className={styles.error}>{error}</p>}
+        {budgetError && <p className={styles.error}>{budgetError}</p>}
       </div>
       <div className={styles.budgetInfo}>
         {isBudgetLoaded ? (
           <BudgetDisplay budget={budget} />
         ) : (
-          <p>Loading...</p>
+          <p>Loading budget...</p>
         )}
       </div>
  
+      {/* Categories Section */}
+      <div className={styles.homeContainer}>
       <div className={styles.categoriesContainer}>
         <CategoryForm onSubmit={addCategory} />
-        {categoriesError && <p className={styles.error}>{categoriesError}</p>}
-        <CategoryList categories={categories} /> 
-        </div>
+        {error && <p className={styles.error}>{error}</p>}
+        {isLoaded ? (
+          <CategoryList categories={categories} />
+        ) : (
+          <p>Loading categories...</p>
+        )}
+      </div>
+    </div>
+
+      {/* Expenses Section */}
       <div className={styles.expensesContainer}>
-        <ExpensesForm categories={categories} onSubmit={addExpense} /> {/* Pass categories */}
+        {isLoaded ? (
+          <ExpensesForm categories={categories} onSubmit={addExpense} />
+        ) : (
+          <p>Loading categories for expenses...</p>
+        )}
         {expensesError && <p className={styles.error}>{expensesError}</p>}
       </div>
     </div>
