@@ -93,6 +93,7 @@ import CategoryForm from '../../components/CategoryForm';
 import CategoryList from '../../components/CategoryList';
 import ExpensesForm from '../../components/ExpensesForm';
 import useExpenses from '../../Hooks/useExpenses';
+import ExpenseDisplay from '../../components/ExpensesDisplay';
 
 
 // const Home = () => {
@@ -146,7 +147,10 @@ const Home = () => {
   const { categories, addCategory, error, isLoaded } = useCategories();
   
   // Expenses hook
-  const { expenses, addExpense, error: expensesError, isLoaded: isExpensesLoaded } = useExpenses();
+  const userId = user?.id; // Safely access user ID
+
+  const { expenses, addExpense, error: expensesError } = useExpenses(userId);
+  // const { expenses, addExpense, error: expensesError, isLoaded: isExpensesLoaded } = useExpenses(user.id);
 
   return (
     <div className={styles.homeContainer}>
@@ -190,6 +194,9 @@ const Home = () => {
           <p>Loading categories for expenses...</p>
         )}
         {expensesError && <p className={styles.error}>{expensesError}</p>}
+      </div>
+      <div>
+      <ExpenseDisplay expenses={expenses} />
       </div>
     </div>
   );

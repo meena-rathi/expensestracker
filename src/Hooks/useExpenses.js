@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+// import { axios } from '../api/axiosDefaults';  
 import axios from 'axios';
 
 const useExpenses = () => {
@@ -9,23 +10,26 @@ const useExpenses = () => {
     const fetchExpenses = async () => {
       try {
         const response = await axios.get('/expenses/');
-        setExpenses(response.data);
+        setExpenses(response.data.results);
       } catch (err) {
         setError('Error fetching expenses');
+        console.error('Fetch expenses error:', err.response ? err.response.data : err.message);
       }
     };
+
     fetchExpenses();
   }, []);
 
-  const addExpense = async (expense) => {
+  
+  const addExpense = async (newExpenses) => {
     try {
-      const response = await axios.post('/expenses/', expense);
-      setExpenses([...expenses, response.data]);
+      const response = await axios.post('/expenses/', newExpenses);
+      setExpenses((prevExpenses) => [...prevExpenses, response.data]);
+      setError(null);
     } catch (err) {
-      setError('Error adding expense');
+      setError('Failed to add expenses');
     }
   };
-
   return {
     expenses,
     addExpense,

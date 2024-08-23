@@ -111,7 +111,6 @@ const useCategories = () => {
         setIsLoaded(true);
       }
     };
-
     fetchCategories();
   }, []); // Run once on component mount
 
