@@ -1,81 +1,235 @@
+// import React from 'react';
+// import { NavLink } from 'react-router-dom';
+// import { Navbar, Container, Nav } from 'react-bootstrap';
+// import styles from '../styles/NavBar.module.css';
+// import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
+// import axios from 'axios';
+// import useClickOutsideToggle from '../Hooks/useClickOutsideToggle';
+// import Avatar from './Avatar';
+// import logo from "../assets/logo.webp";
 
+// const NavBar = () => {
+//   const currentUser = useCurrentUser();
+//   const setCurrentUser = useSetCurrentUser();
+
+//   const { expanded, setExpanded, ref } = useClickOutsideToggle();
+
+//   const handleSignOut = async () => {
+//     try {
+//       await axios.post("dj-rest-auth/logout/");
+//       setCurrentUser(null);
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+
+//   const loggedInIcons = (
+//     <>
+//       <NavLink
+//         className={styles.NavLink}
+//         activeClassName={styles.Active}
+//         to="/"
+//         exact
+//       >
+//         <i className="fas fa-home"></i> Home
+//       </NavLink>
+//       <NavLink
+//         className={styles.NavLink}
+//         activeClassName={styles.Active}
+//         to="/add-expense"
+//         exact
+//       >
+//         <i className="fas fa-plus-circle"></i> Add Expenses
+//       </NavLink>
+//       <NavLink
+//         className={styles.NavLink}
+//         activeClassName={styles.Active}
+//         to="/view-expenses"
+//         exact
+//       >
+//         <i className="fas fa-list"></i> View Expenses
+//       </NavLink>
+//       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
+//         <i className="fas fa-sign-out-alt"></i> Sign out
+//       </NavLink>
+//       <NavLink
+//         className={styles.NavLink}
+//         to={`/profiles/${currentUser?.profile_id}`}
+//       >
+//         <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+//       </NavLink>
+//     </>
+//   );
+
+//   const loggedOutIcons = (
+//     <>
+//       <NavLink
+//         className={styles.NavLink}
+//         activeClassName={styles.Active}
+//         to="/signin"
+//         exact
+//       >
+//         <i className="fas fa-sign-in-alt"></i> Sign in
+//       </NavLink>
+//       <NavLink
+//         to="/signup"
+//         className={styles.NavLink}
+//         activeClassName={styles.Active}
+//         exact
+//       >
+//         <i className="fas fa-user-plus"></i> Sign up
+//       </NavLink>
+//     </>
+//   );
+
+//   return (
+//     <Navbar
+//       expanded={expanded}
+//       className={styles.NavBar}
+//       expand="md"
+//       fixed="top"
+//     >
+//       <Container>
+//         <NavLink to="/">
+//           <Navbar.Brand>
+//             <img src={logo} alt="logo" height="45" />
+//           </Navbar.Brand>
+//         </NavLink>
+//         <Navbar.Toggle
+//           ref={ref}
+//           onClick={() => setExpanded(!expanded)}
+//           aria-controls="basic-navbar-nav"
+//         />
+//         <Navbar.Collapse id="basic-navbar-nav">
+//           <Nav className="ms-auto text-left"> {/* `ms-auto` pushes the menu to the right */}
+//             {currentUser ? loggedInIcons : loggedOutIcons}
+//           </Nav>
+//         </Navbar.Collapse>
+//       </Container>
+//     </Navbar>
+//   );
+// };
+
+// export default NavBar;
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Navbar as BootstrapNavbar, Container, Nav } from 'react-bootstrap';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import styles from '../styles/NavBar.module.css';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import axios from 'axios';
 import useClickOutsideToggle from '../Hooks/useClickOutsideToggle';
+import Avatar from './Avatar';
+import logo from "../assets/logo.webp";
 
+// Import Font Awesome icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faSignInAlt, faUserPlus, faPlusCircle, faList, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
-  // Toggle hook to handle navbar expansion/collapse
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
-  // Handle user sign out
   const handleSignOut = async () => {
     try {
-      await axios.post('dj-rest-auth/logout/');
+      await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
-      localStorage.removeItem('refreshToken');
     } catch (err) {
       console.log(err);
     }
   };
 
-  // Logged in menu options
-  const loggedInMenu = (
+  const loggedInIcons = (
     <>
-      <Nav.Link as={NavLink} to="/" exact activeClassName={styles.Active}>
-        <i className="fas fa-home"></i> Home
-      </Nav.Link>
-      <Nav.Link as={NavLink} to="/add-expense" exact activeClassName={styles.Active}>
-        <i className="fas fa-plus-circle"></i> Add Expenses
-      </Nav.Link>
-      <Nav.Link as={NavLink} to="/view-expenses" exact activeClassName={styles.Active}>
-        <i className="fas fa-list"></i> View Expenses
-      </Nav.Link>
-      <Nav.Link onClick={handleSignOut}>
-        <i className="fas fa-sign-out-alt"></i> Sign out
-      </Nav.Link>
-      <Nav.Link as={NavLink} to={`/profiles/${currentUser?.profile_id}`} exact>
-        {/* <Avatar src={currentUser?.profile_image} text="Profile" height={40} /> */}
-      </Nav.Link>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/"
+        exact
+      >
+        <FontAwesomeIcon icon={faHome} /> Home
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/add-expense"
+        exact
+      >
+        <FontAwesomeIcon icon={faPlusCircle} /> Add Expenses
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/view-expenses"
+        exact
+      >
+        <FontAwesomeIcon icon={faList} /> View Expenses
+      </NavLink>
+      <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
+        <FontAwesomeIcon icon={faSignOutAlt} /> Sign out
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        to={`/profiles/${currentUser?.profile_id}`}
+      >
+        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+      </NavLink>
     </>
   );
 
-  // Logged out menu options
-  const loggedOutMenu = (
+  const loggedOutIcons = (
     <>
-      <Nav.Link as={NavLink} to="/signin" exact activeClassName={styles.Active}>
-        <i className="fas fa-sign-in-alt"></i> Sign in
-      </Nav.Link>
-      <Nav.Link as={NavLink} to="/signup" exact activeClassName={styles.Active}>
-        <i className="fas fa-user-plus"></i> Sign up
-      </Nav.Link>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/signin"
+        exact
+      >
+        <FontAwesomeIcon icon={faSignInAlt} /> Sign in
+      </NavLink>
+      <NavLink
+        to="/signup"
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        exact
+      >
+        <FontAwesomeIcon icon={faUserPlus} /> Sign up
+      </NavLink>
     </>
   );
 
   return (
-    <BootstrapNavbar expanded={expanded} className={styles.NavBar} expand="md" fixed="top">
+    <Navbar
+      expanded={expanded}
+      className={styles.NavBar}
+      expand="md"
+      fixed="top"
+    >
       <Container>
+        {/* Logo on the left */}
         <NavLink to="/">
-          {/* <BootstrapNavbar.Brand>
+          <Navbar.Brand>
             <img src={logo} alt="logo" height="45" />
-          </BootstrapNavbar.Brand> */}
+          </Navbar.Brand>
         </NavLink>
-        <BootstrapNavbar.Toggle ref={ref} onClick={() => setExpanded(!expanded)} aria-controls="basic-navbar-nav" />
-        <BootstrapNavbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto text-left">
-            {currentUser ? loggedInMenu : loggedOutMenu}
+
+        {/* Navbar Toggle for mobile view */}
+        <Navbar.Toggle
+          ref={ref}
+          onClick={() => setExpanded(!expanded)}
+          aria-controls="basic-navbar-nav"
+        />
+
+        {/* Navbar items aligned to the right */}
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
-        </BootstrapNavbar.Collapse>
+        </Navbar.Collapse>
       </Container>
-    </BootstrapNavbar>
+    </Navbar>
   );
 };
 

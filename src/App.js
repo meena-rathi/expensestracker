@@ -5,22 +5,27 @@ import SignInForm from './pages/auth/SignInForm';
 import SignUpForm from './pages/auth/SignUpForm';
 import Navbar from './components/NavBar';
 import Home from './pages/expenses/Home';
-
-import { useCurrentUser } from "./contexts/CurrentUserContext"
+import Container from "react-bootstrap/Container";
+import styles from "./App.module.css";
+import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {
   const currentUser = useCurrentUser();
+
   return (
-    <Router>
-      <Navbar />
-      <Switch>
-        <Route exact path="/signin" component={SignInForm} />
-        <Route exact path="/signup" component={SignUpForm} />
-        {/* <Route exact path="/home" render={()=><Home/>}/> */}
-        <Route exact path="/home" component={Home} />
-        {/* Add other routes here */}
-      </Switch>
-    </Router>
+    <div className={styles.App}>
+      <Router>
+        <Navbar />
+        <Container className={styles.Main}>
+          <Switch>
+            <Route exact path="/signin" component={SignInForm} />
+            <Route exact path="/signup" component={SignUpForm} />
+            <Route exact path="/home" component={Home} />
+            {/* Add other routes here */}
+          </Switch>
+        </Container>
+      </Router>
+    </div>
   );
 }
 
