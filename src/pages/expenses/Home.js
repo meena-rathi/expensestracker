@@ -130,7 +130,7 @@ const Home = () => {
       </div>
  
       {/* Expenses Section */}
-      <div className={styles.expensesContainer}>
+      {/* <div className={styles.expensesContainer}>
         {isLoaded ? (
           <ExpensesForm categories={categories} onSubmit={addExpense} />
         ) : (
@@ -140,7 +140,7 @@ const Home = () => {
       </div>
       <div>
         <ExpenseDisplay expenses={expenses} />
-      </div>
+      </div> */}
       
       {/* Total Expenses and Remaining Budget */}
       <div>

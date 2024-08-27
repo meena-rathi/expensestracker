@@ -8,6 +8,7 @@ import Home from './pages/expenses/Home';
 import Container from "react-bootstrap/Container";
 import styles from "./App.module.css";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
+import ViewExpenses from './pages/expenses/ViewExpenses';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/signin" component={SignInForm} />
             <Route exact path="/signup" component={SignUpForm} />
             <Route exact path="/home" component={Home} />
+            <Route exact path="/view-expenses" component={ViewExpenses}/>
             {/* Add other routes here */}
           </Switch>
         </Container>
