@@ -1,0 +1,10 @@
+.containser
+{
+    margin: 20px 0;
+}
+.budgetFormContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid red; /* Temporary border to check visibility */
+    padding: 20px; /* Ensure there's some padding */
+  }

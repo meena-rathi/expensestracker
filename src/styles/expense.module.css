@@ -1,0 +1,59 @@
+.expensesForm {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.expensesForm {
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid red; /* Temporary border to check visibility */
+  padding: 20px; /* Ensure there's some padding */
+}
+/* Form group container for label and input */
+.formGroup {
+  margin-bottom: 20px;
+}
+
+/* Custom input fields if needed */
+.inputField {
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* Error message styling */
+.errorMessage {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Submit button customizations */
+.submitButton {
+  width: 100%;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  .expensesForm {
+    padding: 15px;
+  }
+
+  .inputField, .submitButton {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .expensesForm {
+    padding: 10px;
+  }
+
+  .inputField, .submitButton {
+    font-size: 12px;
+  }
+}

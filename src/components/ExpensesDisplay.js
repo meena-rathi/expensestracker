@@ -1,20 +1,21 @@
 import React from 'react';
+import styles from '../styles/ExpensesList.module.css';
 
 const ExpensesDisplay = ({ expenses }) => {
   return (
     <div>
       <h2>Expenses List</h2>
       {expenses.length > 0 ? (
-        <ul>
+        <table className={styles.expenses}>
           {expenses.map((expense) => (
-            <li key={expense.id}>
-              <p><strong>Amount:</strong> ${expense.amount}</p>
-              <p><strong>Description:</strong> {expense.description}</p>
-              <p><strong>Date:</strong> {new Date(expense.date).toLocaleDateString()}</p>
-              <hr />
-            </li>
+            <tr key={expense.id}>
+              <td> ${expense.amount}</td>
+              <td>{expense.description}</td>
+              <td>{new Date(expense.date).toLocaleDateString()}</td>
+              {/* <t/> */}
+            </tr>
           ))}
-        </ul>
+        </table>
       ) : (
         <p>No expenses found.</p>
       )}
