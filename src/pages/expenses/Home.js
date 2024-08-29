@@ -154,7 +154,6 @@
 // };
 
 // export default Home;
-
 import React from 'react';
 import styles from '../../styles/Home.module.css';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
@@ -163,7 +162,7 @@ import BudgetForm from '../../components/BudgetForm';
 import BudgetDisplay from '../../components/BudgetDisplay';
 import useExpenses from '../../Hooks/useExpenses';
 import ExpensesForm from '../../components/ExpensesForm';
-import ExpenseDisplay from '../../components/ExpensesDisplay';
+import ExpensesDisplay from '../../components/ExpensesDisplay';
 import TotalExpenses from '../../components/TotalExpenses';
 
 const Home = () => {
@@ -210,11 +209,11 @@ const Home = () => {
         {expensesError && <p className={styles.error}>{expensesError}</p>}
       </div>
       <div>
-        <ExpenseDisplay expenses={expenses} />
+        <ExpensesDisplay expenses={expenses} />
       </div> 
       
       {/* Total Expenses and Remaining Budget */}
-       <div>
+      <div>
         {isBudgetLoaded && expenses && (
           <TotalExpenses budget={budget} expenses={expenses} />
         )}
