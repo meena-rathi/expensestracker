@@ -76,7 +76,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles/BudgetFormToggle.module.css';
 
-const BudgetForm = ({ onSubmit }) => {
+const ExpensesForm = ({ onSubmit }) => {
   const [inputAmount, setInputAmount] = useState('');
   const [inputDescription, setInputDescription] = useState('');
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -155,4 +155,4 @@ const BudgetForm = ({ onSubmit }) => {
   );
 };
 
-export default BudgetForm;
+export default ExpensesForm;
