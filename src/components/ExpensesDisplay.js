@@ -465,14 +465,15 @@
 // };
 
 // export default ExpensesDisplay;
+
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { axiosRes } from "../api/axiosDefaults";
 import styles from '../styles/ExpensesList.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { useHistory } from "react-router-dom";
 
-const ExpensesDisplay = ({ expenses, setExpenses, updateTotals }) => {
-  
+const ExpensesDisplay = ({ expenses, setExpenses, updateTotals}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [nextPageUrl, setNextPageUrl] = useState(null);
@@ -481,15 +482,16 @@ const ExpensesDisplay = ({ expenses, setExpenses, updateTotals }) => {
   const [message, setMessage] = useState('');
 
   const itemsPerPage = 10;
+  const history = useHistory();
 
   useEffect(() => {
     const fetchExpenses = async () => {
       try {
         const url = `/expenses/?page=${currentPage}&limit=${itemsPerPage}`;
-        const response = await axios.get(url);
+        const response = await axiosRes.get(url);
         const { count, next, previous, results } = response.data;
 
-        setExpenses(results); // Update the state with fetched expenses
+        setExpenses(results);
         setNextPageUrl(next);
         setPrevPageUrl(previous);
         setTotalPages(Math.ceil(count / itemsPerPage));
@@ -500,7 +502,7 @@ const ExpensesDisplay = ({ expenses, setExpenses, updateTotals }) => {
     };
 
     fetchExpenses();
-  }, [currentPage, setExpenses]); // Ensure setExpenses is included as a dependency
+  }, [currentPage, setExpenses]);
 
   const nextPage = () => {
     if (nextPageUrl) {
@@ -518,124 +520,151 @@ const ExpensesDisplay = ({ expenses, setExpenses, updateTotals }) => {
     const isConfirmed = window.confirm('Are you sure you want to delete this expense?');
     if (isConfirmed) {
       try {
-        // Send the delete request to the server
-        await axios.delete(`/expenses/${id}/`);
-        
-        // Remove from the state immediately
+        await axiosRes.delete(`/expenses/${id}/`);
         setExpenses(prevExpenses => prevExpenses.filter(expense => expense.id !== id));
-        
-        // Optionally, recalculate totals
         updateTotals();
-
         setMessage('Expense deleted successfully.');
-      } catch (error) {
-        console.error('Failed to delete expense:', error);
+      } catch (err) {
+        console.error('Failed to delete expense:', err);
         setMessage('Failed to delete expense.');
       }
     }
   };
 
-  const handleEdit = (expense) => {
-    setEditingExpense(expense);
+  // const handleEdit = (id) => {
+  //   history.push(`/expenses/${id}/edit`);
+  // };
+ 
+  const handleEdit = (id) => {
+    history.push(`/expenses/${id}/edit`);
   };
-
-  const handleEditChange = (e) => {
-    const { name, value } = e.target;
-    setEditingExpense(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleEditSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.put(`/expenses/${editingExpense.id}/`, editingExpense);
-      setExpenses(prevExpenses => prevExpenses.map(expense =>
-        expense.id === editingExpense.id ? editingExpense : expense
-      ));
-      setEditingExpense(null);
-      updateTotals();
-      setMessage('Expense updated successfully.');
-    } catch (error) {
-      console.error('Failed to edit expense:', error);
-      setMessage('Failed to update expense.');
-    }
-  };
-
+  //};
   return (
-    <div>
-      <h2>Expenses List</h2>
-      {message && <p>{message}</p>}
-      {expenses.length > 0 ? (
-        <table className={styles.expenses}>
-          <thead>
-            <tr>
-              <th>Amount</th>
-              <th>Description</th>
-              <th>Date</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {expenses.map((expense) => (
-              <tr key={expense.id}>
-                {editingExpense && editingExpense.id === expense.id ? (
-                  <>
-                    <td>
-                      <input
-                        type="number"
-                        name="amount"
-                        value={editingExpense.amount}
-                        onChange={handleEditChange}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="description"
-                        value={editingExpense.description}
-                        onChange={handleEditChange}
-                      />
-                    </td>
-                    <td>{new Date(expense.date).toLocaleDateString()}</td>
-                    <td>
-                      <button onClick={handleEditSubmit}>Save</button>
-                      <button onClick={() => setEditingExpense(null)}>Cancel</button>
-                    </td>
-                  </>
-                ) : (
-                  <>
-                    <td>${parseFloat(expense.amount).toFixed(2)}</td>
-                    <td>{expense.description}</td>
-                    <td>{new Date(expense.date).toLocaleDateString()}</td>
-                    <td>
-                      <button onClick={() => handleEdit(expense)}>
+        <div>
+          <h2>Expenses List</h2>
+          {expenses.length > 0 ? (
+            <table className={styles.expenses}>
+               <tr>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Actions</th>
+                </tr>
+              {expenses.map((expense) => (
+                <tr key={expense.id}>
+                  <td> ${expense.amount}</td>
+                  <td>{expense.description}</td>
+                  <td>{new Date(expense.date).toLocaleDateString()}</td>
+                  {/* <t/> */}
+                  <td>
+                    {/* <button onClick={() => handleEdit(expense)}>
+                      <FontAwesomeIcon icon={faEdit} /> Edit
+                      </button> */}
+                      <button onClick={() => handleEdit(expense.id)}>
                         <FontAwesomeIcon icon={faEdit} /> Edit
                       </button>
                       <button onClick={() => handleDelete(expense.id)}>
                         <FontAwesomeIcon icon={faTrash} /> Delete
                       </button>
+                     {/* <button onClick={handleEdit}>Edit</button>
+                    <button onClick={handleDelete}>Delete</button>  */}
                     </td>
-                  </>
-                )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <p>No expenses found.</p>
-      )}
-      <div className={styles.pagination}>
-        <button onClick={prevPage} disabled={!prevPageUrl}>
-          <FontAwesomeIcon icon={faChevronLeft} /> Previous
-        </button>
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
-        <button onClick={nextPage} disabled={!nextPageUrl}>
-          Next <FontAwesomeIcon icon={faChevronRight} />
-        </button>
-      </div>
-    </div>
-  );
-};
+                </tr>
+              ))}
+            </table>
+          ) : (
+            <p>No expenses found.</p>
+          )}
+           <div className={styles.pagination}>
+            <button onClick={prevPage} disabled={currentPage === 1}>
+              <FontAwesomeIcon icon={faChevronLeft} /> Previous
+            </button>
+            <span>
+              Page {currentPage} of {totalPages}
+            </span>
+            <button onClick={nextPage} disabled={currentPage === totalPages}>
+              Next <FontAwesomeIcon icon={faChevronRight} />
+            </button>
+          </div>
+        </div>
+      );
+    };
+//   return (
+//     <div>
+//       <h2>Expenses List</h2>
+//       {message && <p>{message}</p>}
+//       {expenses.length > 0 ? (
+//         <table className={styles.expenses}>
+//           <thead>
+//             <tr>
+//               <th>Amount</th>
+//               <th>Description</th>
+//               <th>Date</th>
+//               <th>Actions</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {expenses.map((expense) => (
+//               <tr key={expense.id}>
+//                 {editingExpense && editingExpense.id === expense.id ? (
+//                   <>
+//                     <td>
+//                       <input
+//                         type="number"
+//                         name="amount"
+//                         value={editingExpense.amount}
+//                         onChange={handleEditChange}
+//                       />
+//                     </td>
+//                     <td>
+//                       <input
+//                         type="text"
+//                         name="description"
+//                         value={editingExpense.description}
+//                         onChange={handleEditChange}
+//                       />
+//                     </td>
+//                     <td>{new Date(expense.date).toLocaleDateString()}</td>
+//                     <td>
+//                       <button onClick={handleEditSubmit}>Save</button>
+//                       <button onClick={() => setEditingExpense(null)}>Cancel</button>
+//                     </td>
+//                   </>
+//                 ) : (
+//                   <>
+//                     <td>${parseFloat(expense.amount).toFixed(2)}</td>
+//                     <td>{expense.description}</td>
+//                     <td>{new Date(expense.date).toLocaleDateString()}</td>
+//                     <td>
+//                       <button onClick={() => handleEdit(expense)}>
+//                         <FontAwesomeIcon icon={faEdit} /> Edit
+//                       </button>
+//                       <button onClick={() => handleDelete(expense.id)}>
+//                         <FontAwesomeIcon icon={faTrash} /> Delete
+//                       </button>
+//                     </td>
+//                   </>
+//                 )}
+//               </tr>
+//             ))}
+//           </tbody>
+//         </table>
+//       ) : (
+//         <p>No expenses found.</p>
+//       )}
+//       <div className={styles.pagination}>
+//         <button onClick={prevPage} disabled={!prevPageUrl}>
+//           <FontAwesomeIcon icon={faChevronLeft} /> Previous
+//         </button>
+//         <span>
+//           Page {currentPage} of {totalPages}
+//         </span>
+//         <button onClick={nextPage} disabled={!nextPageUrl}>
+//           Next <FontAwesomeIcon icon={faChevronRight} />
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
 
 export default ExpensesDisplay;
