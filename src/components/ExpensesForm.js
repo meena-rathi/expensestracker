@@ -119,7 +119,7 @@ const ExpensesForm = ({ onSubmit }) => {
       {/* Toggle Button */}
       <Button variant="link" onClick={toggleFormVisibility}>
         <FontAwesomeIcon icon={isFormVisible ? faMinus : faPlus} />
-        {isFormVisible ? ' Hide Budget Form' : ' Add Budget Form'}
+        {isFormVisible ? ' Hide Budget Form' : ' Add Expenses Form'}
       </Button>
 
       {/* Conditionally render the form */}
