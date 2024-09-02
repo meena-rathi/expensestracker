@@ -130,7 +130,7 @@ import { faChevronLeft, faChevronRight, faTrash, faEdit } from '@fortawesome/fre
 import ExpensesForm from './ExpensesForm'; // Ensure this path is correct
 import { useHistory } from "react-router-dom";
 
-const ExpensesDisplay = ({ updateTotals }) => {
+const ExpensesDisplay = ({ updateTotals = () => {} })=> {
   const [expenses, setLocalExpenses] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -147,7 +147,6 @@ const ExpensesDisplay = ({ updateTotals }) => {
         const url = `/expenses/?page=${currentPage}&limit=${itemsPerPage}`;
         const response = await axiosRes.get(url);
         const { count, next, previous, results } = response.data;
-
         setLocalExpenses(results);
         setNextPageUrl(next);
         setPrevPageUrl(previous);
@@ -172,16 +171,17 @@ const ExpensesDisplay = ({ updateTotals }) => {
       setCurrentPage(prevPage => prevPage - 1);
     }
   };
-
   const handleDelete = async (id) => {
     const isConfirmed = window.confirm('Are you sure you want to delete this expense?');
+    
     if (isConfirmed) {
       try {
         await axiosRes.delete(`/expenses/${id}/`);
+        
         // Refetch expenses data after successful deletion
         const response = await axiosRes.get(`/expenses/?page=${currentPage}&limit=${itemsPerPage}`);
         const { results } = response.data;
-
+        
         setLocalExpenses(results);
         updateTotals();
         setMessage('Expense deleted successfully.');
@@ -191,14 +191,13 @@ const ExpensesDisplay = ({ updateTotals }) => {
       }
     }
   };
-
   const handleEdit = (id) => {
     history.push(`/expenses/${id}/edit`);
   };
 
   return (
     <div>
-   
+      {message && <p className={styles.message}>{message}</p>}
 
       {expenses.length > 0 ? (
         <table className={styles.expenses}>

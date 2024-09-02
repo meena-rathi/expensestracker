@@ -8,12 +8,12 @@ import Home from './pages/expenses/Home';
 import Container from "react-bootstrap/Container";
 import styles from "./App.module.css";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
-import ViewExpenses from './pages/expenses/ViewExpenses';
 import ExpenseEditForm from './components/ExpenseEditForm';
+
+import PieChartDisplay from './pages/expenses/PieChartDisplay';
 
 function App() {
   const currentUser = useCurrentUser();
-
   return (
     <div className={styles.App}>
       <Router>
@@ -23,9 +23,10 @@ function App() {
             <Route exact path="/signin" component={SignInForm} />
             <Route exact path="/signup" component={SignUpForm} />
             <Route exact path="/home" component={Home} />
+            <Route exact path="/piechart" component={PieChartDisplay} />
             <Route exact path="/expenses/:id/edit" component={ExpenseEditForm} />
             {/* <Route exact path="/expenses/:id/edit" render={() => <ExpenseEditForm />} /> */}
-            <Route exact path="/view-expenses" component={ViewExpenses}/>
+           
             {/* Add other routes here */}
           </Switch>
         </Container>
