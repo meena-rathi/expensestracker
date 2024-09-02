@@ -21,3 +21,23 @@
   border: 1px solid red; /* Temporary border to check visibility */
   padding: 20px; /* Ensure there's some padding */
 }
+.userBudgetContainer {
+  display: flex;
+  justify-content: space-between; /* Adjust alignment as needed */
+  align-items: center; /* Align items vertically center */
+  margin-bottom: 20px; /* Add spacing below the row */
+}
+
+/* Style for the user info section */
+.userInfo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Style for the budget display section */
+.budgetInfo {
+  font-size: 1.2rem;
+}
+.overflow-hidden {
+  overflow-x: hidden;
+}
