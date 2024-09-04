@@ -123,12 +123,12 @@ const Home = () => {
       </Row>
 
       {/* Expenses Section */}
-      <Row className="mb-4">
+      {/* <Row className="mb-4">
         <Col xs={12}>
           <ExpensesForm onSubmit={addExpense} />
           {expensesError && <Alert variant="danger">{expensesError}</Alert>}
         </Col>
-      </Row>
+      </Row> */}
       <Row className="mb-4">
         <Col xs={12}>
           <ExpensesDisplay expenses={expenses} />

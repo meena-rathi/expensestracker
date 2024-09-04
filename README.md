@@ -20,3 +20,35 @@ The user storys in my GitHub project are as follows:
 * As a site user, I can see total amount of expenses substract from the buget.
 * As a site User, I can edit and delete the expenses.
 * As a site User, I can expeses in the pie chart.
+
+## User Goals ##
+
+New User: 
+
+- I can navigate the website without any hassle.
+- The website provides enough information for me to understand what the expenses tracking is about.
+- The sign-up process is easy and straightforward.
+
+Pervious user:
+
+- Signing in is easy.
+- I can view and manage my expenses.
+
+
+## Design
+
+
+## Fonts ##
+
+- The 'sans-serif' font family, a sans-serif typeface, has been selected for use across the resturtant project. 
+
+- Font Colors: The color scheme for text is primarily brown, gray and white.
+
+## Testing 
+
+| Test       | Expected           | Passed  |
+| :------------- |:-------------:| :-----:|
+| Non-authenticated user tries accessing URL endpoints '/projects' | Displays Welcome message requesting user to sign in/up  | ✅ |
+| User clicks sign out | User is signed out and directed to the logged-out home page | ✅ |
+
+### Wireframes
