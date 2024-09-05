@@ -24,6 +24,7 @@ function ProfilePage() {
     const [showUsernameForm, setShowUsernameForm] = useState(false);
     const [showUserPasswordForm, setShowUserPasswordForm] = useState(false);
 
+    console.log(id, "<===id")
     useEffect(() => {
         const fetchData = async () => {
             try {
