@@ -383,8 +383,8 @@ const ExpensesDisplay = ({ updateTotals = () => {} }) => {
 
     // Display success message
     updateTotals();
-    setMessage('Expense added successfully.');
-    setTimeout(() => setMessage(''), 3000); // Auto-hide success message
+   // setMessage('Expense added successfully.');
+    //setTimeout(() => setMessage(''), 3000); // Auto-hide success message
   };
 
   return (

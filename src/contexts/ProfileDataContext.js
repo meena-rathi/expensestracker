@@ -15,7 +15,8 @@ export const UserProfileProvider = ({ children }) => {
     const fetchUserProfile = async () => {
       try {
         if (currentUser) {
-        const { data } = await axiosReq.get(`/Profiles/${currentUser.pk}/`);
+        const { data } = await axiosReq.get(`/profiles/?owner=current`);
+        //const { data } = await axiosReq.get(`/Profiles/${currentUser.pk}/`);
         setUserProfile(data);
         }
       } catch (err) {

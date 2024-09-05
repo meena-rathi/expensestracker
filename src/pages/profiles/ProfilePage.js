@@ -28,8 +28,12 @@ function ProfilePage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data: userProfile } = await axiosReq.get(`/profiles/${id}/`);
+               
+                const { data: userProfile } = await axiosReq.get('/profiles/?owner=current');
+                // const { data: userProfile } = await axiosReq.get(`/profiles/${id}/`);
+                console.log(userProfile, "<=== Fetched user profile data");
                 if (userProfile) {
+                    console.log(userProfile, "<=== Fetched user profile data");
                     setUserProfile(userProfile);
                 } else {
                     console.error("No profile data returned");
