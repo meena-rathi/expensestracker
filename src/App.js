@@ -12,6 +12,10 @@ import ExpenseEditForm from './components/ExpenseEditForm';
 
 import PieChartDisplay from './pages/expenses/PieChartDisplay';
 
+import ProfilePage from './pages/profiles/ProfilePage';
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import UsernameForm from "./pages/profiles/UsernameForm";
+
 function App() {
   const currentUser = useCurrentUser();
   return (
@@ -25,6 +29,9 @@ function App() {
             <Route exact path="/home" component={Home} />
             <Route exact path="/piechart" component={PieChartDisplay} />
             <Route exact path="/expenses/:id/edit" component={ExpenseEditForm} />
+            <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
+            <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />
+            <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />} />
             {/* <Route exact path="/expenses/:id/edit" render={() => <ExpenseEditForm />} /> */}
            
             {/* Add other routes here */}

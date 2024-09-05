@@ -11,6 +11,7 @@ export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  
   const history = useHistory();  // Corrected: Use the hook as a function
 
   const handleMount = async () => {

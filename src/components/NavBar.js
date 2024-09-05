@@ -42,7 +42,9 @@ const NavBar = () => {
       >
         <FontAwesomeIcon icon={faHome} /> PieChart
       </NavLink>
-
+      {/* <NavLink className={styles.NavLink} to={`/profiles/${currentUser?.profile_id}`}>
+      <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+      </NavLink> */}
 
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
         <FontAwesomeIcon icon={faSignOutAlt} /> Sign out
