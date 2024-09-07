@@ -38,6 +38,23 @@ The user storys in my GitHub project are as follows:
 
 ## Design
 
+### Wireframes
+
+These are wire frames of my website.
+
+![main](Dcumentions/wireframe/main.JPG)
+
+![sign in](Dcumentions/wireframe/signin.JPG)
+
+![sign up](Dcumentions/wireframe/signup.JPG)
+
+![home](Dcumentions/wireframe/home.png)
+
+![piechart](Dcumentions/wireframe/piechrt.png)
+
+### Data Models
+
+The data models were designed at the same time as the wireframes. You can find details about them in the read-me for the [Expenses Tracking Django Rest Framework API](https://github.com/meena-rathi/drf_api_expenses).
 
 ## Fonts ##
 
@@ -45,8 +62,7 @@ The user storys in my GitHub project are as follows:
 
 - Font Colors: The color scheme for text is primarily brown, gray and white, blue.
 
-### Data Models
-The data models were designed at the same time as the wireframes. You can find details about them in the read-me for the [Expenses Tracking Django Rest Framework API](https://github.com/meena-rathi/drf_api_expenses).
+
 
 
 ## Features
@@ -287,7 +303,6 @@ ________________________________________
 
 
 
-### Wireframes
 
 
 
