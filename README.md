@@ -59,12 +59,13 @@ Reusable components that are customizable and easy to install via npm.
 Below, I'll highlight the key components and hooks:
 
 #### NavBar Component
+
 The NavBar component adds a navigation bar to your application. It includes links to different pages and can be customized with actions specific to the user. This component is inspired by the CI walkthrough project, "Moments."
 1. At the top of your JavaScript or JSX file, import the NavBar component like this:
- ```javascript
-   import NavBar from './components/NavBar';
 
-** Props **
+-   import NavBar from './components/NavBar';
+
+**Props**
 Here are the props you can use with the NavBar component:
 
 - currentUser: The current user object.
@@ -74,17 +75,117 @@ Here are the props you can use with the NavBar component:
 
 
 #### Asset Component
+
 The Asset component is a reusable tool for showing assets like images or spinners, along with optional messages. It’s inspired by the CI walkthrough project, "Moments."
 1. At the top of your JavaScript or JSX file, import the Asset component like this:
- ```javascript
-    import Asset from './components/Asset';
+    - import Asset from './components/Asset';
 
-** Props **
+**Props**
+
 - Here are the props you can use with the Asset component:
 
 - spinner: Set to true to show a spinner animation.
 - src: Provide the URL for the image source.
 - message: Display a message below the asset.
+
+#### Avatar Component
+
+The Avatar component is a reusable tool for showing user avatars, with the option to add text. It’s inspired by the CI walkthrough project, "Moments."
+
+1. At the top of your JavaScript or JSX file, import the Avatar component like this:
+    - import Asset from './components/Avatar';
+
+**Props**
+
+- src: The URL for the avatar image.
+- height: The height of the avatar (default is 45 pixels).
+- text: Additional text to display with the avatar.
+
+- - -
+
+#### CurrentUserProvider Context
+
+The CurrentUserProvider component is a reusable tool that offers a context for managing the current user's state and handling authentication tasks. It’s inspired by the CI walkthrough project, "Moments."
+1. Import the CurrentUserProvider component at the top of your JavaScript or JSX file:
+    - import CurrentUserProvider from './components/CurrentUserProvider';
+
+2. Wrap your application or a specific section of it with the CurrentUserProvider component:
+    
+`<CurrentUserProvider>
+  {/* Your application components */}
+</CurrentUserProvider>`
+
+ **Context**
+The CurrentUserProvider component provides two contexts:
+
+- CurrentUserContext: Contains information about the current user.
+- SetCurrentUserContext: Provides a function to update the current user.
+
+- - -
+
+#### UserProfileProvider Context
+
+The UserProfileProvider component is a reusable tool that offers a context for managing user profile information related to the current user.
+
+1.  Import the UserProfileProvider component at the top of your JavaScript or JSX file:
+     -   import { UserProfileProvider } from './context/UserProfileProvider';
+
+2. Wrap your application or a specific section of it with the UserProfileProvider component:
+`<UserProfileProvider>
+  {/* Your application components */}
+</UserProfileProvider>`
+
+**Context**
+The UserProfileProvider component offers a context called UserProfileContext, which includes:
+
+- userProfile: The user's profile information.
+- setUserProfile: A function to update the user's profile information.
+- You can use this context to access and manage user profile data within your application.
+
+- - -
+
+#### useRedirect Hook
+
+The useRedirect hook is a custom hook that handles redirection based on user authentication status. It's a flexible tool for managing user authentication redirects in your React application. It’s inspired by the CI walkthrough project, "Moments."
+
+1. Import the `useRedirect` hook at the top of your JavaScript or JSX file:
+    -  import { useRedirect } from './hooks/useRedirect';
+
+2. Use the useRedirect hook in a component where you want to manage redirects based on user authentication status. Pass the authentication status as an argument:
+
+`const YourComponent = () => {
+  useRedirect(userAuthStatus);
+};`
+
+Here, userAuthStatus can be one of these values:
+- 'loggedIn': Redirects to the homepage if the user is logged in.
+- 'loggedOut': Redirects to the homepage if the user is not logged in.
+
+- - -
+
+#### useClickOutsideToggle Hook
+
+The useClickOutsideToggle hook helps manage a component's toggling when you click outside of it. It’s useful for making elements like the Navigation Bar expand or collapse when you click outside of them, especially on smaller screens. This hook is inspired by the CI walkthrough project, "Moments."
+
+1. Import the `useClickOutsideToggle` hook at the top of your JavaScript or JSX file:
+   - import useClickOutsideToggle from './hooks/useClickOutsideToggle';
+
+2. Use the useClickOutsideToggle hook in a component where you want to handle clicks outside a specific element. The hook returns an object with state variables and a ref.
+
+`const YourComponent = () => {
+  const { expanded, setExpanded, ref } = useClickOutsideToggle();
+};`
+
+- expanded: A boolean indicating whether the component is currently expanded or not.
+- setExpanded: A function to manually set the toggle state.
+- ref: A reference that should be attached to the element you want to track for click events.
+
+## CRUD functionality
+
+- Create: logged in User can add their expenses.
+- Update:  logged in User can delete their expenses.
+- Read:  logged in User can see their expenses.
+- Delete: logged in User can delete their expenses.
 
 ## Testing 
 
@@ -204,6 +305,8 @@ Libraries Used in the Front-End
 
 
 
+- - -
+
 ## Technologies Used
 
 ### Languages Used:
@@ -223,6 +326,4 @@ Font Awesome - For the iconography on the website.
 
 Google Dev Tools - To troubleshoot and test features, solve issues with responsiveness and styling.
 
-
-
-[ElephantSQL](https://www.elephantsql.com/) - To install and manage PostgreSQL database (Backend- Django React Framework).
+React-Router-DOM is a library for managing routing and navigation in React applications.
