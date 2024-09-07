@@ -1,6 +1,7 @@
 ## Introduction ##
 
 I've developed a budget expenses project where users can add their monthly budget and expenses for various products. This allows them to track and identify which products have higher expenses compared to others.
+This repository contains the React frontend for TribeHub. The project also uses a web API built with Django Rest Framework, and you can find that API's repository [here](https://github.com/meena-rathi/drf_api_expenses).
 
 ## User Personas ##
 
@@ -23,13 +24,13 @@ The user storys in my GitHub project are as follows:
 
 ## User Goals ##
 
-New User: 
+1. New User: 
 
 - I can navigate the website without any hassle.
 - The website provides enough information for me to understand what the expenses tracking is about.
 - The sign-up process is easy and straightforward.
 
-Pervious user:
+2.  Pervious user:
 
 - Signing in is easy.
 - I can view and manage my expenses.
@@ -42,7 +43,48 @@ Pervious user:
 
 - The 'sans-serif' font family, a sans-serif typeface, has been selected for use across the resturtant project. 
 
-- Font Colors: The color scheme for text is primarily brown, gray and white.
+- Font Colors: The color scheme for text is primarily brown, gray and white, blue.
+
+### Data Models
+The data models were designed at the same time as the wireframes. You can find details about them in the read-me for the [Expenses Tracking Django Rest Framework API](https://github.com/meena-rathi/drf_api_expenses).
+
+
+## Features
+### Landing page 
+
+
+### React-Reusable Components
+Reusable components that are customizable and easy to install via npm.
+
+Below, I'll highlight the key components and hooks:
+
+#### NavBar Component
+The NavBar component adds a navigation bar to your application. It includes links to different pages and can be customized with actions specific to the user. This component is inspired by the CI walkthrough project, "Moments."
+1. At the top of your JavaScript or JSX file, import the NavBar component like this:
+ ```javascript
+   import NavBar from './components/NavBar';
+
+** Props **
+Here are the props you can use with the NavBar component:
+
+- currentUser: The current user object.
+- setCurrentUser: A function to manage user actions.
+- expanded: Controls whether the navigation menu is expanded.
+- ref: A reference to manage clicks outside the menu.
+
+
+#### Asset Component
+The Asset component is a reusable tool for showing assets like images or spinners, along with optional messages. It’s inspired by the CI walkthrough project, "Moments."
+1. At the top of your JavaScript or JSX file, import the Asset component like this:
+ ```javascript
+    import Asset from './components/Asset';
+
+** Props **
+- Here are the props you can use with the Asset component:
+
+- spinner: Set to true to show a spinner animation.
+- src: Provide the URL for the image source.
+- message: Display a message below the asset.
 
 ## Testing 
 
