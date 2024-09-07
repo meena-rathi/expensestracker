@@ -46,7 +46,7 @@ These are wire frames of my website.
 
 ![sign in](Documentions/wireframe/signin.JPG)
 
-![sign up](Documentions/wireframe/signup.JPG)
+![sign up](src/Documentions/wireframe/signup.JPG)
 
 ![home](Documentions/wireframe/home.png)
 
