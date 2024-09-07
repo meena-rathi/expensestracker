@@ -191,7 +191,6 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 
 | Test       | Expected           | Passed  |
 | :------------- |:-------------:| :-----:|
-| Non-authenticated user tries accessing URL endpoints '/projects' | Displays Welcome message requesting user to sign in/up  | ✅ |
 | User clicks sign out | User is signed out and directed to the logged-out home page | ✅ |
 | User logs in / registers | Nav links change and access to home page becomes available | ✅ |
 | User clicks '+ toggle'| budget form displayed | ✅ |
@@ -210,16 +209,12 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 | User enter the monthly budget | budget displayed on the home page | ✅ |
 | User enters the monthly budget and wants to increase it | Increased budget is displayed on the home page | ✅ |
 | User enter (invalid data) | Error / Invalid messages | ✅ |
-
 | User clicks ‘+ toggle’ | expenses from displayed | ✅ |
 | User enters the expenses | Expenses are displayed in a table on the home page | ✅ |
-
 | User clicks edit button | Directed to edit project page with prepopulated form | ✅ |
 | User updates expenses (valid data) | Project details updated successfully and redirected to previous page | ✅ |
 | User updates project (invalid data) | Error / Invalid messages | ✅ |
 | User clicks delete icon on expenses page | expenses is deleted and redirected to home page | ✅ |
-
-
 | Total expenses | Total amount is calculated based on the entered expenses | ✅ |
 | User completes create task form and submits (valid data) | Task created and redirected to previous page | ✅ |
 | User completes task form and submits (invalid data)| Error / Invalid messages | ✅ |
@@ -286,15 +281,8 @@ ________________________________________
 3.	Click the Code button, choose whether to clone using HTTPS, SSH, or GitHub CLI, and copy the provided link.
 4.	Open your terminal and change the current working directory to where you want the cloned repository to be saved.
 5.	In the terminal, type git clone, paste the link from step 3, and hit enter.
-Libraries Used in the Front-End
-1.	React: The primary library for building the user interface.
-2.	ReactDOM: Handles rendering React components into the DOM.
-3.	React Router: Manages routing and navigation for TaskFlow's single-page application.
-4.	Axios: Used to make HTTP requests from the TaskFlow React Front-End to the TaskFlow API.
-5.	•  React Chart.js 2: The React wrapper for Chart.js, used to integrate and display the pie chart.
-6.	•  Chart.js: A JavaScript library that renders charts, such as the pie chart used in TaskFlow.
-7.	
-8.	Bootstrap: A CSS framework that provides styling and ensures responsive design for the TaskFlow application.
+
+
 
 
 
@@ -327,3 +315,9 @@ Font Awesome - For the iconography on the website.
 Google Dev Tools - To troubleshoot and test features, solve issues with responsiveness and styling.
 
 React-Router-DOM is a library for managing routing and navigation in React applications.
+
+Axios is a promise-based HTTP client for making requests and handling responses in JavaScript applications.
+
+React Chart.js 2: The React wrapper for Chart.js, used to integrate and display the pie chart.
+Chart.js: A JavaScript library that renders charts, such as the pie chart used in TaskFlow.
+ReactDOM is a library that provides methods to render React components into the DOM and manage the lifecycle of those components.
