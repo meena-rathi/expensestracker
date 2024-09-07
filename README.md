@@ -35,22 +35,21 @@ The user storys in my GitHub project are as follows:
 - Signing in is easy.
 - I can view and manage my expenses.
 
-
 ## Design
 
 ### Wireframes
 
 These are wire frames of my website.
 
-![main](Documentions/wireframe/main.JPG)
+![main](src/Documentions/wireframe/main.JPG)
 
-![sign in](Documentions/wireframe/signin.JPG)
+![sign in](src/Documentions/wireframe/signin.JPG)
 
 ![sign up](src/Documentions/wireframe/signup.JPG)
 
-![home](Documentions/wireframe/home.png)
+![home](src/Documentions/wireframe/home.png)
 
-![piechart](Documentions/wireframe/piechrt.png)
+![piechart](src/Documentions/wireframe/piechrt.png)
 
 ### Data Models
 
