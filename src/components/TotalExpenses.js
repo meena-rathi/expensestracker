@@ -1,5 +1,3 @@
-
-
 import React from "react";
 
 const TotalExpenses = ({ budget = 0, expenses = [] }) => {

@@ -30,20 +30,18 @@
 
 /* Style for the user info section */
 .userInfo {
-  font-size: 1.5rem;
+  font-size: 50px;
   font-weight: bold;
 }
 
 /* Style for the budget display section */
 .budgetInfo {
-  font-size: 1.2rem;
+  font-size: 80px;
+  font-weight: bold;
 }
 .overflow-hidden {
   overflow-x: hidden;
 }
-
-
-
 
 .pieChartContainer h2 {
   font-size: 24px;
