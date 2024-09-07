@@ -42,15 +42,15 @@ The user storys in my GitHub project are as follows:
 
 These are wire frames of my website.
 
-![main](Dcumentions/wireframe/main.JPG)
+![main](Documentions/wireframe/main.JPG)
 
-![sign in](Dcumentions/wireframe/signin.JPG)
+![sign in](Documentions/wireframe/signin.JPG)
 
-![sign up](Dcumentions/wireframe/signup.JPG)
+![sign up](Documentions/wireframe/signup.JPG)
 
-![home](Dcumentions/wireframe/home.png)
+![home](Documentions/wireframe/home.png)
 
-![piechart](Dcumentions/wireframe/piechrt.png)
+![piechart](Documentions/wireframe/piechrt.png)
 
 ### Data Models
 
