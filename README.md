@@ -66,11 +66,32 @@ If the username already exists or the password does not match, an error message 
 
 - Once the user is logged in, they can add expenses, which must then be displayed in a table.
 
+![Home Expenses](src/Documentions/design/home.JPG)
+ 
+- The user can see all the expenses and the monthly budget. They can view the remaining budget and the total expenses.
+
 ![create Expenses](src/Documentions/design/expensesform.JPG)
 
 - The user can edit the expenses.
 
 ![Edit Expenses](src/Documentions/design/edit.JPG)
+
+- The user can delete the expenses.
+
+![Delete Expenses](src/Documentions/design/delete.JPG)
+
+- The user can delete the expenses.
+
+![Expenses From & Budget Form](src/Documentions/design/expensesform.JPG)
+
+- The user can click on a toggle to view the form and enter the monthly budget. If they wish to increase the budget, they can do so easily.
+
+- Once the user submits the expense form, they can see the updated list of expenses.
+
+![Pie chart](src/Documentions/design/piechart.JPG)
+
+- The user can see the expenses ratio displayed in a pie chart.
+
 ### Data Models
 
 The data models were designed at the same time as the wireframes. You can find details about them in the read-me for the [Expenses Tracking Django Rest Framework API](https://github.com/meena-rathi/drf_api_expenses).
