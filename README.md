@@ -312,6 +312,7 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 #### Fixed Bugs
 
 | Bugs | Fixed |
+| :----------- | :-----:|
 | If the user wants to increase their budget, the new budget must display the sum of the previous budget plus the current entry. | ✅ |
 | User can edit the expenses| ✅ |
 | The remaining amount should be calculated and displayed based on the difference between the monthly budget and the total expenses.| ✅ |
