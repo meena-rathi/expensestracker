@@ -309,6 +309,17 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 | User types in the search bar on landing page | Project cards are filtered to match search | ✅ |
 | User clicks sign out | User is signed out and directed to the logged-out home page | ✅ |
 
+#### Fixed Bugs
+
+| Bugs | Fixed |
+| If the user wants to increase their budget, the new budget must display the sum of the previous budget plus the current entry. | ✅ |
+| User can edit the expenses| ✅ |
+| The remaining amount should be calculated and displayed based on the difference between the monthly budget and the total expenses.| ✅ |
+| display sum of total expenses| ✅ |
+
+
+
+
 ## Deployment
 
 TaskFlow Deployment to GitHub and Heroku
