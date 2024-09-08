@@ -318,40 +318,61 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 | The remaining amount should be calculated and displayed based on the difference between the monthly budget and the total expenses.| ✅ |
 | display sum of total expenses| ✅ |
 
-
-
-
 ## Deployment
 
-TaskFlow Deployment to GitHub and Heroku
-To deploy TaskFlow to GitHub and Heroku, follow these steps:
-Start by creating a new app on Heroku and link it to your GitHub account.
-Turn on automatic deployments in Heroku. This way, whenever changes are pushed to the main branch of your GitHub repository, Heroku will automatically deploy the latest code.
-In Heroku’s settings, add any necessary environment variables, such as the database connection string or API keys.
-Add a Procfile to the project. This file will specify the command that Heroku should use to run the app.
+- To deploy Expenses Tracking to GitHub and Heroku, follow these steps:
 
-o	Ensure that the app is production-ready. Run any build or compilation tasks, and verify that all necessary dependencies are installed.
+- Start by creating a new app on Heroku.
 
-o	Push your code to the main branch of your GitHub repository. This will trigger the deployment process on Heroku.
-o	Keep an eye on the Heroku logs to make sure the deployment runs smoothly and there are no errors.
+- Link the Heroku app to your GitHub repository.
+
+- Turn on automatic deployments in Heroku. This ensures that any changes pushed to the main branch on 
+GitHub will automatically trigger a deployment on Heroku.
+
+- In the Heroku app settings, add any necessary environment variables (e.g., database connection strings, API keys).
+
+- Create a Procfile in your project. This file tells Heroku the command to run your app.
+
+- Ensure your app is production-ready by running any necessary build or compilation tasks.
+Verify that all required dependencies are installed and properly configured.
+
+- Push your code to the main branch of your GitHub repository to trigger the Heroku deployment process.
+
+- Keep an eye on the Heroku logs to ensure the deployment is successful and troubleshoot any errors if they arise.
 ________________________________________
 Connecting the React Front-End to Django API
+
 To integrate the React front-end with the Django API, follow these steps:
+
 1.	Heroku Setup:
-o	In the Heroku dashboard, go to your Django Rest Framework (DRF) API project.
+	
+  - In the Heroku dashboard, go to your Django Rest Framework (DRF) API project.
+
 2.	Configure Variables:
-o	Add a config variable called CLIENT_ORIGIN and set it to the URL of the deployed React app.
-o	Also, add a CLIENT_ORIGIN_DEV variable with the Gitpod preview link. Update this link when needed, as Gitpod URLs may change.
+  
+  - Add a config variable called CLIENT_ORIGIN and set it to the URL of the deployed React app.
+  
+  - Also, add a CLIENT_ORIGIN_DEV variable with the Gitpod preview link. Update this link when needed, as Gitpod URLs may change.
+
 3.	Install Axios:
-o	In the React project, install Axios by running the command:
-o	npm install axios
+  
+  - In the React project, install Axios by running the command:
+  -  npm install axios
+
 4.	Set Up Axios:
-o	Create an api folder, and inside it, create an axiosDefaults file.
-o	In this file, import Axios, then configure it by setting the baseURL to the deployed API's URL.
-o	Ensure the content-type header is set to handle multipart/form-data requests and enable withCredentials to manage cookies and avoid CORS issues.
+	
+  - Create an api folder, and inside it, create an axiosDefaults file.
+	
+  - In this file, import Axios, then configure it by setting the baseURL to the deployed API's URL.
+	Ensure the content-type header is set to handle multipart/form-data requests and enable - - 
+    
+    - withCredentials to manage cookies and avoid CORS issues.
+
 5.	Integrate Axios:
-o	Import this Axios configuration into the App.js file of your React app to enable communication with the Django API.
-These steps ensure that your React app can interact properly with the Django TaskFlow API.
+	
+   - Import this Axios configuration into the App.js file of your React app to enable communication with the Django API.
+   
+   - These steps ensure that your React app can interact properly with the Django TaskFlow API.
 
 
 
