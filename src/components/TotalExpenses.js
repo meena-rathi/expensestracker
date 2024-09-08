@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "../styles/Home.module.css"; // Ensure this import is correct
 
 const TotalExpenses = ({ budget = 0, expenses = [] }) => {
   // Calculate total expenses
@@ -11,8 +12,8 @@ const TotalExpenses = ({ budget = 0, expenses = [] }) => {
 
   return (
     <div>
-      <p>Total Expenses: ${totalExpenses.toFixed(2)}</p>
-      <p>Remaining Budget: ${remainingBudget.toFixed(2)}</p>
+      <p className={styles.expensesDisplay}>Total Expenses: ${totalExpenses.toFixed(2)}</p>
+      <p className={styles.expensesDisplay}>Remaining Budget: ${remainingBudget.toFixed(2)}</p>
     </div>
   );
 };

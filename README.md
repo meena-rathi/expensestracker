@@ -51,6 +51,26 @@ These are wire frames of my website.
 
 ![piechart](src/Documentions/wireframe/piechrt.png)
 
+### Feature
+
+These are wire frames of my website.
+
+
+- Before logging in, users must sign up for an account..
+
+![sign in](src/Documentions/design/signin.JPG)
+
+If the username already exists or the password does not match, an error message must be displayed.
+
+![sign up](src/Documentions/design/signup.JPG)
+
+- Once the user is logged in, they can add expenses, which must then be displayed in a table.
+
+![create Expenses](src/Documentions/design/expensesform.JPG)
+
+- The user can edit the expenses.
+
+![Edit Expenses](src/Documentions/design/edit.JPG)
 ### Data Models
 
 The data models were designed at the same time as the wireframes. You can find details about them in the read-me for the [Expenses Tracking Django Rest Framework API](https://github.com/meena-rathi/drf_api_expenses).

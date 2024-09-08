@@ -90,7 +90,7 @@ const NavBar = () => {
       fixed="top"
     >
       <Container>
-        <NavLink to="/">
+        <NavLink to="/home">
           <Navbar.Brand>
             <img src={logo} alt="logo" height="45" />
           </Navbar.Brand>
