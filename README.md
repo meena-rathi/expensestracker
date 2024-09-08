@@ -35,6 +35,38 @@ The user storys in my GitHub project are as follows:
 - Signing in is easy.
 - I can view and manage my expenses.
 
+- - -
+
+## Technologies Used
+
+### Languages Used:
+
+HTML, CSS, javascript and Python Django Rest Framework (backend) were used to create this website.
+
+### Frameworks, Libraries & Programs Used:
+
+- Git - For version control.
+
+- Github - To save and store the files for the website.
+
+- React-Bootstrap Version 4.6 - The framework for the website. Code for the navigation bar, containers, rows and forms were used and modified. Additional CSS styling was also implemented in style.css.
+
+- Google Fonts - To import the fonts used on the website.
+
+- Font Awesome - For the iconography on the website.
+
+- Google Dev Tools - To troubleshoot and test features, solve issues with responsiveness and styling.
+
+- React-Router-DOM is a library for managing routing and navigation in React applications.
+
+- Axios is a promise-based HTTP client for making requests and handling responses in JavaScript applications.
+
+- React Chart.js 2: The React wrapper for Chart.js, used to integrate and display the pie chart.
+
+- Chart.js: A JavaScript library that renders charts, such as the pie chart used in TaskFlow.
+
+- ReactDOM is a library that provides methods to render React components into the DOM and manage the lifecycle of those components.
+
 ## Design
 
 ### Wireframes
@@ -54,7 +86,6 @@ These are wire frames of my website.
 ### Feature
 
 These are wire frames of my website.
-
 
 - Before logging in, users must sign up for an account..
 
@@ -102,13 +133,6 @@ The data models were designed at the same time as the wireframes. You can find d
 
 - Font Colors: The color scheme for text is primarily brown, gray and white, blue.
 
-
-
-
-## Features
-### Landing page 
-
-
 ### React-Reusable Components
 Reusable components that are customizable and easy to install via npm.
 
@@ -117,6 +141,7 @@ Below, I'll highlight the key components and hooks:
 #### NavBar Component
 
 The NavBar component adds a navigation bar to your application. It includes links to different pages and can be customized with actions specific to the user. This component is inspired by the CI walkthrough project, "Moments."
+
 1. At the top of your JavaScript or JSX file, import the NavBar component like this:
 
 -   import NavBar from './components/NavBar';
@@ -129,6 +154,7 @@ Here are the props you can use with the NavBar component:
 - expanded: Controls whether the navigation menu is expanded.
 - ref: A reference to manage clicks outside the menu.
 
+- - -
 
 #### Asset Component
 
@@ -137,12 +163,13 @@ The Asset component is a reusable tool for showing assets like images or spinner
     - import Asset from './components/Asset';
 
 **Props**
-
 - Here are the props you can use with the Asset component:
 
 - spinner: Set to true to show a spinner animation.
 - src: Provide the URL for the image source.
 - message: Display a message below the asset.
+
+- - -
 
 #### Avatar Component
 
@@ -152,7 +179,6 @@ The Avatar component is a reusable tool for showing user avatars, with the optio
     - import Asset from './components/Avatar';
 
 **Props**
-
 - src: The URL for the avatar image.
 - height: The height of the avatar (default is 45 pixels).
 - text: Additional text to display with the avatar.
@@ -283,13 +309,6 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 | User types in the search bar on landing page | Project cards are filtered to match search | ✅ |
 | User clicks sign out | User is signed out and directed to the logged-out home page | ✅ |
 
-
-
-
-
-
-
-
 ## Deployment
 
 TaskFlow Deployment to GitHub and Heroku
@@ -324,55 +343,17 @@ These steps ensure that your React app can interact properly with the Django Tas
 
 
 
-** Forking the Taskmaster_react Repository
+## Forking the Taskmaster_react Repository
 
 1.	Log in (or create an account) on GitHub.
 2.	Visit the repository for the project at Neillcllghn/taskmaster_react.
 3.	Click the Fork button in the upper right corner of the page.
 ________________________________________
 
-** Cloning the Repository
+## Cloning the Repository
 1.	Log in (or create an account) on GitHub.
 2.	Navigate to the repository for this project at Neillcllghn/taskmaster_react.
 3.	Click the Code button, choose whether to clone using HTTPS, SSH, or GitHub CLI, and copy the provided link.
 4.	Open your terminal and change the current working directory to where you want the cloned repository to be saved.
 5.	In the terminal, type git clone, paste the link from step 3, and hit enter.
 
-
-
-
-
-
-
-
-
-
-
-- - -
-
-## Technologies Used
-
-### Languages Used:
-HTML, CSS, javascript and Python Django Rest Framework (backend) were used to create this website.
-
-### Frameworks, Libraries & Programs Used:
-
-Git - For version control.
-
-Github - To save and store the files for the website.
-
-React-Bootstrap Version 4.6 - The framework for the website. Code for the navigation bar, containers, rows and forms were used and modified. Additional CSS styling was also implemented in style.css.
-
-Google Fonts - To import the fonts used on the website.
-
-Font Awesome - For the iconography on the website.
-
-Google Dev Tools - To troubleshoot and test features, solve issues with responsiveness and styling.
-
-React-Router-DOM is a library for managing routing and navigation in React applications.
-
-Axios is a promise-based HTTP client for making requests and handling responses in JavaScript applications.
-
-React Chart.js 2: The React wrapper for Chart.js, used to integrate and display the pie chart.
-Chart.js: A JavaScript library that renders charts, such as the pie chart used in TaskFlow.
-ReactDOM is a library that provides methods to render React components into the DOM and manage the lifecycle of those components.

@@ -13,7 +13,6 @@ const useBudget = () => {
         // Fetch budget data from the API
         const response = await axios.get("/budgets/");
         console.log('API Response:', response.data);
-
         if (response.data.results && response.data.results.length > 0) {
           setBudget(parseFloat(response.data.results[0].amount)); // Ensure budget is stored as a number
           setBudgetId(response.data.results[0].id); // Set the budget ID
@@ -27,22 +26,8 @@ const useBudget = () => {
         setIsBudgetLoaded(true);
       }
     };
-
     fetchBudget();
   }, []);
-
-  // const handleBudgetSubmit = async (newBudget) => {
-  //   try {
-  //     const updatedBudget = parseFloat(budget) + parseFloat(newBudget); // Calculate the updated budget
-  //     await axios.put(`/budgets/${budgetId}/`, { amount: updatedBudget }); // Update the budget on the server
-
-  //     setBudget(updatedBudget.toFixed(2)); // Update the budget in the state
-  //     setError(null); // Clear any previous errors
-  //   } catch (err) {
-  //     console.error('Failed to update budget:', err.response ? err.response.data : err.message);
-  //     setError('Failed to update budget'); // Set an error message if the update fails
-  //   }
-  // };
 
   const handleBudgetSubmit = async (newBudget) => {
     try {
