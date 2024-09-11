@@ -3,7 +3,7 @@
 .expenses {
     width: 100%;
     border-collapse: collapse; /* Ensure borders do not double up */
-    background-color: aquamarine;
+   
 }
 /* Table header */
 .expenses th {

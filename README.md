@@ -295,19 +295,6 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 | User enters the expenses | Expenses are displayed in a table on the home page | ✅ |
 | User clicks edit button | Directed to edit project page with prepopulated form | ✅ |
 | User updates expenses (valid data) | Project details updated successfully and redirected to previous page | ✅ |
-| User updates project (invalid data) | Error / Invalid messages | ✅ |
-| User clicks delete icon on expenses page | expenses is deleted and redirected to home page | ✅ |
-| Total expenses | Total amount is calculated based on the entered expenses | ✅ |
-| User completes create task form and submits (valid data) | Task created and redirected to previous page | ✅ |
-| User completes task form and submits (invalid data)| Error / Invalid messages | ✅ |
-| User clicks edit task button | Directed to edit task page with prepopulated form | ✅ |
-| User updates task (valid data) | Task details updated successfully and redirected to related project page | ✅ |
-| User updates task (invalid data) | Error / Invalid messages | ✅ |
-| User clicks delete icon on task page | Task is deleted and redirected to landing page | ✅ |
-| User clicks project card | Directed to the Project page | ✅ |
-| User clicks task card | Directed to the Task page | ✅ |
-| User types in the search bar on landing page | Project cards are filtered to match search | ✅ |
-| User clicks sign out | User is signed out and directed to the logged-out home page | ✅ |
 
 #### Fixed Bugs
 
@@ -317,6 +304,20 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 | User can edit the expenses| ✅ |
 | The remaining amount should be calculated and displayed based on the difference between the monthly budget and the total expenses.| ✅ |
 | display sum of total expenses| ✅ |
+
+## Code Validation
+
+### HTML Validation
+
+I used the [W3C Markup Validation Service](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbirdie-app-3064fd5d3b6f.herokuapp.com%2F) to validate my HTML. Apart from some informational messages about trailing slashes on void elements, no errors were found.
+
+![HTML](src/Documentions/design/htmlvalidation.JPG)
+
+### CSS Validation
+
+I used [W3C Jigsaw] to validate(https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fexpenses-6281b20ca824.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en) my CSS. Besides the warnings related to external dependencies, I encountered one error. The line causing the error was removed from the CSS as it was redundant.
+
+![CSS](src/Documentions/design/css.JPG)
 
 ## Deployment
 
