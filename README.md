@@ -384,9 +384,28 @@ To integrate the React front-end with the Django API, follow these steps:
 ________________________________________
 
 ## Cloning the Repository
+
 1.	Log in (or create an account) on GitHub.
 2.	Navigate to the repository for this project at Neillcllghn/taskmaster_react.
 3.	Click the Code button, choose whether to clone using HTTPS, SSH, or GitHub CLI, and copy the provided link.
 4.	Open your terminal and change the current working directory to where you want the cloned repository to be saved.
 5.	In the terminal, type git clone, paste the link from step 3, and hit enter.
 
+#### Credits
+
+- https://github.com/mr-fibonacci/moments/tree/d2de51e78e4b991787d8be1594688e3fba2446d0
+
+- https://stackoverflow.com/questions/57663559/how-to-sum-react-component-values
+
+- https://stackoverflow.com/questions/65855371/how-to-display-data-to-table-in-react-js
+
+- https://stackoverflow.com/questions/77360640/how-do-i-get-my-reactjs-pie-chart-display
+
+#### Acknowledgments
+
+I would like to express my gratitude to the following individuals:
+
+- My Mentor, jubril, whose guidance and support have been invaluable.
+- Markus, my classmate, who provided significant assistance with my readme file.
+- kristyna_ci, whose contributions were immensely helpful throughout the project.
+- Thanks to all my classmates who provided feedback about my project. How can I make it even better?

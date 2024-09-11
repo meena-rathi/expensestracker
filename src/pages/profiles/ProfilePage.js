@@ -1,129 +1,168 @@
-import React, { useEffect, useState } from "react";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
-import { useParams } from "react-router-dom";
-import { axiosReq } from "../../api/axiosDefaults";
-import { useUserProfile } from "../../contexts/ProfileDataContext";
-import ProfileEditForm from "./ProfileEditForm";
-import UsernameForm from "./UsernameForm";
-import UserPasswordForm from "./UserPasswordForm";
-import { useRedirect } from '../../Hooks/useRedirect';
-import Assets from "../../components/Asset";
-import styles from "../../styles/ProfilePage.module.css";
-import appStyles from "../../App.module.css";
+import React, { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
-function ProfilePage() {
-    useRedirect('loggedOut');
-    const [hasLoaded, setHasLoaded] = useState(false);
-    const { id } = useParams();
-    const { setUserProfile } = useUserProfile();
-    const [showProfileEditForm, setShowProfileEditForm] = useState(false);
-    const [showUsernameForm, setShowUsernameForm] = useState(false);
-    const [showUserPasswordForm, setShowUserPasswordForm] = useState(false);
+const ProfilePage = () => {
+  const { id } = useParams();
+  const currentUser = useCurrentUser();
+  const [userProfile, setUserProfile] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [username, setUsername] = useState('');
+  const fileInputRef = useRef(null);
 
-    console.log(id, "<===id")
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-               
-                const { data: userProfile } = await axiosReq.get('/profiles/?owner=current');
-                // const { data: userProfile } = await axiosReq.get(`/profiles/${id}/`);
-                console.log(userProfile, "<=== Fetched user profile data");
-                if (userProfile) {
-                    console.log(userProfile, "<=== Fetched user profile data");
-                    setUserProfile(userProfile);
-                } else {
-                    console.error("No profile data returned");
-                }
-                setHasLoaded(true);
-            } catch (err) {
-                console.error("Fetching failed:", err);
-                // Optionally handle specific error statuses or messages here
-            }
-        };
-        fetchData();
-    }, [id, setUserProfile]);
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      if (currentUser && currentUser.pk) {
+        try {
+          const { data } = await axios.get(`/profiles/${currentUser.pk}/`);
+          setUserProfile(data);
+          setUsername(data.owner);
+        } catch (err) {
+          console.error('Error fetching user profile:', err);
+          setError('Error fetching user profile.');
+        }
+      } else {
+        console.error('Profile ID is missing or currentUser is not defined.');
+        setError('Profile ID is missing or currentUser is not defined.');
+      }
+    };
 
-    const userProfile = useUserProfile().userProfile;
+    fetchUserProfile();
+  }, [currentUser]);
 
-    const handleEditProfileClick = () => setShowProfileEditForm(true);
-    const handleCancelEdit = () => setShowProfileEditForm(false);
-    const handleUsernameFormClick = () => setShowUsernameForm(true);
-    const handleCloseUsernameForm = () => setShowUsernameForm(false);
-    const handleUserPasswordFormClick = () => setShowUserPasswordForm(true);
-    const handleCloseUserPasswordForm = () => setShowUserPasswordForm(false);
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
 
-    const defaultAvatar = '/path/to/default/avatar.png'; // Ensure this path is correct
-    const avatarSrc = userProfile?.avatar || defaultAvatar;
+  const handleImageChange = (e) => {
+    if (e.target.files.length > 0) {
+      setSelectedImage(e.target.files[0]);
+    }
+  };
 
-    const mainProfile = (
-        <>
-            {userProfile && (
-                <Row noGutters className="px-3 text-center">
-                    <Col lg={3} className="text-lg-left">
-                        <Image className={styles.ProfileImage} src={avatarSrc} roundedCircle />
-                    </Col>
-                    <Col lg={6}>
-                        <h3 className="m-2">{userProfile?.user}</h3>
-                    </Col>
-                    <Col className="p-3">Content: {userProfile?.bio}</Col>
-                </Row>
-            )}
+  const handleImageUpload = async () => {
+    if (!selectedImage) {
+      alert('Please select an image first!');
+      return;
+    }
 
-            <div className={`${styles.BtnDiv}`}>
-                <div className={`${styles.BtnPair}`}>
-                    <Button className={`${styles.EditProfileBtn}`} onClick={handleEditProfileClick}>
-                        Edit Profile
-                    </Button>
-                    {showProfileEditForm && (
-                        <Button className={`${styles.CloseFormBtn}`} onClick={handleCancelEdit}>
-                            Close Edit Profile
-                        </Button>
-                    )}
-                </div>
-                <div className={`${styles.BtnPair}`}>
-                    <Button className={`${styles.EditUsernameBtn}`} onClick={handleUsernameFormClick}>
-                        Edit Username
-                    </Button>
-                    {showUsernameForm && (
-                        <Button className={`${styles.CloseFormBtn}`} onClick={handleCloseUsernameForm}>
-                            Close Edit Username
-                        </Button>
-                    )}
-                </div>
-                <div className={`${styles.BtnPair}`}>
-                    <Button className={`${styles.EditUserPasswordBtn}`} onClick={handleUserPasswordFormClick}>
-                        Edit Password
-                    </Button>
-                    {showUserPasswordForm && (
-                        <Button className={`${styles.CloseFormBtn}`} onClick={handleCloseUserPasswordForm}>
-                            Close Edit Password
-                        </Button>
-                    )}
-                </div>
-            </div>
-        </>
-    );
+    setUploading(true);
+    setError(null);
+    setSuccess(null);
 
-    return (
-        <Row>
-            <Container className={appStyles.Content}>
-                {hasLoaded ? (
-                    <>
-                        {mainProfile}
-                        {showProfileEditForm && <ProfileEditForm onCancel={handleCancelEdit} />}
-                        {showUsernameForm && <UsernameForm onCancel={handleCloseUsernameForm} />}
-                        {showUserPasswordForm && <UserPasswordForm onCancel={handleCloseUserPasswordForm} />}
-                    </>
-                ) : (
-                    <Assets spinner />
-                )}
-            </Container>
-        </Row>
-    );
-}
+    const formData = new FormData();
+    formData.append('image', selectedImage);
+    const authToken = localStorage.getItem('authToken');
+    const profileId = currentUser?.pk;
+    if (!authToken || !profileId) {
+      setError('Authentication token or profile ID is missing.');
+      setUploading(false);
+      return;
+    }
+    try {
+      const response = await axios.patch(`/profiles/${profileId}/`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${authToken}`,
+        },
+      });
+      setSuccess('Image uploaded successfully!');
+      setUserProfile(prevProfile => ({
+        ...prevProfile,
+        image: response.data.image,
+      }));
+    } catch (err) {
+      console.error('Upload error:', err.response || err);
+      setError(`Error uploading image: ${err.response?.data?.detail || err.message}`);
+    } finally {
+      setUploading(false);
+    }
+  };
+  const handleEditToggle = () => {
+    setIsEditing(prev => !prev);
+  };
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handleSave = async () => {
+    if (!username.trim()) {
+      alert('Username cannot be empty!');
+      return;
+    }
+    setError(null);
+    setSuccess(null);
+    const authToken = localStorage.getItem('authToken');
+    const profileId = currentUser?.pk;
+    if (!authToken || !profileId) {
+      setError('Authentication token or profile ID is missing.');
+      return;
+    }
+    try {
+      const response = await axios.patch(`/profiles/${profileId}/`, { owner: username }, {
+        headers: {
+          'Authorization': `Bearer ${authToken}`,
+        },
+      });
+      setSuccess('Username updated successfully!');
+      setUserProfile(prevProfile => ({
+        ...prevProfile,
+        owner: response.data.owner,
+      }));
+      setIsEditing(false);
+    } catch (err) {
+      console.error('Update error:', err.response || err);
+      setError(`Error updating username: ${err.response?.data?.detail || err.message}`);
+    }
+  };
+  if (!userProfile) {
+    return <div>Loading profile...</div>;
+  }
+
+  return (
+    <div>
+      <h1>{isEditing ? 'Edit Profile' : `${userProfile.owner}'s Profile`}</h1>
+      <img src={userProfile.image || 'path/to/default/image.jpg'} alt="Profile" width="200" />
+      <input
+        type="file"
+        ref={fileInputRef}
+        style={{ display: 'none' }}
+        onChange={handleImageChange}
+      />
+      <button onClick={handleButtonClick}>
+        Select Image
+      </button>
+      <button onClick={handleImageUpload} disabled={uploading}>
+        {uploading ? 'Uploading...' : 'Upload Image'}
+      </button>
+      {isEditing ? (
+        <div>
+          <input
+            type="text"
+            value={username}
+            onChange={handleUsernameChange}
+          />
+          <button onClick={handleSave}>
+            Save
+          </button>
+          <button onClick={handleEditToggle}>
+            Cancel
+          </button>
+        </div>
+      ) : (
+        <button onClick={handleEditToggle}>
+          Edit Profile
+        </button>
+      )}
+      {error && <div className="error">{error}</div>}
+      {success && <div className="success">{success}</div>}
+    </div>
+  );
+};
 
 export default ProfilePage;

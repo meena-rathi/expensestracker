@@ -15,24 +15,25 @@ import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
-  const history = useHistory();
-
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
   });
-  const { username, password } = signInData;
 
+  const { username, password } = signInData;
   const [errors, setErrors] = useState({});
+  const history = useHistory();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
+      console.log("SignIn Data: ", signInData);
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      console.log("Response Data: ", data);
       setCurrentUser(data.user);
-      history.push("/Home");
+      history.push("/");
     } catch (err) {
+      console.log("Error: ", err.response?.data);
       setErrors(err.response?.data || {});
     }
   };
@@ -66,7 +67,6 @@ function SignInForm() {
                 {message}
               </Alert>
             ))}
-
             <Form.Group controlId="password">
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control

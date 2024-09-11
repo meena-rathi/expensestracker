@@ -6,7 +6,6 @@
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 .expensesForm {
   max-width: 600px;
   margin: 0 auto;
@@ -17,21 +16,18 @@
 .formGroup {
   margin-bottom: 20px;
 }
-
 /* Custom input fields if needed */
 .inputField {
   font-size: 16px;
   padding: 10px;
   border-radius: 4px;
 }
-
 /* Error message styling */
 .errorMessage {
   color: red;
   margin-top: 10px;
   font-weight: bold;
 }
-
 /* Submit button customizations */
 .submitButton {
   width: 100%;

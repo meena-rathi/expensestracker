@@ -32,6 +32,7 @@ function App() {
             <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
             <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />
             <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />} />
+        
             {/* <Route exact path="/expenses/:id/edit" render={() => <ExpenseEditForm />} /> */}
            
             {/* Add other routes here */}

@@ -100,3 +100,22 @@
     background-color: #008B8B;
     color: #fff;
   }
+  .image-uploader {
+    text-align: center;
+    margin: 20px;
+}
+
+.preview-image {
+    max-width: 300px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.error-message {
+    color: red;
+}
+
+.success-message {
+    color: green;
+}

@@ -11,26 +11,22 @@ export const UserProfileProvider = ({ children }) => {
   const currentUser = useCurrentUser();
 
   useEffect(() => {
-    
     const fetchUserProfile = async () => {
       try {
         if (currentUser) {
-        const { data } = await axiosReq.get(`/profiles/?owner=current`);
-        //const { data } = await axiosReq.get(`/Profiles/${currentUser.pk}/`);
-        setUserProfile(data);
+          const { data } = await axiosReq.get(`/profiles/${currentUser.pk}/`);
+          setUserProfile(data);
         }
       } catch (err) {
-        // console.log(err);
+        console.error("Error fetching user profile:", err);
       }
     };
 
-    
-      fetchUserProfile();
-}, [currentUser]);
-
+    fetchUserProfile();
+  }, [currentUser]);
 
   return (
-    <ProfileDataContext.Provider value={{ userProfile, setUserProfile}}>
+    <ProfileDataContext.Provider value={{ userProfile, setUserProfile }}>
       {children}
     </ProfileDataContext.Provider>
   );

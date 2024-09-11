@@ -6,8 +6,8 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles/BudgetFormToggle.module.css';
 
 const ExpensesFormToggle = ({ onSubmit }) => {
-  const [amount, setAmount] = useState(''); // Define amount state
-  const [description, setDescription] = useState(''); // Define description state
+  const [amount, setAmount] = useState('');
+  const [description, setDescription] = useState('');
   const [isFormVisible, setIsFormVisible] = useState(false);
 
   const handleAmountChange = (e) => setAmount(e.target.value);
@@ -16,20 +16,14 @@ const ExpensesFormToggle = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Create an object with both amount and description
     const expenseData = {
       amount,
       description,
     };
 
-    // Pass the expense data to the onSubmit handler
     onSubmit(expenseData);
-
-    // Clear the inputs after submission
     setAmount('');
     setDescription('');
-
-    // Hide form after submission
     setIsFormVisible(false);
   };
 
@@ -39,7 +33,6 @@ const ExpensesFormToggle = ({ onSubmit }) => {
 
   return (
     <div className={styles.container}>
-      {/* Toggle Button */}
       <Button variant="link" onClick={toggleFormVisibility}>
         {isFormVisible ? (
           <FontAwesomeIcon icon={faMinus} />
@@ -48,8 +41,6 @@ const ExpensesFormToggle = ({ onSubmit }) => {
         )}
         {isFormVisible ? ' Hide Expense Form' : ' Add Expense Form'}
       </Button>
-
-      {/* Conditionally render the form in a div with a red border */}
       {isFormVisible && (
         <div className={styles.formContainer}>
           <Form onSubmit={handleSubmit}>

@@ -1,6 +1,3 @@
-
-
-
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -8,38 +5,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles/BudgetFormToggle.module.css';
 
-
 const BudgetForm = ({ onSubmit }) => {
-  const [inputValue, setInputValue] = useState(''); // State for the budget amount
-  const [isFormVisible, setIsFormVisible] = useState(false); // State for form visibility
+  const [inputValue, setInputValue] = useState('');
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
-  // Handler for input change
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  // Handler for form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(inputValue); // Pass the input value to the parent component
-    setInputValue(''); // Clear the input field
-    setIsFormVisible(false); // Hide the form after submission
+    onSubmit(inputValue);
+    setInputValue('');
+    setIsFormVisible(false);
   };
 
-  // Toggle form visibility
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
   };
 
   return (
     <div className={styles.container}>
-      {/* Toggle Button */}
+
       <Button variant="link" onClick={toggleFormVisibility}>
         <FontAwesomeIcon icon={isFormVisible ? faMinus : faPlus} />
         {isFormVisible ? ' Hide Budget Form' : ' Add Budget Form'}
       </Button>
 
-      {/* Conditionally render the form */}
       {isFormVisible && (
         <div className={styles.formContainer}>
           <Form onSubmit={handleSubmit}>
@@ -57,8 +49,7 @@ const BudgetForm = ({ onSubmit }) => {
             </Button>
           </Form>
         </div>
-      )}
-      
+      )}      
     </div>
   );
 };

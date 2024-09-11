@@ -16,8 +16,8 @@ const BudgetFormToggle = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(inputValue);
-    setInputValue(''); // Clear the input after submission
-    setIsFormVisible(false); // Hide form after submission
+    setInputValue('');
+    setIsFormVisible(false);
   };
 
   const toggleFormVisibility = () => {
@@ -26,7 +26,6 @@ const BudgetFormToggle = ({ onSubmit }) => {
 
   return (
     <div className={styles.container}>
-      {/* Toggle Button */}
       <Button variant="link" onClick={toggleFormVisibility}>
         {isFormVisible ? (
           <FontAwesomeIcon icon={faMinus} />
@@ -35,8 +34,6 @@ const BudgetFormToggle = ({ onSubmit }) => {
         )}
         {isFormVisible ? ' Hide Budget Form' : ' Add Budget Form'}
       </Button>
-
-      {/* Conditionally render the form in a div with a red border */}
       {isFormVisible && (
         <div className={styles.formContainer}>
           <Form onSubmit={handleSubmit}>

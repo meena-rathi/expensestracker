@@ -2,24 +2,23 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const useBudget = () => {
-  const [budget, setBudget] = useState(null); // Initial budget state
-  const [error, setError] = useState(null); // Error state
-  const [isBudgetLoaded, setIsBudgetLoaded] = useState(false); // Budget loading state
-  const [budgetId, setBudgetId] = useState(null); // State to store the budget ID
+  const [budget, setBudget] = useState(null);
+  const [error, setError] = useState(null);
+  const [isBudgetLoaded, setIsBudgetLoaded] = useState(false);
+  const [budgetId, setBudgetId] = useState(null);
 
   useEffect(() => {
     const fetchBudget = async () => {
       try {
-        // Fetch budget data from the API
-        const response = await axios.get("/budgets/");
+        const response = await axios.get("/expenses/budgets/");
         console.log('API Response:', response.data);
         if (response.data.results && response.data.results.length > 0) {
-          setBudget(parseFloat(response.data.results[0].amount)); // Ensure budget is stored as a number
-          setBudgetId(response.data.results[0].id); // Set the budget ID
+          setBudget(parseFloat(response.data.results[0].amount));
+          setBudgetId(response.data.results[0].id);
         } else {
-          setBudget(0.00); // Default to 0.00 if no data is found
+          setBudget(0.00);
         }
-        setIsBudgetLoaded(true); // Set loading state to true after fetching
+        setIsBudgetLoaded(true);
       } catch (err) {
         console.error('Failed to load budget data:', err.response ? err.response.data : err.message);
         setError('Failed to load budget data');
@@ -32,10 +31,10 @@ const useBudget = () => {
   const handleBudgetSubmit = async (newBudget) => {
     try {
       const updatedBudget = parseFloat(budget) + parseFloat(newBudget);
-      if (budgetId) { // Make sure the budgetId is defined
-        await axios.put(`/budgets/${budgetId}/`, { amount: updatedBudget });
+      if (budgetId) {
+        await axios.put(`/expenses/budgets/${budgetId}/`, { amount: updatedBudget });
       } else {
-        await axios.post('/budgets/', { amount: updatedBudget });
+        await axios.post('/expenses/budgets/', { amount: updatedBudget });
       }
       setBudget(updatedBudget.toFixed(2));
       setError(null);

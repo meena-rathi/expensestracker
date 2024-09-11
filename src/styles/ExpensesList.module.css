@@ -5,7 +5,6 @@
     border-collapse: collapse; /* Ensure borders do not double up */
     background-color: aquamarine;
 }
-
 /* Table header */
 .expenses th {
     background-color: #998877;
@@ -13,7 +12,6 @@
     padding: 10px;
     border-bottom: 2px solid #333;
 }
-
 .message {
     color: rgb(155, 148, 148);
     text-align: center;
@@ -25,18 +23,15 @@
     padding: 10px;
     border: 1px solid #333; /* Add border to each cell */
 }
-
 /* Table rows */
 .expenses tr:nth-child(even) {
     background-color: #f2f2f2; /* Different background for even rows */
 }
-
 /* Add border and padding */
 .expenses tr {
     border: 1px solid #333; /* Add border to each row */
 }
 /* Responsive styling for mobile */
-
 
 @media (max-width: 768px) {
     .expenses {
@@ -48,8 +43,6 @@
     .expenses th, .expenses td {
         padding: 8px;
     }
-
-  
     .expenses td button {
         display: block;
         width: 100%;
@@ -67,7 +60,6 @@
         margin-top: 10px;
     }
 }
-
 
 button {
     background-color: #007bff;
@@ -92,4 +84,4 @@ button:disabled {
 
 .pagination button {
     margin: 0 5px;
-} 
+}

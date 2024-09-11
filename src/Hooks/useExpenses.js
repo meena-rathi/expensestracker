@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-// import { axios } from '../api/axiosDefaults';  
+import { useState, useEffect } from 'react';  
 import axios from 'axios';
 
 const useExpenses = () => {
@@ -16,11 +15,9 @@ const useExpenses = () => {
         console.error('Fetch expenses error:', err.response ? err.response.data : err.message);
       }
     };
-
     fetchExpenses();
   }, []);
 
-  
   const addExpense = async (newExpenses) => {
     try {
       const response = await axios.post('/expenses/', newExpenses);

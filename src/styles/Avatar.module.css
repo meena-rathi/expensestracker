@@ -1,4 +1,4 @@
 .Avatar {
-  border-radius: 50%; /* Make the image round */
-  object-fit: cover;  /* Ensure the image fits nicely within the circle */
+  border-radius: 50%;
+  object-fit: cover;
 }

@@ -2,10 +2,8 @@
 .homeContainer {
   padding: 20px;
 }
-
 .userInfo {
   margin-bottom: 20px;
-
 }
 .displayStyle {
   font-size: 20px; /* Large font size */
@@ -16,7 +14,6 @@
   max-width: 600px;
   margin: 0 auto;
 }
-
 .error {
   color: red;
 }
@@ -32,13 +29,11 @@
   align-items: center; /* Align items vertically center */
   margin-bottom: 20px; /* Add spacing below the row */
 }
-
 /* Style for the user info section */
 .userInfo {
   font-size: 50px;
   font-weight: bold;
 }
-
 /* Style for the budget display section */
 .budgetInfo {
   font-size: 80px;
@@ -47,14 +42,12 @@
 .overflow-hidden {
   overflow-x: hidden;
 }
-
 .pieChartContainer h2 {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 20px;
   color: #333;
 }
-
 .pieChartContainer p {
   color: #888;
   font-size: 16px;
@@ -74,12 +67,10 @@
   max-width: 100%; /* Ensure the container does not exceed the screen width */
   width: 100%;
 }
-
 .pieChartContainer canvas {
   max-width: 100%; /* Make the chart responsive */
   height: auto; /* Adjust the height automatically */
 }
-
 .error {
   color: red;
   font-size: 14px;
