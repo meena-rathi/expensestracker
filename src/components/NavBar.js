@@ -8,7 +8,7 @@ import useClickOutsideToggle from '../Hooks/useClickOutsideToggle';
 import Avatar from './Avatar';
 import logo from "../assets/logo.webp";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faSignInAlt, faUserPlus, faPlusCircle, faList, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faSignInAlt, faUserPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = () => {
   const currentUser = useCurrentUser();

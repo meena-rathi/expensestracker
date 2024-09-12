@@ -7,7 +7,7 @@ import Navbar from './components/NavBar';
 import Home from './pages/expenses/Home';
 import Container from "react-bootstrap/Container";
 import styles from "./App.module.css";
-import { useCurrentUser } from "./contexts/CurrentUserContext";
+// import { useCurrentUser } from "./contexts/CurrentUserContext";
 import ExpenseEditForm from './components/ExpenseEditForm';
 
 import PieChartDisplay from './pages/expenses/PieChartDisplay';
@@ -15,9 +15,10 @@ import PieChartDisplay from './pages/expenses/PieChartDisplay';
 import ProfilePage from './pages/profiles/ProfilePage';
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import UsernameForm from "./pages/profiles/UsernameForm";
+import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 
 function App() {
-  const currentUser = useCurrentUser();
+  // const currentUser = useCurrentUser();
   return (
     <div className={styles.App}>
       <Router>
@@ -30,8 +31,15 @@ function App() {
             <Route exact path="/piechart" component={PieChartDisplay} />
             <Route exact path="/expenses/:id/edit" component={ExpenseEditForm} />
             <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
-            <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />
-            <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />} />
+            {/* <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />
+            <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />} /> */}
+            <Route exact path="/profiles" component={ProfilePage} />
+            <Route path="/profile-edit-form/" component={ProfileEditForm} />
+            
+            <Route path="/change-username" component={UsernameForm} />
+
+            <Route path="/change-password" component={UserPasswordForm} />
+
         
             {/* <Route exact path="/expenses/:id/edit" render={() => <ExpenseEditForm />} /> */}
            

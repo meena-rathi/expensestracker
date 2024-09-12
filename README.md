@@ -3,6 +3,10 @@
 I've developed a budget expenses project where users can add their monthly budget and expenses for various products. This allows them to track and identify which products have higher expenses compared to others.
 This repository contains the React frontend for TribeHub. The project also uses a web API built with Django Rest Framework, and you can find that API's repository [here](https://github.com/meena-rathi/drf_api_expenses).
 
+## Responsive ##
+
+![responsive](src/Documentions/design/responsive.JPG)
+
 ## User Personas ##
 
 - A user can manage their budget and expense.

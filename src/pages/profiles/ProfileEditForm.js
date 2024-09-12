@@ -1,159 +1,188 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
-import { useCurrentUser, useSetCurrentUser } from '../../contexts/CurrentUserContext';
-import { useHistory, useParams } from 'react-router-dom';
-import { axiosReq } from '../../api/axiosDefaults';
-import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
-import styles from "../../styles/ProfilePage.module.css";
-import { useRedirect } from '../../Hooks/useRedirect';
+import { InfoCircle } from 'react-bootstrap-icons';
 
-function ProfileEditForm({ onCancel }) {
-    useRedirect('loggedOut');
-    const currentUser = useCurrentUser();
-    const setCurrentUser = useSetCurrentUser();
-    const { id } = useParams();
-    const history = useHistory();
-    const imageFile = useRef();
+import { axiosReq, axiosRes } from '../../api/axiosDefaults';
+import { useCurrentUser } from '../../contexts/CurrentUserContext'; // Ensure this is imported correctly
+import Avatar from '../../components/Avatar';
+import Spinner from '../../components/Spinner';
+function ProfileEditForm() {
+  // Current user
+  const currentUser = useCurrentUser();
 
-    const [userProfileData, setUserProfileData] = useState({
-        name: "",
-        content: "",
-        image: "",
+  // Reference to the form file upload element
+  const imageInput = useRef(null);
+
+  // State for editable profile data;
+  const [profileData, setProfileData] = useState({
+   
+    image: '',
+  });
+  const {  image } = profileData;
+
+  // State for HTTP errors from the API
+  const [errors, setErrors] = useState({});
+
+  // State to confirm the profile change request was successful
+  const [actionSucceeded, setActionSucceeded] = useState(false);
+
+  // State to confirm whether data has loaded;
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  // Change handler for profile form
+  const handleChange = (event) => {
+    setProfileData({
+      ...profileData,
+      [event.target.name]: event.target.value
     });
+  };
 
-    const { name, content, image } = userProfileData;
-    const [errors, setErrors] = useState({});
+  const handleImageChange = (event) => {
+    if (event.target.files.length) {
+      URL.revokeObjectURL(image);
+      setProfileData({
+        ...profileData,
+        image: URL.createObjectURL(event.target.files[0])
+      });
+    }
+  };
 
-    useEffect(() => {
-        const handleMount = async () => {
-            if (currentUser?.profile_id?.toString() === id) {
-                try {
-                    const { data } = await axiosReq.get(`/profiles/${id}/`);
-                    const { name, content, image } = data;
-                    setUserProfileData({ name, content, image });
-                } catch (err) {
-                    history.push("/");
-                }
-            } else {
-                history.push("/");
-            }
-        };
-        handleMount();
-    }, [currentUser, history, id]);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    // formData.append('display_name', display_name);
 
-    const handleChange = (event) => {
-        setUserProfileData({
-            ...userProfileData,
-            [event.target.name]: event.target.value,
+    if (imageInput?.current?.files[0]) {
+      formData.append('image', imageInput.current.files[0]);
+    }
+
+    try {
+      setHasLoaded(false);
+      await axiosReq.put(`/profiles/${currentUser.pk}/`, formData);
+      setHasLoaded(true);
+      setActionSucceeded(true);
+      setErrors({});
+    } catch (error) {
+      if (error.response?.status !== 401) {
+        setErrors(error.response?.data);
+        setHasLoaded(true);
+        setActionSucceeded(false);
+      }
+      if (error.response?.status === 500) {
+        setErrors({
+          server_error: 'The server experienced an internal error'
         });
-    };
+      }
+    }
+  };
 
-    const handleImageChange = (event) => {
-        if (event.target.files.length) {
-            setUserProfileData({
-                ...userProfileData,
-                image: URL.createObjectURL(event.target.files[0]),
-            });
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (!currentUser) return; // Add this line to ensure currentUser is available
+      try {
+        const { data } = await axiosRes.get(`profiles/${currentUser.pk}/`);
+        const { display_name, image } = data;
+        setProfileData({ display_name, image });
+        setHasLoaded(true);
+      } catch (error) {
+        if (error.response?.status !== 401) {
+          setErrors(error.response?.data);
+          setHasLoaded(true);
         }
+      }
     };
+    fetchProfile();
+  }, [currentUser]);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const formData = new FormData();
-        formData.append("name", name);
-        formData.append("content", content);
+  useEffect(() => {
+    const hideSuccess = setTimeout(() => {
+      setActionSucceeded('');
+    }, 5000);
+    return () => clearTimeout(hideSuccess);
+  }, [actionSucceeded]);
 
-        if (imageFile?.current?.files[0]) {
-            formData.append("image", imageFile?.current?.files[0]);
-        }
+  // Check if currentUser or profileData are loaded before rendering the form
+  if (!currentUser || !hasLoaded) {
+    return <Spinner />;
+  }
 
-        try {
-            const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
-            setCurrentUser((currentUser) => ({
-                ...currentUser,
-                profile_image: data.image,
-            }));
-            onCancel(); // Close the form after saving
-        } catch (err) {
-            setErrors(err.response?.data);
-        }
-    };
+  return (
+    <div className="justify-self-center basis-full mx-2">
+      <form onSubmit={handleSubmit}>
+        {/* Profile image */}
+        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="image">
+          <span>Select Image:</span>
+          <input
+            id="image"
+            type="file"
+            className="file-input file-input-bordered w-full"
+            onChange={handleImageChange}
+            accept="image/*"
+            ref={imageInput}
+          />
+        </label>
+     
+        <div className="flex justify-center">
+          <Avatar src={image} large />
+        </div>
 
-    const textFields = (
-        <>
-            <Form.Group>
-                <Form.Label>Bio</Form.Label>
-                <Form.Control
-                    as="textarea"
-                    value={content}
-                    onChange={handleChange}
-                    name="content"
-                    rows={7}
-                />
-            </Form.Group>
+        {/* Display alert with any image field errors */}
+        {errors.image && (
+          <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+            <div>
+              <InfoCircle size="32" />
+            </div>
+            <div>
+              <p>{errors.image}</p>
+            </div>
+          </div>
+        )}
 
-            {errors?.content?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
-            <Button className={`${btnStyles.Button} ${btnStyles.Blue} ${styles.SaveBtn}`} type="submit" onClick={handleSubmit}>
-                Save
-            </Button>
-        </>
-    );
+        <button className="btn btn-primary btn-wide" type="submit" id="profile-submit-btn">
+          Submit
+        </button>
 
-    return (
-        <Form onSubmit={handleSubmit}>
-            <Row>
-                <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
-                    <Container className={appStyles.Content}>
-                        <Form.Group>
-                            {image && (
-                                <figure>
-                                    <Image src={image} fluid />
-                                </figure>
-                            )}
-                            {errors?.image?.map((message, idx) => (
-                                <Alert variant="warning" key={idx}>
-                                    {message}
-                                </Alert>
-                            ))}
-                            <div>
-                                <Form.Label
-                                    className={`${btnStyles.Button} ${btnStyles.Blue} btn my-auto`}
-                                    htmlFor="image-upload"
-                                >
-                                    Change the image
-                                </Form.Label>
-                            </div>
-                            <Form.File
-                                id="image-upload"
-                                style={{ display: 'none' }}
-                                ref={imageFile}
-                                accept="image/*"
-                                onChange={handleImageChange}
-                            />
-                            <Button className={`${btnStyles.Button} ${btnStyles.Blue} ${styles.SaveBtn}`} type="submit">
-                                Save
-                            </Button>
-                        </Form.Group>
-                        <div className="d-md-none">{textFields}</div>
-                    </Container>
-                </Col>
-                <Col md={5} lg={6} className="d-none d-md-block p-0 p-md-2 text-center">
-                    <Container className={appStyles.Content}>{textFields}</Container>
-                </Col>
-            </Row>
-        </Form>
-    );
-};
+        {/* Display alert with any non-field errors */}
+        {errors.non_field_errors?.map((error, i) => (
+          <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`profile_form_non-field_err${i}`}>
+            <div>
+              <InfoCircle size="32" />
+            </div>
+            <div>
+              <p>{error}</p>
+            </div>
+          </div>
+        ))}
+
+        {/* Display alert if there was a 500 error */}
+        {errors.server_error && (
+          <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+            <div>
+              <InfoCircle size="32" />
+            </div>
+            <div>
+              <p>The server experienced an internal error. A common cause of this is uploading a file that is not an image.</p>
+              <br />
+              <p>If you attempted to upload a profile image, please check your file format and try again.</p>
+            </div>
+          </div>
+        )}
+
+        {/* Display alert with success message if request succeeded */}
+        {actionSucceeded && (
+          <div className="fixed min-h-fit min-w-full top-0 left-0 z-10">
+            <div className="alert alert-success justify-start w-3/4 md:w-1/2 lg:w-1/2 mx-auto mt-14">
+              <div>
+                <InfoCircle size="32" />
+              </div>
+              <div>
+                <p>Profile updated</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </form>
+    </div>
+  );
+}
 
 export default ProfileEditForm;
