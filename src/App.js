@@ -30,7 +30,7 @@ function App() {
             <Route exact path="/home" component={Home} />
             <Route exact path="/piechart" component={PieChartDisplay} />
             <Route exact path="/expenses/:id/edit" component={ExpenseEditForm} />
-            <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
+            {/* <Route exact path="/profiles/:id" render={() => <ProfilePage />} /> */}
             {/* <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />
             <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />} /> */}
             <Route exact path="/profiles" component={ProfilePage} />

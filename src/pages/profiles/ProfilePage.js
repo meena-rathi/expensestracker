@@ -185,11 +185,55 @@
 //   );
 // }
 
+
+// // export default ProfilePage;
+// import React from 'react';
+// import { useHistory } from 'react-router-dom';
+// import { Button } from 'react-bootstrap';
+// // import Spinner from '../../components/Spinner';
+// import { useCurrentUser } from '../../contexts/CurrentUserContext';
+
+// function ProfilePage() {
+//   const currentUser = useCurrentUser();
+//   const history = useHistory();
+
+//   // Navigate to the respective forms
+//   const handleUploadImage = () => history.push(`/profile-edit-form/${currentUser?.profile_id}/edit`); // Use the correct route
+//   const handleChangeUsername = () => history.push('/change-username');
+
+
+//   const handleChangePassword = () => history.push(`/change-password/${currentUser?.profile_id}`);
+
+
+//   // if (!currentUser) {
+//   //   return <Spinner />;
+//   // }
+
+//   return (
+//     <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
+//       <h1 className="mb-4">Profile</h1>
+//       <div className="d-flex flex-column align-items-center">
+//         <Button className="mb-3" onClick={handleUploadImage}>
+//           Upload Image
+//         </Button>
+//         <Button className="mb-3" onClick={handleChangeUsername}>
+//           Change Username
+//         </Button>
+//         <Button className="mb-3" onClick={handleChangePassword}>
+//           Change Password
+//         </Button>
+//       </div>
+//     </div>
+//   );
+// }
+
 // export default ProfilePage;
+
+
+
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-// import Spinner from '../../components/Spinner';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 function ProfilePage() {
@@ -197,16 +241,14 @@ function ProfilePage() {
   const history = useHistory();
 
   // Navigate to the respective forms
-  const handleUploadImage = () => history.push(`/profile-edit-form/${currentUser?.profile_id}/edit`); // Use the correct route
+  const handleUploadImage = () => history.push(`/profile-edit-form/${currentUser?.profile_id}/edit`);
   const handleChangeUsername = () => history.push('/change-username');
-
-
   const handleChangePassword = () => history.push(`/change-password/${currentUser?.profile_id}`);
 
-
-  // if (!currentUser) {
-  //   return <Spinner />;
-  // }
+  // Handle case where currentUser is not loaded
+  if (!currentUser) {
+    return <div>Loading...</div>; // Or your custom spinner/loading component
+  }
 
   return (
     <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
