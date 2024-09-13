@@ -19,6 +19,9 @@ This repository contains the React frontend for TribeHub. The project also uses 
 
 The user storys in my GitHub project are as follows:
 
+* As a site user, I can change the profile picture.
+* As a site user, I can edit the username.
+* As a site user, I can edit the password 
 * As a site user, I can easily create an account to access the website.
 * As a site user, I can add a monthly budget. 
 * As a site user, I can add the expenses.
@@ -89,7 +92,7 @@ These are wire frames of my website.
 
 ### Feature
 
-These are wire frames of my website.
+These are Feature of my website.
 
 - Before logging in, users must sign up for an account..
 
@@ -138,6 +141,7 @@ The data models were designed at the same time as the wireframes. You can find d
 - Font Colors: The color scheme for text is primarily brown, gray and white, blue.
 
 ### React-Reusable Components
+
 Reusable components that are customizable and easy to install via npm.
 
 Below, I'll highlight the key components and hooks:
@@ -299,6 +303,9 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 | User enters the expenses | Expenses are displayed in a table on the home page | ✅ |
 | User clicks edit button | Directed to edit project page with prepopulated form | ✅ |
 | User updates expenses (valid data) | Project details updated successfully and redirected to previous page | ✅ |
+| User update profile image | profile image successfuly Updated reload the page image display in profile | ✅ |
+| User update Username | Username Updated successfully | ✅ |
+| User update password |passwrod updated successfully | ✅ |
 
 #### Fixed Bugs
 
@@ -308,6 +315,7 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 | User can edit the expenses| ✅ |
 | The remaining amount should be calculated and displayed based on the difference between the monthly budget and the total expenses.| ✅ |
 | display sum of total expenses| ✅ |
+|Fix profile image upload|✅ |
 
 ## Code Validation
 
@@ -378,7 +386,6 @@ To integrate the React front-end with the Django API, follow these steps:
    - Import this Axios configuration into the App.js file of your React app to enable communication with the Django API.
    
    - These steps ensure that your React app can interact properly with the Django TaskFlow API.
-
 
 
 ## Forking the Taskmaster_react Repository
