@@ -37,8 +37,8 @@ function App() {
             <Route path="/profile-edit-form/" component={ProfileEditForm} />
             
             <Route path="/change-username" component={UsernameForm} />
-
-            <Route path="/change-password" component={UserPasswordForm} />
+            {/* <Route path="/change-password/" component={UserPasswordForm} /> */}
+            <Route path="/change-password/:id" component={UserPasswordForm} />
 
         
             {/* <Route exact path="/expenses/:id/edit" render={() => <ExpenseEditForm />} /> */}

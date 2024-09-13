@@ -1,66 +1,36 @@
-
 /* Table styling */
 .expenses {
-    width: 100%;
+    width: 100%; /* Ensure the table takes up full width */
+    max-width: 100%; /* Prevent table from exceeding container width */
     border-collapse: collapse; /* Ensure borders do not double up */
-   
+    margin: 0 auto; /* Ensure the table is centered */
 }
+
 /* Table header */
 .expenses th {
     background-color: #998877;
     color: #333;
     padding: 10px;
     border-bottom: 2px solid #333;
+    text-align: left;
 }
-.message {
-    color: rgb(155, 148, 148);
-    text-align: center;
-    margin-top: 20px;
-    font-weight: bold;
-  }
+
 /* Table cells */
 .expenses td {
     padding: 10px;
     border: 1px solid #333; /* Add border to each cell */
 }
+
 /* Table rows */
 .expenses tr:nth-child(even) {
     background-color: #f2f2f2; /* Different background for even rows */
 }
-/* Add border and padding */
+
 .expenses tr {
     border: 1px solid #333; /* Add border to each row */
 }
-/* Responsive styling for mobile */
 
-@media (max-width: 768px) {
-    .expenses {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-
-    .expenses th, .expenses td {
-        padding: 8px;
-    }
-    .expenses td button {
-        display: block;
-        width: 100%;
-        margin: 5px 0;
-    }
-
-    .pagination button {
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    .pagination span {
-        display: block;
-        text-align: center;
-        margin-top: 10px;
-    }
-}
-
+/* Button Styling */
 button {
     background-color: #007bff;
     color: white;
@@ -84,4 +54,89 @@ button:disabled {
 
 .pagination button {
     margin: 0 5px;
+}
+
+/* General container styling for centering */
+.container {
+    max-width: 1200px; /* Maximum width of the container */
+    margin: 0 auto; /* Horizontally center the container */
+    padding: 0 15px; /* Padding inside the container */
+    text-align: center; /* Center the content text */
+}
+
+/* Responsive styling for mobile */
+@media (max-width: 768px) {
+    .expenses {
+        display: block;
+        overflow-x: auto; /* Add horizontal scrolling for small screens */
+        white-space: nowrap;
+    }
+
+    .expenses th, .expenses td {
+        padding: 8px;
+    }
+
+    .expenses td button {
+        display: block;
+        width: 100%; /* Make buttons take full width on small screens */
+        margin: 5px 0;
+    }
+
+    .pagination button {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .pagination span {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+    }
+}
+
+/* Additional improvements for iPad (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .expenses td button {
+        width: 48%; /* Buttons take half the space */
+        display: inline-block; /* Align buttons side by side */
+    }
+
+    .pagination button {
+        width: auto; /* Make buttons auto width on iPad */
+    }
+
+    .pagination span {
+        display: inline-block;
+        margin-top: 0;
+    }
+
+    /* Center the table on tablets like iPad Mini */
+    .expenses {
+        max-width: 95%; /* Adjust table width to fit the screen properly */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Ensure the container is centered on tablets */
+    .container {
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+}
+
+/* iPhone-specific styling */
+@media (max-width: 480px) {
+    .expenses th, .expenses td {
+        font-size: 12px; /* Reduce font size for smaller screens */
+    }
+
+    .expenses td button {
+        padding: 8px; /* Reduce button padding */
+    }
+
+    button {
+        font-size: 12px; /* Reduce button text size */
+    }
 }

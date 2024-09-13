@@ -1,34 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { InfoCircle } from 'react-bootstrap-icons';
-
+import { Container, Row, Col, Alert, Button } from 'react-bootstrap';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
-import { useCurrentUser } from '../../contexts/CurrentUserContext'; // Ensure this is imported correctly
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import Avatar from '../../components/Avatar';
-import Spinner from '../../components/Spinner';
-function ProfileEditForm() {
-  // Current user
-  const currentUser = useCurrentUser();
+import { useHistory } from 'react-router-dom'; // useNavigate
 
-  // Reference to the form file upload element
+function ProfileEditForm() {
+  const history = useHistory(); // Hook for navigation
+  const currentUser = useCurrentUser();
   const imageInput = useRef(null);
 
-  // State for editable profile data;
   const [profileData, setProfileData] = useState({
-   
     image: '',
   });
-  const {  image } = profileData;
+  const { image } = profileData;
 
-  // State for HTTP errors from the API
   const [errors, setErrors] = useState({});
-
-  // State to confirm the profile change request was successful
   const [actionSucceeded, setActionSucceeded] = useState(false);
-
-  // State to confirm whether data has loaded;
   const [hasLoaded, setHasLoaded] = useState(false);
 
-  // Change handler for profile form
   const handleChange = (event) => {
     setProfileData({
       ...profileData,
@@ -38,7 +29,7 @@ function ProfileEditForm() {
 
   const handleImageChange = (event) => {
     if (event.target.files.length) {
-      URL.revokeObjectURL(image);
+      URL.revokeObjectURL(image); // Clean up previous image URL
       setProfileData({
         ...profileData,
         image: URL.createObjectURL(event.target.files[0])
@@ -49,7 +40,6 @@ function ProfileEditForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    // formData.append('display_name', display_name);
 
     if (imageInput?.current?.files[0]) {
       formData.append('image', imageInput.current.files[0]);
@@ -59,13 +49,15 @@ function ProfileEditForm() {
       setHasLoaded(false);
       await axiosReq.put(`/profiles/${currentUser.pk}/`, formData);
       setHasLoaded(true);
-      setActionSucceeded(true);
+      setActionSucceeded(true); // Indicate success
       setErrors({});
+      // Redirect to profiles page after showing the success message
+      setTimeout(() => history.push("/profiles"), 3000);
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors(error.response?.data);
         setHasLoaded(true);
-        setActionSucceeded(false);
+        setActionSucceeded(false); // Indicate failure
       }
       if (error.response?.status === 500) {
         setErrors({
@@ -77,7 +69,7 @@ function ProfileEditForm() {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      if (!currentUser) return; // Add this line to ensure currentUser is available
+      if (!currentUser) return;
       try {
         const { data } = await axiosRes.get(`profiles/${currentUser.pk}/`);
         const { display_name, image } = data;
@@ -94,94 +86,80 @@ function ProfileEditForm() {
   }, [currentUser]);
 
   useEffect(() => {
+    // Automatically hide success message after 5 seconds
     const hideSuccess = setTimeout(() => {
-      setActionSucceeded('');
+      setActionSucceeded(false);
     }, 5000);
     return () => clearTimeout(hideSuccess);
   }, [actionSucceeded]);
 
-  // Check if currentUser or profileData are loaded before rendering the form
-  if (!currentUser || !hasLoaded) {
-    return <Spinner />;
-  }
-
   return (
-    <div className="justify-self-center basis-full mx-2">
-      <form onSubmit={handleSubmit}>
-        {/* Profile image */}
-        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="image">
-          <span>Select Image:</span>
-          <input
-            id="image"
-            type="file"
-            className="file-input file-input-bordered w-full"
-            onChange={handleImageChange}
-            accept="image/*"
-            ref={imageInput}
-          />
-        </label>
-     
-        <div className="flex justify-center">
-          <Avatar src={image} large />
-        </div>
+    <Container className="d-flex justify-content-center align-items-center min-vh-100">
+      <Row className="w-100">
+        <Col md={8} lg={6} className="mx-auto">
+          <div className="bg-light p-4 rounded shadow">
+            <form onSubmit={handleSubmit} className="d-flex flex-column align-items-center">
+              {/* Profile image */}
+              <label className="form-label font-weight-bold mb-2" htmlFor="image">
+                Select Image:
+              </label>
+              <input
+                id="image"
+                type="file"
+                className="form-control mb-3"
+                onChange={handleImageChange}
+                accept="image/*"
+                ref={imageInput}
+              />
 
-        {/* Display alert with any image field errors */}
-        {errors.image && (
-          <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
-            <div>
-              <InfoCircle size="32" />
-            </div>
-            <div>
-              <p>{errors.image}</p>
-            </div>
-          </div>
-        )}
-
-        <button className="btn btn-primary btn-wide" type="submit" id="profile-submit-btn">
-          Submit
-        </button>
-
-        {/* Display alert with any non-field errors */}
-        {errors.non_field_errors?.map((error, i) => (
-          <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`profile_form_non-field_err${i}`}>
-            <div>
-              <InfoCircle size="32" />
-            </div>
-            <div>
-              <p>{error}</p>
-            </div>
-          </div>
-        ))}
-
-        {/* Display alert if there was a 500 error */}
-        {errors.server_error && (
-          <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
-            <div>
-              <InfoCircle size="32" />
-            </div>
-            <div>
-              <p>The server experienced an internal error. A common cause of this is uploading a file that is not an image.</p>
-              <br />
-              <p>If you attempted to upload a profile image, please check your file format and try again.</p>
-            </div>
-          </div>
-        )}
-
-        {/* Display alert with success message if request succeeded */}
-        {actionSucceeded && (
-          <div className="fixed min-h-fit min-w-full top-0 left-0 z-10">
-            <div className="alert alert-success justify-start w-3/4 md:w-1/2 lg:w-1/2 mx-auto mt-14">
-              <div>
-                <InfoCircle size="32" />
+              <div className="mb-4">
+                <Avatar src={image} large />
               </div>
-              <div>
-                <p>Profile updated</p>
-              </div>
-            </div>
+
+              {/* Display alert with any image field errors */}
+              {errors.image && (
+                <Alert variant="warning" className="w-100 text-center mb-2">
+                  <InfoCircle size="32" />
+                  <p>{errors.image}</p>
+                </Alert>
+              )}
+
+              <Button
+                className="btn btn-primary mb-2"
+                type="submit"
+              >
+                Submit
+              </Button>
+
+              {/* Display alert with any non-field errors */}
+              {errors.non_field_errors?.map((error, i) => (
+                <Alert key={`profile_form_non-field_err${i}`} variant="warning" className="w-100 text-center mb-2">
+                  <InfoCircle size="32" />
+                  <p>{error}</p>
+                </Alert>
+              ))}
+
+              {/* Display alert if there was a 500 error */}
+              {errors.server_error && (
+                <Alert variant="warning" className="w-100 text-center mb-2">
+                  <InfoCircle size="32" />
+                  <p>The server experienced an internal error. A common cause of this is uploading a file that is not an image.</p>
+                  <p>If you attempted to upload a profile image, please check your file format and try again.</p>
+                </Alert>
+              )}
+
+              {/* Display alert with success message if request succeeded */}
+              {actionSucceeded && (
+                <Alert variant="success" className="w-100 text-center mt-2">
+                  <InfoCircle size="32" />
+                  <p>Profile image updated successfully!</p>
+                </Alert>
+              )}
+            </form>
           </div>
-        )}
-      </form>
-    </div>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

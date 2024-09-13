@@ -189,7 +189,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import Spinner from '../../components/Spinner';
+// import Spinner from '../../components/Spinner';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 function ProfilePage() {
@@ -200,11 +200,13 @@ function ProfilePage() {
   const handleUploadImage = () => history.push(`/profile-edit-form/${currentUser?.profile_id}/edit`); // Use the correct route
   const handleChangeUsername = () => history.push('/change-username');
 
-  const handleChangePassword = () => history.push('/change-password');
 
-  if (!currentUser) {
-    return <Spinner />;
-  }
+  const handleChangePassword = () => history.push(`/change-password/${currentUser?.profile_id}`);
+
+
+  // if (!currentUser) {
+  //   return <Spinner />;
+  // }
 
   return (
     <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
