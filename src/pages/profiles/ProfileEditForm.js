@@ -18,14 +18,14 @@ function ProfileEditForm() {
 
   const [errors, setErrors] = useState({});
   const [actionSucceeded, setActionSucceeded] = useState(false);
-  const [hasLoaded, setHasLoaded] = useState(false);
+  // const [hasLoaded, setHasLoaded] = useState(false);
 
-  const handleChange = (event) => {
-    setProfileData({
-      ...profileData,
-      [event.target.name]: event.target.value
-    });
-  };
+  // const handleChange = (event) => {
+  //   setProfileData({
+  //     ...profileData,
+  //     [event.target.name]: event.target.value
+  //   });
+  // };
 
   const handleImageChange = (event) => {
     if (event.target.files.length) {
@@ -46,9 +46,9 @@ function ProfileEditForm() {
     }
 
     try {
-      setHasLoaded(false);
+      // setHasLoaded(false);
       await axiosReq.put(`/profiles/${currentUser.pk}/`, formData);
-      setHasLoaded(true);
+      // setHasLoaded(true);
       setActionSucceeded(true); // Indicate success
       setErrors({});
       // Redirect to profiles page after showing the success message
@@ -56,7 +56,7 @@ function ProfileEditForm() {
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors(error.response?.data);
-        setHasLoaded(true);
+        // setHasLoaded(true);
         setActionSucceeded(false); // Indicate failure
       }
       if (error.response?.status === 500) {
@@ -74,11 +74,11 @@ function ProfileEditForm() {
         const { data } = await axiosRes.get(`profiles/${currentUser.pk}/`);
         const { display_name, image } = data;
         setProfileData({ display_name, image });
-        setHasLoaded(true);
+        // setHasLoaded(true);
       } catch (error) {
         if (error.response?.status !== 401) {
           setErrors(error.response?.data);
-          setHasLoaded(true);
+          // setHasLoaded(true);
         }
       }
     };
