@@ -1,0 +1,21 @@
+.expensesDisplay {
+    font-size: 16px; /* Adjust font size as needed */
+    margin: 10px 0; /* Margin for spacing */
+  }
+  
+  .negativeBudget {
+    color: #dc3545; /* Bootstrap's danger color for negative amounts */
+    font-weight: bold; /* Make the text bold */
+  }
+  
+  .dangerText {
+    color: #dc3545; /* Danger color for negative numbers */
+  }
+  
+  .warningMessage {
+    display: block; /* Display warning message on a new line */
+    color: #dc3545; /* Match the color of the danger text */
+    margin-top: 5px; /* Space between the amount and warning message */
+    font-style: italic; /* Italicize the warning message */
+  }
+  

@@ -1,3 +1,124 @@
+// import React, { useState } from 'react';
+// import Form from 'react-bootstrap/Form';
+// import Button from 'react-bootstrap/Button';
+// import Alert from 'react-bootstrap/Alert';
+// import { axiosRes } from "../api/axiosDefaults";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+// import styles from '../styles/BudgetFormToggle.module.css';
+
+// const ExpensesForm = ({ onSubmit }) => {
+//   const [inputAmount, setInputAmount] = useState('');
+//   const [inputDescription, setInputDescription] = useState('');
+//   const [isFormVisible, setIsFormVisible] = useState(false);
+//   const [error, setError] = useState('');
+//   const [success, setSuccess] = useState('');
+
+//   const handleAmountChange = (e) => {
+//     const value = e.target.value;
+//     if (/^\d*\.?\d*$/.test(value)) {
+//       setInputAmount(value);
+//       setError('');
+//     } else {
+//       setError('Amount must be a valid number');
+//     }
+//   };
+
+//   const handleDescriptionChange = (e) => {
+//     const value = e.target.value;
+//     if (/^[a-zA-Z\s]*$/.test(value)) {
+//       setInputDescription(value);
+//       setError('');
+//     } else {
+//       setError('Description must only contain letters and spaces');
+//     }
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     if (!inputAmount || !inputDescription) {
+//       setError('Please fill in all fields');
+//       return;
+//     }
+//     const newExpense = {
+//       amount: inputAmount,
+//       description: inputDescription,
+//       date: new Date().toISOString(),
+//     };
+
+//     try {
+//       const response = await axiosRes.post('/expenses/', newExpense);
+//       onSubmit(response.data);
+//       setInputAmount('');
+//       setInputDescription('');
+//       setError('');
+//       setSuccess('Expense added successfully!');
+//       setIsFormVisible(false);
+//       setTimeout(() => setSuccess(''), 3000);
+//     } catch (err) {
+//       setError('Failed to add expense. Please try again.');
+//       setTimeout(() => setError(''), 3000);
+//     }
+//   };
+
+//   const toggleFormVisibility = () => setIsFormVisible((prev) => !prev);
+//   return (
+//     <div className={styles.container}>
+//       <Button 
+//         variant="link" 
+//         onClick={toggleFormVisibility} 
+//         className={styles.toggleButton}
+//       >
+//         <FontAwesomeIcon icon={isFormVisible ? faMinus : faPlus} />
+//         {isFormVisible ? ' Hide Expenses Form' : ' Add Expenses Form'}
+//       </Button>
+//       {success && <Alert variant="success">{success}</Alert>}
+//       {error && <Alert variant="danger">{error}</Alert>}
+//       {isFormVisible && (
+//         <div className={styles.formContainer}>
+//           <Form onSubmit={handleSubmit}>
+//             <Form.Group controlId="amount">
+//               <Form.Label>Amount</Form.Label>
+//               <Form.Control
+//                 type="number"
+//                 value={inputAmount}
+//                 onChange={handleAmountChange}
+//                 placeholder="Enter amount"
+//                 isInvalid={!!error && error.includes('Amount')}
+//               />
+//               <Form.Control.Feedback type="invalid">
+//                 {error.includes('Amount') && error}
+//               </Form.Control.Feedback>
+//             </Form.Group>
+//             <Form.Group controlId="description">
+//               <Form.Label>Description</Form.Label>
+//               <Form.Control
+//                 type="text"
+//                 value={inputDescription}
+//                 onChange={handleDescriptionChange}
+//                 placeholder="Enter description"
+//                 isInvalid={!!error && error.includes('Description')}
+//               />
+//               <Form.Control.Feedback type="invalid">
+//                 {error.includes('Description') && error}
+//               </Form.Control.Feedback>
+//             </Form.Group>
+//             <Button 
+//               variant="primary" 
+//               type="submit" 
+//               className={styles.submitButton}
+//             >
+//               Add Expense
+//             </Button>
+//           </Form>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default ExpensesForm;
+
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -11,35 +132,40 @@ const ExpensesForm = ({ onSubmit }) => {
   const [inputAmount, setInputAmount] = useState('');
   const [inputDescription, setInputDescription] = useState('');
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const [error, setError] = useState('');
+  const [amountError, setAmountError] = useState('');
+  const [descriptionError, setDescriptionError] = useState('');
+  const [submissionError, setSubmissionError] = useState('');
   const [success, setSuccess] = useState('');
 
+  // Amount validation: numbers only
   const handleAmountChange = (e) => {
     const value = e.target.value;
-    if (/^\d*\.?\d*$/.test(value)) {
+    if (/^\d+$/.test(value)) {
       setInputAmount(value);
-      setError('');
+      setAmountError(''); // Clear amount error if valid
     } else {
-      setError('Amount must be a valid number');
+      setAmountError('Amount must contain only numeric values.');
     }
   };
 
+  // Description validation: alphabetic only, no spaces
   const handleDescriptionChange = (e) => {
     const value = e.target.value;
-    if (/^[a-zA-Z\s]*$/.test(value)) {
+    if (/^[a-zA-Z]+$/.test(value)) {
       setInputDescription(value);
-      setError('');
+      setDescriptionError(''); // Clear description error if valid
     } else {
-      setError('Description must only contain letters and spaces');
+      setDescriptionError('Description must contain only alphabetic characters without spaces.');
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!inputAmount || !inputDescription) {
-      setError('Please fill in all fields');
+      setSubmissionError('Please fill in all fields with valid data.');
       return;
     }
+
     const newExpense = {
       amount: inputAmount,
       description: inputDescription,
@@ -51,43 +177,46 @@ const ExpensesForm = ({ onSubmit }) => {
       onSubmit(response.data);
       setInputAmount('');
       setInputDescription('');
-      setError('');
+      setSubmissionError('');
       setSuccess('Expense added successfully!');
       setIsFormVisible(false);
       setTimeout(() => setSuccess(''), 3000);
     } catch (err) {
-      setError('Failed to add expense. Please try again.');
-      setTimeout(() => setError(''), 3000);
+      setSubmissionError('Failed to add expense. Please try again.');
+      setTimeout(() => setSubmissionError(''), 3000);
     }
   };
 
   const toggleFormVisibility = () => setIsFormVisible((prev) => !prev);
+
   return (
     <div className={styles.container}>
-      <Button 
-        variant="link" 
-        onClick={toggleFormVisibility} 
+      <Button
+        variant="link"
+        onClick={toggleFormVisibility}
         className={styles.toggleButton}
       >
         <FontAwesomeIcon icon={isFormVisible ? faMinus : faPlus} />
         {isFormVisible ? ' Hide Expenses Form' : ' Add Expenses Form'}
       </Button>
+
       {success && <Alert variant="success">{success}</Alert>}
-      {error && <Alert variant="danger">{error}</Alert>}
+      {submissionError && <Alert variant="danger">{submissionError}</Alert>}
+
       {isFormVisible && (
         <div className={styles.formContainer}>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="amount">
               <Form.Label>Amount</Form.Label>
               <Form.Control
-                type="number"
+                type="text"
                 value={inputAmount}
                 onChange={handleAmountChange}
                 placeholder="Enter amount"
-                isInvalid={!!error && error.includes('Amount')}
+                isInvalid={!!amountError} // Trigger error for the form field
               />
               <Form.Control.Feedback type="invalid">
-                {error.includes('Amount') && error}
+                {amountError}
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="description">
@@ -97,16 +226,17 @@ const ExpensesForm = ({ onSubmit }) => {
                 value={inputDescription}
                 onChange={handleDescriptionChange}
                 placeholder="Enter description"
-                isInvalid={!!error && error.includes('Description')}
+                isInvalid={!!descriptionError} // Trigger error for the form field
               />
               <Form.Control.Feedback type="invalid">
-                {error.includes('Description') && error}
+                {descriptionError}
               </Form.Control.Feedback>
             </Form.Group>
-            <Button 
-              variant="primary" 
-              type="submit" 
+            <Button
+              variant="primary"
+              type="submit"
               className={styles.submitButton}
+              disabled={!!amountError || !!descriptionError} // Disable submit if any field has an error
             >
               Add Expense
             </Button>

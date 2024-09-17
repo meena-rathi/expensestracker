@@ -37,25 +37,28 @@ function ExpenseEditForm() {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
+
         if (name === 'amount') {
+            // Allow only numeric values
             if (/^\d*\.?\d*$/.test(value)) {
                 setExpenseData((prevData) => ({
                     ...prevData,
                     [name]: value,
                 }));
-                setError('');
+                setError(''); // Clear error if valid
             } else {
-                setError('Amount must be a valid number');
+                setError('Amount must contain only numeric values.');
             }
         } else if (name === 'description') {
-            if (/^[a-zA-Z\s]*$/.test(value)) {
+            // Allow only alphabetic characters (no numbers or symbols)
+            if (/^[a-zA-Z]+$/.test(value)) {
                 setExpenseData((prevData) => ({
                     ...prevData,
                     [name]: value,
                 }));
-                setError('');
+                setError(''); // Clear error if valid
             } else {
-                setError('Description must only contain letters and spaces');
+                setError('Description must only contain alphabetic characters without spaces or symbols.');
             }
         } else {
             setExpenseData((prevData) => ({
@@ -64,12 +67,16 @@ function ExpenseEditForm() {
             }));
         }
     };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        // Check for missing or invalid values
         if (!expenseData.amount || !expenseData.description) {
             setError('Please fill in all required fields with valid values.');
             return;
         }
+
         try {
             const response = await axiosReq.put(`/expenses/${id}/`, expenseData);
             console.log('Update response:', response.data);
@@ -82,6 +89,7 @@ function ExpenseEditForm() {
             setError('Failed to update expense.');
         }
     };
+
     if (loading) return <p>Loading...</p>;
     if (error && !expenseData.amount && !expenseData.description) return <Alert variant="danger">{error}</Alert>;
 
@@ -95,7 +103,7 @@ function ExpenseEditForm() {
                         <Form.Group controlId="formAmount">
                             <Form.Label>Amount</Form.Label>
                             <Form.Control
-                                type="number"
+                                type="text"  // Set type to text to apply custom validation
                                 name="amount"
                                 value={expenseData.amount}
                                 onChange={handleChange}

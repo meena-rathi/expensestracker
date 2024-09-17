@@ -1,84 +1,43 @@
 /* Home.module.css */
-.homeContainer {
-  padding: 20px;
+
+/* Global text styles for consistent font color and size */
+.text-custom {
+  color: #000; /* Black color; change to your desired color */
+  font-size: 16px; /* Adjust font size as needed */
 }
-.userInfo {
-  margin-bottom: 20px;
-}
+
+/* Specific styles for display text elements */
 .displayStyle {
-  font-size: 20px; /* Large font size */
-  font-family: 'Arial', sans-serif; /* Font family */
-  font-weight: bold; /* Bold text */
+  font-weight: bold; /* Example style; adjust or add others as needed */
+  margin-bottom: 1rem; /* Example spacing; adjust as needed */
 }
-.budgetFormContainer {
-  max-width: 600px;
-  margin: 0 auto;
+
+/* Container styling for the main content area */
+.container {
+  background-color: #f8f9fa; /* Light background color; adjust as needed */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 1.5rem; /* Padding around content */
 }
-.error {
-  color: red;
-}
-.budgetFormContainer {
-  max-width: 600px;
-  margin: 0 auto;
-  border: 1px solid red; /* Temporary border to check visibility */
-  padding: 20px; /* Ensure there's some padding */
-}
-.userBudgetContainer {
-  display: flex;
-  justify-content: space-between; /* Adjust alignment as needed */
-  align-items: center; /* Align items vertically center */
-  margin-bottom: 20px; /* Add spacing below the row */
-}
-/* Style for the user info section */
-.userInfo {
-  font-size: 50px;
-  font-weight: bold;
-}
-/* Style for the budget display section */
-.budgetInfo {
-  font-size: 80px;
-  font-weight: bold;
-}
+
+/* Overflow hidden styling if needed for specific layout purposes */
 .overflow-hidden {
-  overflow-x: hidden;
+  overflow: hidden; /* Hide overflow content */
 }
-.pieChartContainer h2 {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: #333;
+
+/* Custom green color for success messages */
+.text-success-custom {
+  color: #222522; /* Custom green color */
 }
-.pieChartContainer p {
-  color: #888;
-  font-size: 16px;
-  margin-top: 20px;
+
+/* Ensure proper spacing between elements */
+.mb-4 {
+  margin-bottom: 1.5rem; /* Bottom margin for spacing */
 }
-.pieChartContainer {
+
+/* Flex container for aligning items in a row */
+.flex-row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin: 20px auto; /* Center the container horizontally */
-  height: 500px;
-  max-width: 100%; /* Ensure the container does not exceed the screen width */
-  width: 100%;
-}
-.pieChartContainer canvas {
-  max-width: 100%; /* Make the chart responsive */
-  height: auto; /* Adjust the height automatically */
-}
-.error {
-  color: red;
-  font-size: 14px;
-  margin-top: 10px;
-}
-.expensesDisplay {
-  font-size: 20px; /* Adjust the size as needed */
-  color: #333; /* Adjust the color as needed */
-  font-family: 'Arial', sans-serif; /* Adjust the font family as needed */
-  font-weight: bold; /* Make the text bold */
+  flex-direction: row;
+  gap: 1rem; /* Adjust spacing between items as needed */
 }

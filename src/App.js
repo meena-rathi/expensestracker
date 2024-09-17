@@ -9,9 +9,7 @@ import Container from "react-bootstrap/Container";
 import styles from "./App.module.css";
 // import { useCurrentUser } from "./contexts/CurrentUserContext";
 import ExpenseEditForm from './components/ExpenseEditForm';
-
 import PieChartDisplay from './pages/expenses/PieChartDisplay';
-
 import ProfilePage from './pages/profiles/ProfilePage';
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import UsernameForm from "./pages/profiles/UsernameForm";
@@ -30,10 +28,10 @@ function App() {
             <Route exact path="/home" component={Home} />
             <Route exact path="/piechart" component={PieChartDisplay} />
             <Route exact path="/expenses/:id/edit" component={ExpenseEditForm} />
-            {/* <Route exact path="/profiles/:id" render={() => <ProfilePage />} /> */}
+            <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
             {/* <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />
             <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />} /> */}
-            <Route exact path="/profiles" component={ProfilePage} />
+            {/* <Route exact path="/profiles" component={ProfilePage} /> */}
             <Route path="/profile-edit-form/" component={ProfileEditForm} />
             
             <Route path="/change-username" component={UsernameForm} />

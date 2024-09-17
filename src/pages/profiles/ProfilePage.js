@@ -231,39 +231,96 @@
 
 
 
+// import React from 'react';
+// import { useHistory } from 'react-router-dom';
+// import { Button } from 'react-bootstrap';
+// import { useCurrentUser } from '../../contexts/CurrentUserContext';
+
+// function ProfilePage() {
+//   const currentUser = useCurrentUser();
+//   const history = useHistory();
+
+//   // Navigate to the respective forms
+//   const handleUploadImage = () => history.push(`/profile-edit-form/${currentUser?.profile_id}/edit`);
+//   const handleChangeUsername = () => history.push('/change-username');
+//   const handleChangePassword = () => history.push(`/change-password/${currentUser?.profile_id}`);
+
+//   // Handle case where currentUser is not loaded
+//   if (!currentUser) {
+//     return <div>Loading...</div>; // Or your custom spinner/loading component
+//   }
+
+//   return (
+//     <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
+//       <h1 className="mb-4">Profile</h1>
+//       <div className="d-flex flex-column align-items-center">
+//         <Button className="mb-3" onClick={handleUploadImage}>
+//           Upload Image
+//         </Button>
+//         <Button className="mb-3" onClick={handleChangeUsername}>
+//           Change Username
+//         </Button>
+//         <Button className="mb-3" onClick={handleChangePassword}>
+//           Change Password
+//         </Button>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default ProfilePage;
+
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Card, Col, Row, Image } from 'react-bootstrap';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import Spinner from '../../components/Spinner'; // Adjust the path as needed
 
 function ProfilePage() {
   const currentUser = useCurrentUser();
   const history = useHistory();
 
-  // Navigate to the respective forms
-  const handleUploadImage = () => history.push(`/profile-edit-form/${currentUser?.profile_id}/edit`);
-  const handleChangeUsername = () => history.push('/change-username');
-  const handleChangePassword = () => history.push(`/change-password/${currentUser?.profile_id}`);
-
   // Handle case where currentUser is not loaded
   if (!currentUser) {
-    return <div>Loading...</div>; // Or your custom spinner/loading component
+    return <Spinner variant="primary" size="lg" />; // Use your spinner component
   }
+
+  // Navigate to the respective forms
+  const handleUploadImage = () => history.push(`/profile-edit-form/${currentUser.profile_id}/edit`);
+  const handleChangeUsername = () => history.push('/change-username');
+  const handleChangePassword = () => history.push(`/change-password/${currentUser.profile_id}`);
 
   return (
     <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
-      <h1 className="mb-4">Profile</h1>
-      <div className="d-flex flex-column align-items-center">
-        <Button className="mb-3" onClick={handleUploadImage}>
-          Upload Image
-        </Button>
-        <Button className="mb-3" onClick={handleChangeUsername}>
-          Change Username
-        </Button>
-        <Button className="mb-3" onClick={handleChangePassword}>
-          Change Password
-        </Button>
-      </div>
+      <Card style={{ width: '100%', maxWidth: '800px' }}>
+        <Card.Body>
+          <Row className="align-items-center">
+            {/* Profile Image Column */}
+            <Col xs={12} md={4} className="text-center text-md-left mb-4 mb-md-0">
+              <Image 
+                src={currentUser.profileImage || 'https://via.placeholder.com/150'} 
+                roundedCircle 
+                style={{ width: '150px', height: '150px' }} 
+              />
+            </Col>
+            {/* User Info Column */}
+            <Col xs={12} md={8}>
+              <Card.Title className="mb-3">{currentUser.username}</Card.Title>
+              <div className="d-flex flex-column">
+                <Button className="mb-3" onClick={handleUploadImage}>
+                  Upload Image
+                </Button>
+                <Button className="mb-3" onClick={handleChangeUsername}>
+                  Change Username
+                </Button>
+                <Button className="mb-3" onClick={handleChangePassword}>
+                  Change Password
+                </Button>
+              </div>
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
     </div>
   );
 }

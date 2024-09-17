@@ -1,4 +1,4 @@
-.NavBar {
+/* .NavBar {
   background-color: #ffffff;
   border: 1px solid #dadadf;
 }
@@ -6,5 +6,34 @@
   padding: 5px;
 }
 .Active i {
-  color: #2142b2;
+  color: #8c8d92;
+} */
+.NavBar {
+  background-color:#f8f9fa;  /* Black background color for the nav bar */
+  border: 1px solid #dadadf; /* Light border for separation */
+}
+
+.NavLink {
+  padding: 10px; /* Adjust padding for better spacing */
+  color: #d89e9e; /* White text color */
+  text-decoration: none; /* Remove underline */
+  display: flex;
+  align-items: center; /* Align icons and text */
+}
+
+.NavLink:hover {
+  background-color:  #d7dbe4; /* Darker grey for hover effect */
+  color:  #396ad4 /* Maintain white text color on hover */
+}
+
+.Active {
+  color: #396ad4; /* Light color for the active link */
+}
+
+.Active i {
+  color: #ffcc00; /* Light color for the active icon */
+}
+
+.NavLink i {
+  margin-right: 8px; /* Spacing between icon and text */
 }

@@ -1,4 +1,4 @@
-.containser
+/* .containser
 {
     margin: 20px 0;
 }
@@ -7,4 +7,48 @@
     margin: 0 auto;
     border: 1px solid red;
     padding: 20px;
+  } */
+
+  /* Container for the form to ensure proper padding and border */
+.formContainer {
+    padding: 20px; /* Padding inside the form container */
+    border: 1px solid #dee2e6; /* Light border for a subtle separation */
+    border-radius: 8px; /* Rounded corners for the form */
+    background-color: #f8f9fa; /* Light background color for the form */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation effect */
+    margin-top: 20px; /* Margin top for spacing */
   }
+  
+  /* Ensure good spacing around the form fields */
+  .formGroup {
+    margin-bottom: 1.5rem; /* Space between form fields */
+  }
+  
+  /* Add some space between the button and the form fields */
+  .buttonContainer {
+    margin-bottom: 20px; /* Space between the button and the form */
+  }
+  
+  /* Ensure the form fields are responsive */
+  .form-control-lg {
+    font-size: 1.25rem; /* Larger text for readability */
+    padding: 0.75rem; /* Adequate padding inside input fields */  
+}
+  
+  /* Styling for the success button (green) */
+  .btn-success {
+    background-color: #28a745; /* Green background color */
+    border-color: #28a745; /* Matching border color */
+    margin-top: 50px ;
+  }
+  
+  /* Override Bootstrap button padding to ensure consistency */
+  .btn-lg {
+    padding: 0.75rem 1.25rem; /* Larger padding for better click area */
+  }
+  
+  /* Ensures the button text and icon are well-aligned */
+  .text-center {
+    text-align: center; /* Center-aligns text and buttons */
+  }
+  

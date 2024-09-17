@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "../styles/Avatar.module.css";
+import defaultAvatar from "../assets/logo.webp"; // Import the default image
 
-const Avatar = ({ src, height = 45, text }) => {
+const Avatar = ({ src = defaultAvatar, height = 45, text }) => {
   return (
     <span>
       <img

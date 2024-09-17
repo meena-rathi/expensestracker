@@ -1,0 +1,31 @@
+/* Home.module.css */
+
+.pieChartContainer {
+    /* Container styles */
+    padding: 20px; /* Add padding for spacing */
+    background-color: #f8f9fa; /* Light background color to contrast with the chart */
+    border-radius: 8px; /* Rounded corners for a nicer look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 600px; /* Limit the width of the container */
+    margin: auto; /* Center container horizontally */
+  }
+  
+  .pieChartWrapper {
+    /* Style for the wrapper of the PieChart */
+    display: flex;
+    justify-content: center; /* Center the PieChart horizontally */
+    align-items: center; /* Center the PieChart vertically */
+    height: 300px; /* Fixed height for the wrapper */
+    width: 100%; /* Full width of the container */
+  }
+  
+  .pieChartContainer h2 {
+    /* Style for the heading */
+    font-size: 1.5rem; /* Adjust font size as needed */
+  }
+  
+  .error {
+    color: #dc3545; /* Bootstrap's danger color for errors */
+    font-size: 14px; /* Adjust font size for better readability */
+  }
+  

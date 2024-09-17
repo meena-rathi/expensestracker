@@ -32,7 +32,7 @@ const BudgetFormToggle = ({ onSubmit }) => {
         ) : (
           <FontAwesomeIcon icon={faPlus} />
         )}
-        {isFormVisible ? ' Hide Budget Form' : ' Add Budget Form'}
+        {isFormVisible ? ' Hide Budget Form' : ' Set Budget Form'}
       </Button>
       {isFormVisible && (
         <div className={styles.formContainer}>
