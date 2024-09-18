@@ -1,50 +1,68 @@
-.pieChartContainer {
-  /* Container styles */
-  padding: 20px; /* Add padding for spacing */
-  background-color: #f8f9fa; /* Light background color to contrast with the chart */
-  border-radius: 8px; /* Rounded corners for a nicer look */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  max-width: 600px; /* Limit the width of the container */
-  margin: auto; /* Center container horizontally */
+/* Footer Styles */
+.footer {
+  background-color: #f8f9fa;
+  color: #000;
+  padding: 20px 0;
+  border-top: 1px solid #e7e7e7;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
 }
 
-.pieChartWrapper {
-  /* Style for the wrapper of the PieChart */
+/* Footer content styling */
+.footer-content {
   display: flex;
-  justify-content: center; /* Center the PieChart horizontally */
-  align-items: center; /* Center the PieChart vertically */
-  height: 400px; /* Set a default height for larger screens */
-  max-width: 100%; /* Full width of the container */
-  overflow: hidden; /* Prevent overflow */
+  justify-content: space-between;
+  align-items: center;
 }
 
-.pieChartContainer h2 {
-  /* Style for the heading */
-  font-size: 1.5rem; /* Adjust font size as needed */
-  text-align: center; /* Center the heading */
-  margin-bottom: 0; /* Remove space between heading and chart */
-}
-
-.error {
-  color: #dc3545; /* Bootstrap's danger color for errors */
-  font-size: 14px; /* Adjust font size for better readability */
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .pieChartWrapper {
-    height: 400px; /* Larger height for laptops and tablets */
-  }
-}
-
+/* Center content on smaller screens */
 @media (max-width: 768px) {
-  .pieChartWrapper {
-    height: 300px; /* Adjust height for smaller screens */
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-right {
+    margin-top: 10px; /* Add space between social links and footer links */
   }
 }
 
+/* Social media icon styles */
+.social-links a {
+  margin-right: 15px;
+}
+
+.social-links a:last-child {
+  margin-right: 0;
+}
+
+.icon {
+  font-size: 24px;
+  color: #000;
+}
+
+.footer-right a {
+  color: #000;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+.footer-right a:first-child {
+  margin-left: 0;
+}
+
+/* Ensure footer text remains visible on mobile */
 @media (max-width: 576px) {
-  .pieChartWrapper {
-    height: 250px; /* Further reduced height for very small screens */
+  .footer {
+    padding: 10px 0;
+  }
+
+  .footer-right a {
+    display: block;
+    margin: 10px 0;
   }
 }

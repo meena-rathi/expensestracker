@@ -1,7 +1,10 @@
+/* footer.css */
 .footer-content {
-  display: flex;
+  /* display: flex; */
+
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap; /* Ensures items wrap if they don't fit in one line */
 }
 
 .footer .social-links {
@@ -14,7 +17,7 @@
 }
 
 .footer .link {
-  color: #d89e9e;
+  color: black;
   font-size: 18px;
   margin-right: 15px;
   text-decoration: none;
@@ -29,22 +32,15 @@
 }
 
 .footer .linkedin-icon, .footer .facebook-icon {
-  color: #d89e9e;
+  color: black;
 }
 
 .footer .linkedin-icon:hover, .footer .facebook-icon:hover {
-  color: #d89e9e;
+  color: black;
 }
 
+/* Responsive adjustments for footer */
 @media (max-width: 768px) {
-  .footer {
-    padding: 15px 0;
-  }
-
-  .footer p {
-    font-size: 14px;
-  }
-
   .footer-content {
     flex-direction: column;
     align-items: center;
@@ -52,5 +48,9 @@
 
   .footer .social-links {
     margin-bottom: 10px;
+  }
+
+  .footer p {
+    font-size: 14px;
   }
 }

@@ -1,6 +1,7 @@
 /* Global Styles */
- body {
+ html,body {
   width: 100%;
+  height: 100%;
   max-width: 100%;
   background-image: url('./assets/bg.jpg'); /* Ensure background image covers entire screen */
   background-size: cover;
@@ -11,39 +12,42 @@
   
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
-html, body {
-  height: 100%;
-  margin: 0;
-}
+
+
 
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensures the app takes up at least the full viewport height */
+  min-height: 100vh; 
 }
 
 .Main {
-  flex: 1; /* Allows the main content area to expand and push the footer down */
-  padding: 100px; /* Add padding if needed */
+  flex: 1; 
+  padding: 20px; 
+  box-sizing: border-box; 
+  margin-top: 60px; 
 }
 
+/* .Footer {
+  background-color: #f8f9fa; 
+  color: #d89e9e;
+  padding: 20px 0;
+  border-top: 1px solid #e7e7e7;
+  text-align: center;
+  width: 100%;
+  position: relative; 
+} */
 
-
-/* Responsive adjustments */
+/* Responsive adjustments for layout */
 @media (max-width: 768px) {
   .Main {
-    margin-top: 50px;
     padding: 10px; /* Adjust padding for smaller screens */
   }
 
-  
+  .Footer {
+    padding: 15px 0; /* Adjust footer padding for smaller screens */
+  }
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
