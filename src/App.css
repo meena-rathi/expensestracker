@@ -1,5 +1,5 @@
 /* Global Styles */
-html, body {
+ body {
   width: 100%;
   max-width: 100%;
   background-image: url('./assets/bg.jpg'); /* Ensure background image covers entire screen */
@@ -11,48 +11,10 @@ html, body {
   
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
-
-
-/* Main container styling */
-.Main {
-  margin-top: 102px; /* Remove margin-top to avoid extra space between header and main content */
-  padding-bottom: 0; /* Remove padding-bottom to avoid extra space between main content and footer */
-  min-height: calc(100vh - 102px); /* Adjust height to fit viewport minus header and footer */
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 100px;
-  justify-content: space-between; /* Ensure content is spaced between header and footer */
-}
-
-/* App header styling */
-.App-header {
-  background-color: #282c34;
-  min-height: 100px; /* Adjust height to fit header content */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  width: 100%;
-}
-
-/* Footer styling */
-.Footer {
-  background-color: #282c34; /* Ensure footer has a consistent look with the header */
-  color: white;
-  padding: 20px;
-  text-align: center;
-  width: 100%;
-  position: relative; /* Ensure footer is positioned correctly */
-}
-
-/* App styling */
 .App {
   text-align: center;
 }
 
-/* App logo animation */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -64,42 +26,26 @@ html, body {
   }
 }
 
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
-  }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .App-header {
-    min-height: 80px; /* Adjust header height for tablets */
-    font-size: calc(8px + 2vmin); /* Adjust font size for tablets */
-  }
-
-  .Footer {
-    padding: 15px; /* Adjust padding for tablets */
-  }
-
-  .Main {
-    min-height: calc(100vh - 80px); /* Adjust height for tablets */
-  }
-}
-
-@media (max-width: 576px) {
-  .App-header {
-    min-height: 60px; /* Further adjust header height for mobile devices */
-    font-size: calc(6px + 2vmin); /* Further adjust font size for mobile devices */
-  }
-
-  .Footer {
-    padding: 10px; /* Further adjust padding for mobile screens */
-  }
-
-  .Main {
-    min-height: calc(100vh - 60px); /* Further adjust height for mobile devices */
   }
 }
