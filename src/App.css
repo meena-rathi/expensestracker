@@ -11,8 +11,32 @@
   
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures the app takes up at least the full viewport height */
+}
+
+.Main {
+  flex: 1; /* Allows the main content area to expand and push the footer down */
+  padding: 100px; /* Add padding if needed */
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .Main {
+    margin-top: 50px;
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  
 }
 
 .App-logo {

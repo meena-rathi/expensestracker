@@ -1,76 +1,56 @@
-.footer {
-    background-color: #f8f9fa;
-    color: #d89e9e;
-    padding: 20px 0;
-    border-top: 1px solid #e7e7e7;
-    text-align: center;
-    width: 100%;
-    position: relative; /* Ensure it stays at the bottom */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer .social-links {
+  display: flex;
+  align-items: center;
+}
+
+.footer .social-links a {
+  margin-right: 15px;
+}
+
+.footer .link {
+  color: #d89e9e;
+  font-size: 18px;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+.footer .link:hover {
+  text-decoration: underline;
+}
+
+.footer .icon {
+  font-size: 24px;
+}
+
+.footer .linkedin-icon, .footer .facebook-icon {
+  color: #d89e9e;
+}
+
+.footer .linkedin-icon:hover, .footer .facebook-icon:hover {
+  color: #d89e9e;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 15px 0;
   }
-  
+
+  .footer p {
+    font-size: 14px;
+  }
+
   .footer-content {
-    display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
   }
-  
+
   .footer .social-links {
-    display: flex;
-    align-items: center;
+    margin-bottom: 10px;
   }
-  
-  .footer .social-links a {
-    margin-right: 15px;
-  }
-  
-  .footer .link {
-    color: #d89e9e;
-    font-size: 18px;
-    margin-right: 15px;
-    text-decoration: none;
-  }
-  
-  .footer .link:hover {
-    text-decoration: underline;
-  }
-  
-  .footer .icon {
-    font-size: 24px; /* Adjust size as needed */
-  }
-  
-  .footer .linkedin-icon {
-    color: #d89e9e;
-  }
-  
-  .footer .linkedin-icon:hover {
-    color: #d89e9e;
-  }
-  
-  .footer .facebook-icon {
-    color: #d89e9e;
-  }
-  
-  .footer .facebook-icon:hover {
-    color: #d89e9e;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .footer {
-      padding: 15px 0;
-    }
-  
-    .footer p {
-      font-size: 14px;
-    }
-  
-    .footer-content {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .footer .social-links {
-      margin-bottom: 10px;
-    }
-  }
-  
+}
