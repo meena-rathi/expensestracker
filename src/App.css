@@ -1,13 +1,17 @@
 /* Global Styles */
-body {
+html, body {
+  width: 100%;
+  max-width: 100%;
   background-image: url('./assets/bg.jpg'); /* Ensure background image covers entire screen */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   margin: 0;
   padding: 0;
+  
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
+
 
 /* Main container styling */
 .Main {
