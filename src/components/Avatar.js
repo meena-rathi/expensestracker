@@ -26,7 +26,7 @@ const Avatar = ({ src}) => {
     <Image
       src={src || 'https://via.placeholder.com/50'}
       roundedCircle
-      style={{ width: '50px', height: '50px' }} 
+      style={{ width: '40px', height: '40px' }} 
     />
   );
 };

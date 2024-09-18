@@ -1,31 +1,50 @@
-/* Home.module.css */
-
 .pieChartContainer {
-    /* Container styles */
-    padding: 20px; /* Add padding for spacing */
-    background-color: #f8f9fa; /* Light background color to contrast with the chart */
-    border-radius: 8px; /* Rounded corners for a nicer look */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    max-width: 600px; /* Limit the width of the container */
-    margin: auto; /* Center container horizontally */
-  }
-  
+  /* Container styles */
+  padding: 20px; /* Add padding for spacing */
+  background-color: #f8f9fa; /* Light background color to contrast with the chart */
+  border-radius: 8px; /* Rounded corners for a nicer look */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  max-width: 600px; /* Limit the width of the container */
+  margin: auto; /* Center container horizontally */
+}
+
+.pieChartWrapper {
+  /* Style for the wrapper of the PieChart */
+  display: flex;
+  justify-content: center; /* Center the PieChart horizontally */
+  align-items: center; /* Center the PieChart vertically */
+  height: 400px; /* Set a default height for larger screens */
+  max-width: 100%; /* Full width of the container */
+  overflow: hidden; /* Prevent overflow */
+}
+
+.pieChartContainer h2 {
+  /* Style for the heading */
+  font-size: 1.5rem; /* Adjust font size as needed */
+  text-align: center; /* Center the heading */
+  margin-bottom: 0; /* Remove space between heading and chart */
+}
+
+.error {
+  color: #dc3545; /* Bootstrap's danger color for errors */
+  font-size: 14px; /* Adjust font size for better readability */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
   .pieChartWrapper {
-    /* Style for the wrapper of the PieChart */
-    display: flex;
-    justify-content: center; /* Center the PieChart horizontally */
-    align-items: center; /* Center the PieChart vertically */
-    height: 300px; /* Fixed height for the wrapper */
-    width: 100%; /* Full width of the container */
+    height: 400px; /* Larger height for laptops and tablets */
   }
-  
-  .pieChartContainer h2 {
-    /* Style for the heading */
-    font-size: 1.5rem; /* Adjust font size as needed */
+}
+
+@media (max-width: 768px) {
+  .pieChartWrapper {
+    height: 300px; /* Adjust height for smaller screens */
   }
-  
-  .error {
-    color: #dc3545; /* Bootstrap's danger color for errors */
-    font-size: 14px; /* Adjust font size for better readability */
+}
+
+@media (max-width: 576px) {
+  .pieChartWrapper {
+    height: 250px; /* Further reduced height for very small screens */
   }
-  
+}

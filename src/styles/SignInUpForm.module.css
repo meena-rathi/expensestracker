@@ -1,6 +1,12 @@
 .Row {
     height: calc(100vh - 81px);
   }
+  .Main {
+    margin-top: 102px;
+    padding-bottom: 10px; /* Adjust based on footer height */
+    min-height: calc(90vh - 60px); /* Adjust based on footer height */
+    /* Ensure content container stretches to fill the viewport minus footer */
+  }
   .Input {
     background: #ffffff;
     border: 1px solid #f0f1f9;

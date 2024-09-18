@@ -56,7 +56,6 @@
 
 // export default BudgetForm;
 
-
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -83,9 +82,9 @@ const BudgetForm = ({ onSubmit }) => {
     }
 
     // If valid, submit the form
-    onSubmit(inputValue);
-    setInputValue('');
-    setIsFormVisible(false);
+    onSubmit(Number(inputValue)); // Ensure the input value is sent as a number
+    setInputValue(''); // Clear the input field
+    setIsFormVisible(false); // Hide the form
     setErrorMessage(''); // Reset the error message on success
   };
 
@@ -117,7 +116,7 @@ const BudgetForm = ({ onSubmit }) => {
               </Form.Control.Feedback>
             </Form.Group>
             <Button variant="primary" type="submit">
-              Add Budget
+              Update Budget
             </Button>
           </Form>
         </div>

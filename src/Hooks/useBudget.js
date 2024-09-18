@@ -30,19 +30,20 @@ const useBudget = () => {
 
   const handleBudgetSubmit = async (newBudget) => {
     try {
-      const updatedBudget = parseFloat(budget) + parseFloat(newBudget);
+      const parsedBudget = parseFloat(newBudget);
       if (budgetId) {
-        await axios.put(`/expenses/budgets/${budgetId}/`, { amount: updatedBudget });
+        await axios.put(`/expenses/budgets/${budgetId}/`, { amount: parsedBudget });
       } else {
-        await axios.post('/expenses/budgets/', { amount: updatedBudget });
+        await axios.post('/expenses/budgets/', { amount: parsedBudget });
       }
-      setBudget(updatedBudget.toFixed(2));
+      setBudget(parsedBudget.toFixed(2));
       setError(null);
     } catch (err) {
       console.error('Failed to update budget:', err.response ? err.response.data : err.message);
       setError('Failed to update budget');
     }
   };
+
   return {
     budget,
     error,

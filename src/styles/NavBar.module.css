@@ -9,7 +9,8 @@
   color: #8c8d92;
 } */
 .NavBar {
-  background-color:#f8f9fa;  /* Black background color for the nav bar */
+  /* background-color: #343a40;  */
+  background-color:#f8f9fa;  
   border: 1px solid #dadadf; /* Light border for separation */
 }
 

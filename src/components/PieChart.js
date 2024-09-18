@@ -7,7 +7,7 @@ ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
 const PieChart = ({ data = [] }) => {
   if (!data.length) {
-    return <p>No data available to display</p>;
+    return <p className="error">No data available to display</p>;
   }
 
   const chartData = {
@@ -59,8 +59,15 @@ const PieChart = ({ data = [] }) => {
         },
       },
     },
+    responsive: true, // Ensure the chart is responsive
+    maintainAspectRatio: false, // Allow the chart to resize and fill container
   };
-  return <Pie data={chartData} options={options} />;
+
+  return (
+    <div className="pieChartWrapper">
+      <Pie data={chartData} options={options} />
+    </div>
+  );
 };
 
 export default PieChart;
