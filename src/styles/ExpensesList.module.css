@@ -1,9 +1,11 @@
-/* Table styling */
+/* General table styling */
 .expenses {
-    width: 100%; /* Ensure the table takes up full width */
-    max-width: 100%; /* Prevent table from exceeding container width */
-    border-collapse: collapse; /* Ensure borders do not double up */
-    margin: 0 auto; /* Ensure the table is centered */
+    width: 100%;
+    max-width: 100%; 
+    border-collapse: collapse; 
+    margin: 0 auto;
+    text-align: center; 
+    overflow: hidden; 
 }
 
 /* Table header */
@@ -12,22 +14,23 @@
     color: #333;
     padding: 10px;
     border-bottom: 2px solid #333;
-    text-align: left;
+    text-align: center; 
 }
 
 /* Table cells */
 .expenses td {
     padding: 10px;
-    border: 1px solid #333; /* Add border to each cell */
+    border: 1px solid #333;
+    text-align: center; 
 }
 
 /* Table rows */
 .expenses tr:nth-child(even) {
-    background-color: #f2f2f2; /* Different background for even rows */
+    background-color: #f2f2f2; 
 }
 
 .expenses tr {
-    border: 1px solid #333; /* Add border to each row */
+    border: 1px solid #333; 
 }
 
 /* Button Styling */
@@ -58,27 +61,28 @@ button:disabled {
 
 /* General container styling for centering */
 .container {
-    max-width: 1200px; /* Maximum width of the container */
-    margin: 0 auto; /* Horizontally center the container */
-    padding: 0 15px; /* Padding inside the container */
-    text-align: center; /* Center the content text */
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 15px; 
+    text-align: center; 
 }
 
-/* Responsive styling for mobile */
+
 @media (max-width: 768px) {
     .expenses {
-        display: block;
-        overflow-x: auto; /* Add horizontal scrolling for small screens */
-        white-space: nowrap;
+        width: 100%;
+        margin: 0 auto; 
+        overflow: hidden;
+        height: auto; 
     }
 
-    .expenses th, .expenses td {
+    .expenses td, .expenses th {
         padding: 8px;
     }
 
     .expenses td button {
         display: block;
-        width: 100%; /* Make buttons take full width on small screens */
+        width: 100%; 
         margin: 5px 0;
     }
 
@@ -92,51 +96,54 @@ button:disabled {
         text-align: center;
         margin-top: 10px;
     }
+    .expenses td {
+        white-space: normal; 
+    }
 }
 
 /* Additional improvements for iPad (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
+    .expenses {
+        width: 100%;
+        margin: 0 auto; 
+        overflow: hidden; 
+    }
+
+    .container {
+        max-width: 100%; 
+        padding: 0 15px; 
+    }
+
     .expenses td button {
-        width: 48%; /* Buttons take half the space */
-        display: inline-block; /* Align buttons side by side */
+        width: auto; 
+        display: inline-block;
     }
 
     .pagination button {
-        width: auto; /* Make buttons auto width on iPad */
+        width: auto; 
     }
 
     .pagination span {
         display: inline-block;
         margin-top: 0;
     }
-
-    /* Center the table on tablets like iPad Mini */
-    .expenses {
-        max-width: 95%; /* Adjust table width to fit the screen properly */
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* Ensure the container is centered on tablets */
-    .container {
-        max-width: 95%;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-    }
 }
 
 /* iPhone-specific styling */
 @media (max-width: 480px) {
     .expenses th, .expenses td {
-        font-size: 12px; /* Reduce font size for smaller screens */
+        font-size: 12px; 
     }
 
     .expenses td button {
-        padding: 8px; /* Reduce button padding */
+        padding: 8px;
     }
 
     button {
-        font-size: 12px; /* Reduce button text size */
+        font-size: 12px; 
+    }
+
+    .expenses td {
+        word-wrap: break-word; 
     }
 }

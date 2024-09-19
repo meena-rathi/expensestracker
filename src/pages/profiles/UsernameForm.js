@@ -39,7 +39,7 @@ function UsernameForm() {
                 username,
             }));
             setSuccess("Username updated successfully!"); // Set success message
-            setTimeout(() => history.push('/profiles'), 2000); // Redirect after 2 seconds
+            setTimeout(() => history.push(`/profiles/${currentUser.pk}/`), 2000); // Redirect after 2 seconds
         } catch(err) {
             setErrors(err.response?.data);
         }

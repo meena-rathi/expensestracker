@@ -130,15 +130,23 @@ If the username already exists or the password does not match, an error message 
 
 - The user can see the expenses ratio displayed in a pie chart.
 
+![Profile](src/Documentions/design/profile.JPG)
+
+- The user can see profile upload image, change username and password.
+
+![Footer](src/Documentions/design/footer.JPG)
+
+- The user can see footer.
+
 ### Data Models
 
 The data models were designed at the same time as the wireframes. You can find details about them in the read-me for the [Expenses Tracking Django Rest Framework API](https://github.com/meena-rathi/drf_api_expenses).
 
 ## Fonts ##
 
-- The 'sans-serif' font family, a sans-serif typeface, has been selected for use across the resturtant project. 
+- The 'sans-serif' font family, a sans-serif typeface, has been selected for use across the Expenses project. 
 
-- Font Colors: The color scheme for text is primarily brown, gray and white, blue.
+- Font Colors: The color scheme for text is primarily black , gray and white, brown.
 
 ### React-Reusable Components
 
@@ -285,7 +293,7 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 | User logs in / registers | Nav links change and access to home page becomes available | ✅ |
 | User clicks '+ toggle'| budget form displayed | ✅ |
 | User enter the monthly budget | budget displayed on the home page | ✅ |
-| User enters the monthly budget and wants to increase it | Increased budget is displayed on the home page | ✅ |
+| User enters the monthly budget and wants to change it | replaced with new one | ✅ |
 | User enter (invalid data) | Error / Invalid messages | ✅ |
 | User clicks ‘+ toggle’ | expenses from displayed | ✅ |
 | User enters the expenses | Expenses are displayed in a table on the home page | ✅ |
@@ -294,15 +302,6 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 | User updates project (invalid data) | Error / Invalid messages | ✅ |
 | User clicks delete icon on expenses page | expenses is deleted and redirected to home page | ✅ |
 | Total expenses | Total amount is calculated based on the entered expenses | ✅ |
-| User logs in / registers | Nav links change and access to home page becomes available | ✅ |
-| User clicks '+ toggle'| budget form displayed | ✅ |
-| User enter the monthly budget | budget displayed on the home page | ✅ |
-| User enters the monthly budget and wants to increase it | Increased budget is displayed on the home page | ✅ |
-| User enter (invalid data) | Error / Invalid messages | ✅ |
-| User clicks ‘+ toggle’ | expenses from displayed | ✅ |
-| User enters the expenses | Expenses are displayed in a table on the home page | ✅ |
-| User clicks edit button | Directed to edit project page with prepopulated form | ✅ |
-| User updates expenses (valid data) | Project details updated successfully and redirected to previous page | ✅ |
 | User update profile image | profile image successfuly Updated reload the page image display in profile | ✅ |
 | User update Username | Username Updated successfully | ✅ |
 | User update password |passwrod updated successfully | ✅ |
@@ -316,6 +315,11 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 | The remaining amount should be calculated and displayed based on the difference between the monthly budget and the total expenses.| ✅ |
 | display sum of total expenses| ✅ |
 |Fix profile image upload|✅ |
+|Fix username update| ✅ |
+
+## Known Bugs ##
+
+| Not set default image in profile| - |
 
 ## Code Validation
 
@@ -388,17 +392,17 @@ To integrate the React front-end with the Django API, follow these steps:
    - These steps ensure that your React app can interact properly with the Django TaskFlow API.
 
 
-## Forking the Taskmaster_react Repository
+## Forking the Expenses Repository
 
 1.	Log in (or create an account) on GitHub.
-2.	Visit the repository for the project at Neillcllghn/taskmaster_react.
+2.	Visit the repository for the project at (https://github.com/meena-rathi/expensestracker).
 3.	Click the Fork button in the upper right corner of the page.
 ________________________________________
 
 ## Cloning the Repository
 
 1.	Log in (or create an account) on GitHub.
-2.	Navigate to the repository for this project at Neillcllghn/taskmaster_react.
+2.	Navigate to the repository for this project at (https://github.com/meena-rathi/expensestracker).
 3.	Click the Code button, choose whether to clone using HTTPS, SSH, or GitHub CLI, and copy the provided link.
 4.	Open your terminal and change the current working directory to where you want the cloned repository to be saved.
 5.	In the terminal, type git clone, paste the link from step 3, and hit enter.
