@@ -122,7 +122,7 @@ If the username already exists or the password does not match, an error message 
 
 ![Expenses From & Budget Form](src/Documentions/design/expensesform.JPG)
 
-- The user can click on a toggle to view the form and enter the monthly budget. If they wish to increase the budget, they can do so easily.
+- The user can click on a toggle to view the form and enter the monthly budget. If they wants to change the bughets enter new budget it will replace with new one.
 
 - Once the user submits the expense form, they can see the updated list of expenses.
 
@@ -321,6 +321,9 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 
 | Not set default image in profile| - |
 
+
+- I checked the responsiveness for all devices, and it is working fine. However, I'm using a separate repository, and I’m unable to send data on mobile devices. I contacted support, and they confirmed that the issue is with the separate repository, not the code itself. The data is being sent correctly in the browser. I will address this issue in the future.
+
 ## Code Validation
 
 ### HTML Validation
@@ -335,7 +338,12 @@ I used [W3C Jigsaw] to validate(https://jigsaw.w3.org/css-validator/validator?ur
 
 ![CSS](src/Documentions/design/css.JPG)
 
-## Deployment
+### Estlint Validation
+
+I used the command npx eslint . --no-cache in the terminal and didn't find any issues in the workspace. However, there are still build issues in the project. I contacted tutor support, and they mentioned that the build issue could not be resolved.
+
+![ESTLINT](src/Documentions/design/eslint.JPG)
+## Deployment 
 
 - To deploy Expenses Tracking to GitHub and Heroku, follow these steps:
 
