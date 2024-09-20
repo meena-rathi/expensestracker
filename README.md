@@ -324,6 +324,8 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 
 - I checked the responsiveness for all devices, and it is working fine. However, I'm using a separate repository, and I’m unable to send data on mobile devices. I contacted support, and they confirmed that the issue is with the separate repository, not the code itself. The data is being sent correctly in the browser. I will address this issue in the future.
 
+- In the future i will fix all those issues and responsive.
+ 
 ## Code Validation
 
 ### HTML Validation
