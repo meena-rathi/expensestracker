@@ -14,6 +14,8 @@
 //   const [nextPageUrl, setNextPageUrl] = useState(null);
 //   const [prevPageUrl, setPrevPageUrl] = useState(null);
 //   const [message, setMessage] = useState('');
+//   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false); // new state for showing delete confirmation
+//   const [expenseToDelete, setExpenseToDelete] = useState(null); // new state for storing the expense to delete
 //   const itemsPerPage = 10;
 //   const history = useHistory();
 
@@ -47,11 +49,15 @@
 //     }
 //   };
 
-//   const handleDelete = async (id) => {
-//     const isConfirmed = window.confirm('Are you sure you want to delete this expense?');
-//     if (isConfirmed) {
+//   const confirmDelete = (id) => {
+//     setExpenseToDelete(id);
+//     setShowDeleteConfirm(true); // show the confirmation alert
+//   };
+
+//   const handleDelete = async () => {
+//     if (expenseToDelete) {
 //       try {
-//         await axiosRes.delete(`/expenses/${id}/`);
+//         await axiosRes.delete(`/expenses/${expenseToDelete}/`);
 //         const response = await axiosRes.get(`/expenses/?page=${currentPage}&limit=${itemsPerPage}`);
 //         const { results } = response.data;
 //         setLocalExpenses(results);
@@ -62,8 +68,16 @@
 //         console.error('Failed to delete expense:', err);
 //         setMessage('Failed to delete expense.');
 //         setTimeout(() => setMessage(''), 3000);
+//       } finally {
+//         setShowDeleteConfirm(false); // hide the confirmation alert
+//         setExpenseToDelete(null); // reset the expense to delete
 //       }
 //     }
+//   };
+
+//   const handleCancelDelete = () => {
+//     setShowDeleteConfirm(false);
+//     setExpenseToDelete(null);
 //   };
 
 //   const handleEdit = (id) => {
@@ -98,6 +112,18 @@
 //           {message}
 //         </Alert>
 //       )}
+
+//       {/* Render the delete confirmation alert */}
+//       {showDeleteConfirm && (
+//         <Alert variant="warning">
+//           <p>Are you sure you want to delete this expense?</p>
+//           <div className="d-flex justify-content-end">
+//             <Button variant="danger" onClick={handleDelete} className="me-2">Yes, Delete</Button>
+//             <Button variant="secondary" onClick={handleCancelDelete}>Cancel</Button>
+//           </div>
+//         </Alert>
+//       )}
+
 //       <ExpensesForm onSubmit={handleNewExpenseSubmit} />
 //       {expenses.length > 0 ? (
 //         <Table className={styles.expenses} responsive>
@@ -119,7 +145,7 @@
 //                   <Button variant="primary" onClick={() => handleEdit(expense.id)}>
 //                     <FontAwesomeIcon icon={faEdit} /> Edit
 //                   </Button>
-//                   <Button variant="danger" onClick={() => handleDelete(expense.id)}>
+//                   <Button variant="danger" onClick={() => confirmDelete(expense.id)}>
 //                     <FontAwesomeIcon icon={faTrash} /> Delete
 //                   </Button>
 //                 </td>
@@ -159,16 +185,17 @@ import { faChevronLeft, faChevronRight, faTrash, faEdit } from '@fortawesome/fre
 import ExpensesForm from './ExpensesForm';
 import { useHistory } from "react-router-dom";
 import { Alert, Button, Table, Container, Row, Col } from 'react-bootstrap';
+import TotalExpenses from './TotalExpenses'; // Import TotalExpenses component
 
-const ExpensesDisplay = ({ updateTotals = () => {} }) => {
+const ExpensesDisplay = ({ budget, updateTotals = () => {} }) => {
   const [expenses, setLocalExpenses] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [nextPageUrl, setNextPageUrl] = useState(null);
   const [prevPageUrl, setPrevPageUrl] = useState(null);
   const [message, setMessage] = useState('');
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false); // new state for showing delete confirmation
-  const [expenseToDelete, setExpenseToDelete] = useState(null); // new state for storing the expense to delete
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [expenseToDelete, setExpenseToDelete] = useState(null);
   const itemsPerPage = 10;
   const history = useHistory();
 
@@ -204,7 +231,7 @@ const ExpensesDisplay = ({ updateTotals = () => {} }) => {
 
   const confirmDelete = (id) => {
     setExpenseToDelete(id);
-    setShowDeleteConfirm(true); // show the confirmation alert
+    setShowDeleteConfirm(true);
   };
 
   const handleDelete = async () => {
@@ -222,8 +249,8 @@ const ExpensesDisplay = ({ updateTotals = () => {} }) => {
         setMessage('Failed to delete expense.');
         setTimeout(() => setMessage(''), 3000);
       } finally {
-        setShowDeleteConfirm(false); // hide the confirmation alert
-        setExpenseToDelete(null); // reset the expense to delete
+        setShowDeleteConfirm(false);
+        setExpenseToDelete(null);
       }
     }
   };
@@ -266,7 +293,6 @@ const ExpensesDisplay = ({ updateTotals = () => {} }) => {
         </Alert>
       )}
 
-      {/* Render the delete confirmation alert */}
       {showDeleteConfirm && (
         <Alert variant="warning">
           <p>Are you sure you want to delete this expense?</p>
@@ -278,6 +304,7 @@ const ExpensesDisplay = ({ updateTotals = () => {} }) => {
       )}
 
       <ExpensesForm onSubmit={handleNewExpenseSubmit} />
+      
       {expenses.length > 0 ? (
         <Table className={styles.expenses} responsive>
           <thead>
@@ -309,6 +336,14 @@ const ExpensesDisplay = ({ updateTotals = () => {} }) => {
       ) : (
         <p>No expenses found.</p>
       )}
+      
+      {/* Total Expenses and Remaining Budget */}
+      <Row>
+        <Col xs={12}>
+          <TotalExpenses budget={budget} expenses={expenses} />
+        </Col>
+      </Row>
+
       <Row className="justify-content-center">
         <Col md="auto">
           <Button variant="secondary" onClick={prevPage} disabled={currentPage === 1}>

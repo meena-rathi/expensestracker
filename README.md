@@ -325,7 +325,7 @@ The useClickOutsideToggle hook helps manage a component's toggling when you clic
 - I checked the responsiveness for all devices, and it is working fine. However, I'm using a separate repository, and I’m unable to send data on mobile devices. I contacted support, and they confirmed that the issue is with the separate repository, not the code itself. The data is being sent correctly in the browser. I will address this issue in the future.
 
 - In the future i will fix all those issues and responsive.
- 
+
 ## Code Validation
 
 ### HTML Validation
@@ -345,6 +345,7 @@ I used [W3C Jigsaw] to validate(https://jigsaw.w3.org/css-validator/validator?ur
 I used the command npx eslint . --no-cache in the terminal and didn't find any issues in the workspace. However, there are still build issues in the project. I contacted tutor support, and they mentioned that the build issue could not be resolved.
 
 ![ESTLINT](src/Documentions/design/eslint.JPG)
+
 ## Deployment 
 
 - To deploy Expenses Tracking to GitHub and Heroku, follow these steps:

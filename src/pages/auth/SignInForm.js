@@ -67,7 +67,7 @@ function SignInForm() {
                 {message}
               </Alert>
             ))}
-            <Form.Group controlId="password">
+            <Form.Group controlId="password" className="mt-3">
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
                 type="password"
@@ -84,7 +84,7 @@ function SignInForm() {
               </Alert>
             ))}
             <Button
-              className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
+              className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright} mt-3`}
               type="submit"
             >
               Sign in
