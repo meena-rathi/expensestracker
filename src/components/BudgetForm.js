@@ -36,11 +36,13 @@ const BudgetForm = ({ onSubmit }) => {
 
   return (
     <div className={styles.container}>
-      <Button variant="link" onClick={toggleFormVisibility}>
+      <div className={styles.buttonContainer}>
+      <Button variant="link" onClick={toggleFormVisibility}
+  className={`${styles.toggleButton} ${styles.addExpensesButton}`} >
         <FontAwesomeIcon icon={isFormVisible ? faMinus : faPlus} />
         {isFormVisible ? ' Hide Budget Form' : ' Add Budget Form'}
       </Button>
-
+      </div>
       {isFormVisible && (
         <div className={styles.formContainer}>
           <Form onSubmit={handleSubmit}>

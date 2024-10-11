@@ -8,10 +8,34 @@
     border: 1px solid red;
     padding: 20px;
   } */
+  .addExpensesButton,
+  .toggleButton {
+      display: inline-flex; /* Ensures the icon and text are aligned */
+      align-items: center; /* Centers the icon vertically with the text */
+      padding: 10px 12px; /* Adjust padding for better click area */
+      margin: 0; /* Remove any default margins */
+      border: none; /* Remove any default border */
+      background-color: transparent; /* Transparent background for a cleaner look */
+      cursor: pointer; /* Change cursor to pointer on hover */
+      color: #007bff; /* Default Bootstrap link color */
+  }
+  .addExpensesButton:hover,
+.toggleButton:hover {
+    text-decoration: underline; /* Underline on hover for visual feedback */
+}
+.buttonContainer {
+  display: flex; /* Use flexbox for better alignment */
+  justify-content: space-between; /* Space out buttons evenly */
+  margin-bottom: 20px; /* Space between button container and other elements */
+}
+.container {
+  margin-left: 0; /* Ensure the container has no left margin */
+  padding-left: 0; /* Ensure no extra left padding */
+}
 
   /* Container for the form to ensure proper padding and border */
 .formContainer {
-    padding: 20px; /* Padding inside the form container */
+    padding: 10px; /* Padding inside the form container */
     border: 1px solid #dee2e6; /* Light border for a subtle separation */
     border-radius: 8px; /* Rounded corners for the form */
     background-color: #f8f9fa; /* Light background color for the form */
@@ -51,4 +75,4 @@
   .text-center {
     text-align: center; /* Center-aligns text and buttons */
   }
-  
+ 

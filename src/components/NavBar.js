@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faSignInAlt, faUserPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = () => {
+  //const { userProfile } = useUserProfile(); // Access userProfile from context
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
@@ -45,10 +46,7 @@ const NavBar = () => {
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
         <FontAwesomeIcon icon={faSignOutAlt} /> Sign out
       </NavLink>
-      <NavLink
-        className={styles.NavLink}
-        to={`/profiles/${currentUser?.pk}`} // Ensure this route is correct
-      >
+      <NavLink className={styles.NavLink} to={`/profiles/${currentUser?.pk}`} exact>
         <Avatar
           src={currentUser?.profile_image || 'https://via.placeholder.com/40'}
           text="Profile"

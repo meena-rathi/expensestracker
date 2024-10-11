@@ -70,14 +70,24 @@ const ExpensesForm = ({ onSubmit }) => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.buttonContainer}>
       <Button
+  variant="link"
+  onClick={toggleFormVisibility}
+  className={`${styles.toggleButton} ${styles.addExpensesButton}`} // Add the new class here
+>
+  <FontAwesomeIcon icon={isFormVisible ? faMinus : faPlus} />
+  {isFormVisible ? ' Hide Expenses Form' : ' Add Expenses Form'}
+</Button>
+</div>
+      {/* <Button
         variant="link"
         onClick={toggleFormVisibility}
         className={styles.toggleButton}
       >
         <FontAwesomeIcon icon={isFormVisible ? faMinus : faPlus} />
         {isFormVisible ? ' Hide Expenses Form' : ' Add Expenses Form'}
-      </Button>
+      </Button> */}
 
       {success && <Alert variant="success">{success}</Alert>}
       {submissionError && <Alert variant="danger">{submissionError}</Alert>}
