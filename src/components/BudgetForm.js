@@ -33,12 +33,12 @@ const BudgetForm = ({ onSubmit }) => {
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
   };
-
+  // ${styles.addExpensesButton}
   return (
     <div className={styles.container}>
       <div className={styles.buttonContainer}>
       <Button variant="link" onClick={toggleFormVisibility}
-  className={`${styles.toggleButton} ${styles.addExpensesButton}`} >
+  className={`${styles.toggleButton}`} >
         <FontAwesomeIcon icon={isFormVisible ? faMinus : faPlus} />
         {isFormVisible ? ' Hide Budget Form' : ' Add Budget Form'}
       </Button>

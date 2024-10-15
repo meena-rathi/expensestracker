@@ -17,11 +17,16 @@
       border: none; /* Remove any default border */
       background-color: transparent; /* Transparent background for a cleaner look */
       cursor: pointer; /* Change cursor to pointer on hover */
-      color: #007bff; /* Default Bootstrap link color */
+      /* color: #007bff;  */
   }
-  .addExpensesButton:hover,
+  /* .addExpensesButton:hover,
 .toggleButton:hover {
-    text-decoration: underline; /* Underline on hover for visual feedback */
+    text-decoration: underline;
+  
+} */
+.addExpensesButton
+{
+  margin-left: -10px;
 }
 .buttonContainer {
   display: flex; /* Use flexbox for better alignment */
