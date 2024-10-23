@@ -33,7 +33,7 @@ const NavBar = () => {
         to="/home"
         exact
       >
-        <FontAwesomeIcon icon={faHome} /> Home
+        <FontAwesomeIcon icon={faHome}  className="me-2" /> Home
       </NavLink>
       <NavLink
         className={styles.NavLink}
@@ -41,10 +41,10 @@ const NavBar = () => {
         to="/piechart"
         exact
       >
-        <FontAwesomeIcon icon={faHome} /> PieChart
+        <FontAwesomeIcon icon={faHome} className="me-2" /> PieChart
       </NavLink>
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
-        <FontAwesomeIcon icon={faSignOutAlt} /> Sign out
+        <FontAwesomeIcon icon={faSignOutAlt}  className="me-2"/> Sign out
       </NavLink>
       <NavLink className={styles.NavLink} to={`/profiles/${currentUser?.pk}`} exact>
         <Avatar
@@ -64,7 +64,7 @@ const NavBar = () => {
         to="/signin"
         exact
       >
-        <FontAwesomeIcon icon={faSignInAlt} /> Sign in
+        <FontAwesomeIcon icon={faSignInAlt} className="me-2" /> Sign in
       </NavLink>
       <NavLink
         to="/signup"
@@ -72,7 +72,7 @@ const NavBar = () => {
         activeClassName={styles.Active}
         exact
       >
-        <FontAwesomeIcon icon={faUserPlus} /> Sign up
+        <FontAwesomeIcon icon={faUserPlus} className="me-2" /> Sign up
       </NavLink>
     </>
   );

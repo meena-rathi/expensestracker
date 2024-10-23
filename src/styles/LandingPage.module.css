@@ -1,0 +1,75 @@
+.landingContainer {
+    max-width: 100%; /* Allow it to take full width */
+    height: 100vh; /* Full viewport height */
+    margin: 0 auto;
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    justify-content: center; /* Horizontally center the content */
+    padding: 20px;
+    flex-direction: column; /* Stack content vertically */
+  }
+  
+  .heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px; 
+  }
+  
+  .subHeading {
+    font-size: 1.5rem;
+    color: #666;
+  }
+  
+  .screenshot {
+    width: 100%;
+    max-width: 400px; /* Limit the image width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Add space below the image */
+  }
+  
+  .description {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    color: #444;
+    text-align: center;
+  }
+  
+  .ctaButton {
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-size: 1.2rem;
+  }
+  
+  .signinPrompt {
+    margin-top: 20px;
+    font-size: 1rem;
+  }
+  
+  .signinLink {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  @media (max-width: 768px) {
+    /* Mobile styles */
+    .landingContainer {
+      padding: 20px;
+    }
+  
+    .heading {
+      font-size: 2rem;
+    }
+  
+    .subHeading {
+      font-size: 1.2rem;
+    }
+  
+    .ctaButton {
+      font-size: 1rem;
+    }
+  }
+  

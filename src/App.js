@@ -55,7 +55,7 @@
 // export default App;
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import SignInForm from './pages/auth/SignInForm';
 import SignUpForm from './pages/auth/SignUpForm';
@@ -64,12 +64,15 @@ import Home from './pages/expenses/Home';
 import ExpenseEditForm from './components/ExpenseEditForm';
 import PieChartDisplay from './pages/expenses/PieChartDisplay';
 import ProfilePage from './pages/profiles/ProfilePage';
+import LandingPage from './components/LandingPage';
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import Footer from './components/Footer'; // Import Footer component
+import { useCurrentUser } from './contexts/CurrentUserContext';
 
 function App() {
+  const currentUser = useCurrentUser(); // Get the current user from context
   return (
     <div className="App">
       <Router>
@@ -85,6 +88,9 @@ function App() {
             <Route path="/profile-edit-form/" component={ProfileEditForm} />
             <Route path="/change-username" component={UsernameForm} />
             <Route path="/change-password/:id" component={UserPasswordForm} />
+            <Route exact path="/">
+              {currentUser ? <Redirect to="/home" /> : <LandingPage />}
+            </Route>
           </Switch>
         </div>
         <Footer /> {/* Add Footer component */}

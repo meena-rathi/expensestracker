@@ -8,20 +8,29 @@
     overflow: hidden; 
 }
 
+.edit-icon,
+.delete-icon {
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: transform 0.2s; /* Optional: Add a hover effect */
+}
+
+.edit-icon:hover,
+.delete-icon:hover {
+    transform: scale(1.1); /* Optional: Slightly enlarge the icon on hover */
+}
+
 /* Table header */
 .expenses th {
     background-color: #998877;
     color: #333;
     padding: 10px;
     border-bottom: 2px solid #333;
-    text-align: center; 
 }
 
 /* Table cells */
 .expenses td {
     padding: 10px;
     border: 1px solid #333;
-    text-align: center; 
 }
 
 /* Table rows */
@@ -51,23 +60,12 @@ button:disabled {
 }
 
 .pagination {
-    text-align: center;
-    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0; 
 }
 
-.pagination button {
-    margin: 0 5px;
-}
-
-/* General container styling for centering */
-.container {
-    max-width: 1200px; 
-    margin: 0 auto; 
-    padding: 0 15px; 
-    text-align: center; 
-}
-
-
+/* Mobile Styles */
 @media (max-width: 768px) {
     .expenses {
         width: 100%;
@@ -87,15 +85,14 @@ button:disabled {
     }
 
     .pagination button {
-        width: 100%;
-        margin-top: 10px;
+        flex: 1 1 auto;
+        margin: 0 5px;
     }
 
     .pagination span {
-        display: block;
-        text-align: center;
-        margin-top: 10px;
+        display: none;
     }
+
     .expenses td {
         white-space: normal; 
     }
@@ -120,7 +117,7 @@ button:disabled {
     }
 
     .pagination button {
-        width: auto; 
+         width: auto; 
     }
 
     .pagination span {
@@ -131,8 +128,20 @@ button:disabled {
 
 /* iPhone-specific styling */
 @media (max-width: 480px) {
-    .expenses th, .expenses td {
-        font-size: 12px; 
+    .expenses th,
+    .expenses td {
+        font-size: 12px;
+    }
+
+    .pagination {
+        justify-content: center; 
+    }
+
+    /* General button styling */
+    .pagination button {
+        flex-shrink: 0; 
+        margin: 0 5px; 
+       
     }
 
     .expenses td button {
@@ -140,10 +149,10 @@ button:disabled {
     }
 
     button {
-        font-size: 12px; 
+        font-size: 12px;
     }
 
     .expenses td {
-        word-wrap: break-word; 
+        word-wrap: break-word;
     }
 }

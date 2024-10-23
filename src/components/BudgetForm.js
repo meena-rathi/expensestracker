@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles/BudgetFormToggle.module.css';
@@ -9,6 +10,7 @@ const BudgetForm = ({ onSubmit }) => {
   const [inputValue, setInputValue] = useState('');
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -16,33 +18,50 @@ const BudgetForm = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Check for validation
+
     if (inputValue.trim() === '' || Number(inputValue) <= 0) {
       setErrorMessage('Please enter a valid budget amount greater than zero.');
       return;
     }
 
-    // If valid, submit the form
-    onSubmit(Number(inputValue)); // Ensure the input value is sent as a number
-    setInputValue(''); // Clear the input field
-    setIsFormVisible(false); // Hide the form
-    setErrorMessage(''); // Reset the error message on success
+    onSubmit(Number(inputValue));
+    setInputValue('');
+    setIsFormVisible(false);
+    setErrorMessage('');
+    setShowSuccessMessage(true);
+
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 3000);
   };
 
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
   };
-  // ${styles.addExpensesButton}
+
   return (
     <div className={styles.container}>
       <div className={styles.buttonContainer}>
-      <Button variant="link" onClick={toggleFormVisibility}
-  className={`${styles.toggleButton}`} >
-        <FontAwesomeIcon icon={isFormVisible ? faMinus : faPlus} />
-        {isFormVisible ? ' Hide Budget Form' : ' Add Budget Form'}
-      </Button>
+        <Button
+          variant="link"
+          onClick={toggleFormVisibility}
+          className={`${styles.toggleButton} d-flex align-items-center`}
+          aria-label={isFormVisible ? 'Hide Budget Form' : 'Show Budget Form'}
+        >
+          <FontAwesomeIcon
+            icon={isFormVisible ? faMinus : faPlus}
+            className="me-2"
+          />
+          {isFormVisible ? 'Hide Budget Form' : 'Add Budget Form'}
+        </Button>
       </div>
+
+      {showSuccessMessage && (
+        <Alert variant="success" className="mt-3">
+          Budget successfully updated!
+        </Alert>
+      )}
+
       {isFormVisible && (
         <div className={styles.formContainer}>
           <Form onSubmit={handleSubmit}>
@@ -59,8 +78,8 @@ const BudgetForm = ({ onSubmit }) => {
                 {errorMessage}
               </Form.Control.Feedback>
             </Form.Group>
-            <Button variant="primary" type="submit">
-              Update Budget
+            <Button variant="primary" type="submit" className="mt-3">
+              Add Budget
             </Button>
           </Form>
         </div>

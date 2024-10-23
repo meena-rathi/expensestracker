@@ -16,23 +16,22 @@ const ExpensesForm = ({ onSubmit }) => {
   const [submissionError, setSubmissionError] = useState('');
   const [success, setSuccess] = useState('');
 
-  // Amount validation: numbers only
   const handleAmountChange = (e) => {
     const value = e.target.value;
-    if (/^\d+$/.test(value)) {
+
+    if (/^\d*$/.test(value)) {  // Allow only empty string or digits
       setInputAmount(value);
-      setAmountError(''); // Clear amount error if valid
+      setAmountError('');  // Clear error if valid
     } else {
-      setAmountError('Amount must contain only numeric values.');
+      setAmountError('Amount must contain only numeric values.');  // Set error for invalid input
     }
   };
 
-  // Description validation: alphabetic only, no spaces
   const handleDescriptionChange = (e) => {
     const value = e.target.value;
     if (/^[a-zA-Z]+$/.test(value)) {
       setInputDescription(value);
-      setDescriptionError(''); // Clear description error if valid
+      setDescriptionError('');
     } else {
       setDescriptionError('Description must contain only alphabetic characters without spaces.');
     }
@@ -71,27 +70,19 @@ const ExpensesForm = ({ onSubmit }) => {
   return (
     <div className={styles.container}>
       <div className={styles.buttonContainer}>
-      <Button
-  variant="link"
-  onClick={toggleFormVisibility}
-  className={`${styles.toggleButton} ${styles.addExpensesButton}`} // Add the new class here
->
-  <FontAwesomeIcon icon={isFormVisible ? faMinus : faPlus} />
-  {isFormVisible ? ' Hide Expenses Form' : ' Add Expenses Form'}
-</Button>
-</div>
-      {/* <Button
-        variant="link"
-        onClick={toggleFormVisibility}
-        className={styles.toggleButton}
-      >
-        <FontAwesomeIcon icon={isFormVisible ? faMinus : faPlus} />
-        {isFormVisible ? ' Hide Expenses Form' : ' Add Expenses Form'}
-      </Button> */}
-
+        <Button
+          variant="link"
+          onClick={toggleFormVisibility}
+          className={`${styles.toggleButton} ${styles.addExpensesButton}`}
+        >
+          <FontAwesomeIcon icon={isFormVisible ? faMinus : faPlus} />
+          {isFormVisible ? ' Hide Expenses Form' : ' Add Expenses Form'}
+        </Button>
+      </div>
+      
       {success && <Alert variant="success">{success}</Alert>}
       {submissionError && <Alert variant="danger">{submissionError}</Alert>}
-
+      
       {isFormVisible && (
         <div className={styles.formContainer}>
           <Form onSubmit={handleSubmit}>
@@ -102,12 +93,13 @@ const ExpensesForm = ({ onSubmit }) => {
                 value={inputAmount}
                 onChange={handleAmountChange}
                 placeholder="Enter amount"
-                isInvalid={!!amountError} // Trigger error for the form field
+                isInvalid={!!amountError}
               />
               <Form.Control.Feedback type="invalid">
                 {amountError}
               </Form.Control.Feedback>
             </Form.Group>
+
             <Form.Group controlId="description">
               <Form.Label>Description</Form.Label>
               <Form.Control
@@ -115,17 +107,18 @@ const ExpensesForm = ({ onSubmit }) => {
                 value={inputDescription}
                 onChange={handleDescriptionChange}
                 placeholder="Enter description"
-                isInvalid={!!descriptionError} // Trigger error for the form field
+                isInvalid={!!descriptionError} 
               />
               <Form.Control.Feedback type="invalid">
                 {descriptionError}
               </Form.Control.Feedback>
             </Form.Group>
+
             <Button
               variant="primary"
               type="submit"
-              className={styles.submitButton}
-              disabled={!!amountError || !!descriptionError} // Disable submit if any field has an error
+              className={`${styles.submitButton} mt-3`}
+              disabled={!!amountError || !!descriptionError}
             >
               Add Expense
             </Button>
@@ -137,4 +130,3 @@ const ExpensesForm = ({ onSubmit }) => {
 };
 
 export default ExpensesForm;
-

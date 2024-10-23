@@ -1,13 +1,4 @@
-/* .containser
-{
-    margin: 20px 0;
-}
-.budgetFormContainer {
-    max-width: 600px;
-    margin: 0 auto;
-    border: 1px solid red;
-    padding: 20px;
-  } */
+
   .addExpensesButton,
   .toggleButton {
       display: inline-flex; /* Ensures the icon and text are aligned */
@@ -55,29 +46,29 @@
   
   /* Add some space between the button and the form fields */
   .buttonContainer {
-    margin-bottom: 20px; /* Space between the button and the form */
+    margin-bottom: 20px; 
   }
   
-  /* Ensure the form fields are responsive */
+  
   .form-control-lg {
-    font-size: 1.25rem; /* Larger text for readability */
-    padding: 0.75rem; /* Adequate padding inside input fields */  
+    font-size: 1.25rem;
+    padding: 0.75rem; 
 }
   
-  /* Styling for the success button (green) */
+ 
   .btn-success {
-    background-color: #28a745; /* Green background color */
-    border-color: #28a745; /* Matching border color */
+    background-color: #28a745; 
+    border-color: #28a745; 
     margin-top: 50px ;
   }
   
-  /* Override Bootstrap button padding to ensure consistency */
+
   .btn-lg {
-    padding: 0.75rem 1.25rem; /* Larger padding for better click area */
+    padding: 0.75rem 1.25rem; 
   }
   
-  /* Ensures the button text and icon are well-aligned */
+ 
   .text-center {
-    text-align: center; /* Center-aligns text and buttons */
+    text-align: center;
   }
  
