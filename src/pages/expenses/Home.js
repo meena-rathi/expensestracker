@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col, Alert } from 'react-bootstrap';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import useBudget from '../../Hooks/useBudget';
@@ -6,20 +6,24 @@ import BudgetForm from '../../components/BudgetForm';
 import useExpenses from '../../Hooks/useExpenses';
 import ExpensesDisplay from '../../components/ExpensesDisplay';
 import styles from '../../styles/Home.module.css';
+import { useHistory } from 'react-router-dom';
 
 const Home = () => {
   const user = useCurrentUser();
+  const history = useHistory();
 
   const { budget, error: budgetError, isBudgetLoaded, handleBudgetSubmit } = useBudget();
   const userId = user?.id;
   const { expenses } = useExpenses(userId);
 
+  useEffect(() => {
+    if (!user) {
+      history.push('/');
+    }
+  }, [user, history]);
+
   if (!user) {
-    return (
-      <Container className={`text-center mt-4 ${styles['overflow-hidden']}`}>
-        <h2 className={styles['text-custom']}>Please sign in to view your budget and expenses.</h2>
-      </Container>
-    );
+    return null;
   }
 
   return (
@@ -30,7 +34,7 @@ const Home = () => {
             Welcome, {user.username}!
           </h1>
         </Col>
-        <Col xs={12} md={6} className="text-md-end"> {/* Align right here */}
+        <Col xs={12} md={6} className="text-md-end">
           {isBudgetLoaded ? (
             <p className={`${styles['text-custom']} ${styles['text-success-custom']}`}>
               Current Budget: ${budget}
@@ -41,7 +45,6 @@ const Home = () => {
         </Col>
       </Row>
 
-      {/* Budget Form Section */}
       <Row className="mb-4">
         <Col xs={12}>
           <BudgetForm onSubmit={handleBudgetSubmit} />
@@ -49,7 +52,6 @@ const Home = () => {
         </Col>
       </Row>
 
-      {/* Expenses Section */}
       <Row className="mb-4">
         <Col xs={12}>
           <ExpensesDisplay expenses={expenses} budget={budget} />

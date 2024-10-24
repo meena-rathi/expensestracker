@@ -12,6 +12,14 @@
   z-index: 100;
 }
 
+.pieChartWrapper {
+  width: 90%;        
+  max-width: 450px; 
+  height: auto;     
+  aspect-ratio: 1;
+  margin: 0 auto;   
+}
+
 /* Footer content styling */
 .footer-content {
   display: flex;
@@ -27,7 +35,7 @@
   }
 
   .footer-right {
-    margin-top: 10px; /* Add space between social links and footer links */
+    margin-top: 10px;
   }
 }
 

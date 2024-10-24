@@ -2,7 +2,7 @@ import React from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-
+import styles from '../styles/Pie.module.css';
 ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
 const PieChart = ({ data = [] }) => {
@@ -59,12 +59,12 @@ const PieChart = ({ data = [] }) => {
         },
       },
     },
-    responsive: true, // Ensure the chart is responsive
-    maintainAspectRatio: false, // Allow the chart to resize and fill container
+    responsive: true,
+    maintainAspectRatio: false,
   };
 
   return (
-    <div className="pieChartWrapper">
+    <div className={styles.pieChartWrapper}>
       <Pie data={chartData} options={options} />
     </div>
   );

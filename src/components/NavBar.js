@@ -1,11 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import styles from '../styles/NavBar.module.css'; // Ensure this CSS file exists and is correctly set up
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import axios from 'axios';
 import useClickOutsideToggle from '../Hooks/useClickOutsideToggle';
-import Avatar from './Avatar'; // Ensure Avatar component handles 'src' and 'text' props
+import Avatar from './Avatar'; 
 import logo from "../assets/logo.webp";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faSignInAlt, faUserPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
@@ -15,11 +15,13 @@ const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
+  const navigate = useHistory(); // Use useNavigate for redirection
 
   const handleSignOut = async () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      navigate('/'); // Redirect to the landing page after sign-out
     } catch (err) {
       console.log(err);
     }

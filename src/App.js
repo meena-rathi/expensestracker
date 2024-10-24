@@ -77,7 +77,7 @@ function App() {
     <div className="App">
       <Router>
         <Navbar />
-        <div className="Main"> {/* Apply class with padding */}
+        <div className="Main">
           <Switch>
             <Route exact path="/signin" component={SignInForm} />
             <Route exact path="/signup" component={SignUpForm} />
