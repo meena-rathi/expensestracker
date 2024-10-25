@@ -76,6 +76,7 @@ button:disabled {
 
     .expenses td, .expenses th {
         padding: 8px;
+
     }
 
     .expenses td button {
@@ -130,7 +131,7 @@ button:disabled {
 @media (max-width: 480px) {
     .expenses th,
     .expenses td {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .pagination {

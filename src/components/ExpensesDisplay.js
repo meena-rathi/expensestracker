@@ -163,6 +163,7 @@ const ExpensesDisplay = ({ budget }) => {
                                         icon={faEdit}
                                         onClick={() => handleEdit(expense.id)}
                                         className={`${styles['edit-icon']} me-3 text-primary`}
+                                        
                                     />
                                     <FontAwesomeIcon
                                         icon={faTrash}
