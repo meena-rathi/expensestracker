@@ -3,7 +3,7 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import styles from '../styles/LandingPage.module.css'; // Create a custom CSS file for this page
+import styles from '../styles/LandingPage.module.css';
 import screenshot from '../assets/expenses.jpg';
 const LandingPage = () => {
   return (
@@ -19,7 +19,7 @@ const LandingPage = () => {
       <Row className="mb-4">
   <Col>
     <img
-      src={screenshot} // Use the imported reference here
+      src={screenshot}
       alt="App Screenshot"
       className={styles.screenshot}
     />

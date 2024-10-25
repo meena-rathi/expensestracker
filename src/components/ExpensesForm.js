@@ -19,11 +19,11 @@ const ExpensesForm = ({ onSubmit }) => {
   const handleAmountChange = (e) => {
     const value = e.target.value;
 
-    if (/^\d*$/.test(value)) {  // Allow only empty string or digits
+    if (/^\d*$/.test(value)) {
       setInputAmount(value);
-      setAmountError('');  // Clear error if valid
+      setAmountError('');
     } else {
-      setAmountError('Amount must contain only numeric values.');  // Set error for invalid input
+      setAmountError('Amount must contain only numeric values.');
     }
   };
 
